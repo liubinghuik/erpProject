@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>应收冲款单</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/font.css">
+		<link rel="stylesheet" href="../css/layui.css" />
+		<style>
+			#paymentpage{
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layui-container">
+			<div class="layui-row">
+				<h2 class="layui-col-md10">冲款单</h2>
+				<button class="layui-btn layui-col-md2" data-method="opPmAdd" onclick="pmLayerClick(this)">新增冲款单</button>
+			</div>
+			<div class="layui-row">
+				<div class="layui-row">
+					<div class="layui-col-md4">
+						<label class="layui-form-label">单号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="seachPaymentNo" placeholder="输入单号查询" class="layui-input" />
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+					<div class="layui-col-md4">
+						<label class="layui-form-label">日期选择</label>
+						<div class="layui-input-inline">
+							<!-- 时间控件 -->
+							<input type="text" class="layui-input" id="seachPaymentTime" placeholder=" - ">
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+					<div class="layui-col-md4">
+						<div class="layui-input-inline">
+							<!-- 供应商选择 -->
+							<select name="seachPMgysId" class="layui-select">
+								<option value="0">选择供应商</option>
+								<option value="1">layer</option>
+								<option value="2">form</option>
+							</select>
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+				</div>
+				<table class="layui-table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>单号</th>
+							<th>供应商</th>
+							<th>日期</th>
+							<th>审核</th>
+							<th>金额</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>20191219001</td>
+							<td>许宸剑</td>
+							<td>2019-12-19</td>
+							<td>未审核</td>
+							<td>2000.00</td>
+							<td>
+								<button class="layui-btn layui-btn-normal" data-method="opPmck" onclick="pmLayerClick(this)">查看</button>
+								<button class="layui-btn layui-btn-danger">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="paymentpage"></div>
+			</div>
+		</div>
+		<script src="../layui.all.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			/* 分页 */
+			var paymentpage = layui.laypage;
+			paymentpage.render({
+				elem: 'paymentpage',
+				count: 50,
+				limit: 10,
+				groups: 3,
+				jump: function(obj, first) {
+					/* 跳转回调 */
+				}
+			});
+			/* 时间插件 */
+			var paymentlaydate = layui.laydate;
+			paymentlaydate.render({
+				elem: '#seachPaymentTime',
+				type: 'date',
+				range: true
+			});
+			/* layer插件 */
+			var pmlayer = layui.layer;
+			var pmactive = {
+				opPmAdd: function() {
+					var that = this;
+					pmlayer.open({
+						type: 2,
+						title: '新增冲款单',
+						shade: 0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: 'xcjaddPayment.html',
+						zIndex: pmlayer.zIndex, //重点1
+					});
+				},
+				opPmck: function() {
+					var that = this;
+					pmlayer.open({
+						type: 2,
+						title: '查看冲款单',
+						shade: 0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: 'xcjCheckPayment.html',
+						zIndex: pmlayer.zIndex, //重点1
+					});
+				}
+			};
+
+			function pmLayerClick(t) {
+				var pmothis = $(t),
+					method = pmothis.data('method');
+				pmactive[method] ? pmactive[method].call(t, pmothis) : '';
+			}
+		</script>
+	</body>
+
+</html>

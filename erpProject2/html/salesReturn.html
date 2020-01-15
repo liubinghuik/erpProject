@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>销售退货单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <link rel="stylesheet" href="../css/layui.css" />
+	<script type="text/javascript" src="../js/jquery-1.12.4.js" ></script>
+	<!--<script type="text/javascript" src="../js/layui.js" ></script>-->
+  <script type="text/javascript" src="../layui.all.js" ></script>
+  <style>
+		.xscz{
+			margin-left: 35px;
+			width: 150px;
+		}
+	</style>
+	 <script type="text/javascript">
+	 	
+        window.onload = function(){
+           //去掉默认的contextmenu事件，否则会和右键事件同时出现。
+           document.oncontextmenu = function(e){
+               e.preventDefault();
+           };
+           document.getElementById("xsth").onmousedown = function(e){
+               if(e.button ==2){
+                   layui.use('layer',function(){
+               		var layer=layui.layer;
+               		layer.open({
+					  title: '请选择操作',
+					  type:0
+					  ,content: '<select class=xscz onblur=xsxzcz(this)><option value=1>新增</option><option value=2>修改</option><option value=3>删除</option><option value=4>审核</option></select>'
+
+					});  
+               	});
+               }
+           }
+       }
+       function xsxzcz(obj){
+       	//alert($(obj).val());
+       	if($(obj).val()==1){
+       		$("input").prop("readonly",false);
+       		$("select").prop("disabled",false);
+       		$("textarea").prop("readonly",false);
+       	}
+       	layer.closeAll();
+       }
+    </script>
+  <body>
+    <div class="x-body">
+       <h2>销售退货单</h2>
+    </div>
+    <div class="layui-container">
+			<div  id="xsth">
+				<div class="layui-col-md10 layui-col-md-offset2"></div>
+			<div class="layui-row">
+				<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">客户</span>
+					<input type="text"  class="layui-col-md-offset1 layui-input" style="width: 170px;" readonly="readonly" />
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">单据日期</span> <input type="date" style="width: 170px;" style="width: 170px;"  class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br /><br /><br />
+				<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">送货地址</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">单据号码</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br /><br /><br />
+				<div class="layui-col-md5 layui-col-md-offset2" >
+					<span class="layui-col-md3" style="margin-top: 15px;">单价是否含税</span> <select name="" style="width: 170px;" lay-verify="required" class=" layui-col-md-offset1 layui-input" disabled="disabled">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">币别</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br /><br /><br />
+				<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">仓库</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">汇率</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br /><br /><br />
+				<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">重新出库</span> <select name="" style="width: 170px;" class="layui-col-md-offset1 layui-input" disabled="disabled">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">国外贸易</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly"/>
+				</div><br /><br /><br />
+				<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">凭证编码</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly"/>
+				</div>
+				<div class="layui-tab layui-col-md10 layui-col-md-offset2">
+  <ul class="layui-tab-title layui-col-md10 layui-col-md-offset2">
+    <li class="layui-this">内容</li>
+    <li>备注</li>
+   
+  </ul>
+  <div class="layui-tab-content layui-col-md10 layui-col-md-offset2">
+    <div class="layui-tab-item layui-show layui-tab-content " style=" overflow-x: scroll; overflow-y: scroll;"><table class="layui-table" readonly="readonly" height="500">
+
+  <thead>
+   									<tr>
+												<th style="white-space: nowrap;">(栏号)</th>
+												<th style="white-space: nowrap;">物料编号</th>
+												<th style="white-space: nowrap;">(物料名称)</th>
+												<th style="white-space: nowrap;">(规格型号)</th>
+												<th style="white-space: nowrap;">(单位名称)</th>
+												<th style="white-space: nowrap;">数量</th>
+												<th style="white-space: nowrap;">折扣钱单价</th>
+												<th style="white-space: nowrap;">折数(%)</th>
+												<th style="white-space: nowrap;">单价</th>
+												<th style="white-space: nowrap;">金额</th>
+												<th style="white-space: nowrap;">税额(%)</th>
+												<th style="white-space: nowrap;">(含税金额)</th>
+												<th style="white-space: nowrap;">(批号)</th>
+												<th style="white-space: nowrap;">赠品</th>
+												<th style="white-space: nowrap;">(发票明细)</th>
+												<th style="white-space: nowrap;">(未开票金额)</th>
+												<th style="white-space: nowrap;">分录备注</th>
+												<th style="white-space: nowrap;">(来源单别)</th>
+												<th style="white-space: nowrap;">(来源单号)</th>
+											</tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table></div>
+   
+    <div class="layui-tab-item layui-col-md12" >
+				<div class="layui-col-md12" >
+					<span class="layui-col-md2" style="margin-left: 25px;" >备注</span><textarea style="margin-left: 27px;" readonly="readonly"  rows="6" cols="81"></textarea>
+				</div>
+    </div>
+  </div>
+</div>
+		<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">业务人员</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">制单人员</span><input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">所属部门</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly"/>
+				</div>
+				<div class="layui-col-md5">
+					<span class="layui-col-md2" style="margin-top: 15px;">复核人员</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div><br/><br/>
+		<div class="layui-col-md5 layui-col-md-offset2">
+					<span class="layui-col-md3" style="margin-top: 15px;">所属项目</span> <input type="text" style="width: 170px;" class="layui-col-md-offset1 layui-input" readonly="readonly" />
+				</div>
+			
+<div class="layui-col-md12">
+					<button style="width: 150;background: #1E9FFF;" class="layui-col-md2 layui-col-md-offset2 layui-btn"  disabled="disabled">转单</button>
+					<button style="width: 150;background: #1E9FFF;" class="layui-col-md2 layui-col-md-offset1 layui-btn" disabled="disabled">查询</button>
+					<button style="width: 150;background: #1E9FFF;" class="layui-col-md2 layui-col-md-offset1 layui-btn" disabled="disabled">功能</button>
+				</div>
+			</div>
+			</div>
+		</div>
+     <!--<script>
+    	function oninit(){
+    		layui.use('layer',function(){
+    			var layer= layui.layer;
+    		 layer.open({
+    		 	title:'销售退货单',
+			  type: 2, 
+			  maxmin:true,
+			  area:['995px','520px'],
+//			  maxWidth:60,
+//			  maxHeight:1000,
+			  content: '销售退货.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+			}); 
+    		})
+    		
+    	}
+       
+    </script>-->
+  </body>
+  
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>预付款单</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/font.css">
+		<link rel="stylesheet" href="../css/layui.css" />
+		<style>
+			#xcjprepaypage{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="layui-container">
+			<div class="layui-row">
+				<h2 class="layui-col-md10">预付款单</h2>
+				<button class="layui-btn layui-col-md2" data-method="opPpAdd" onclick="ppLayerClick(this)">新增预付款单</button>
+			</div>
+			<div class="layui-row">
+				<div class="layui-row">
+					<div class="layui-col-md4">
+						<label class="layui-form-label">单号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="seachPrepayNo" placeholder="输入单号查询" class="layui-input" />
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+					<div class="layui-col-md4">
+						<label class="layui-form-label">日期选择</label>
+						<div class="layui-input-inline">
+							<!-- 时间控件 -->
+							<input type="text" class="layui-input" id="seachPrepayTime" placeholder=" - ">
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+					<div class="layui-col-md4">
+						<div class="layui-input-inline">
+							<!-- 供应商选择 -->
+							<select name="seachPPgysId" class="layui-select">
+								<option value="0">选择供应商</option>
+								<option value="1">layer</option>
+								<option value="2">form</option>
+							</select>
+						</div>
+						<span class="layui-icon layui-icon-search" style="font-size: 1.875rem;"></span>
+					</div>
+				</div>
+				<table class="layui-table">
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>单号</th>
+							<th>供应商</th>
+							<th>日期</th>
+							<th>审核</th>
+							<th>金额</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>20191219001</td>
+							<td>许宸剑</td>
+							<td>2019-12-19</td>
+							<td>未审核</td>
+							<td>2000.00</td>
+							<td>
+								<button class="layui-btn layui-btn-normal" data-method="opPpck" onclick="ppLayerClick(this)">查看</button>
+								<button class="layui-btn layui-btn-danger">删除</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="xcjprepaypage"></div>
+			</div>
+		</div>
+		<script src="../layui.all.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			/* 分页 */
+			var xcjprepaypage = layui.laypage;
+			xcjprepaypage.render({
+				elem: 'xcjprepaypage',
+				count: 50,
+				limit: 10,
+				groups: 3,
+				jump: function(obj, first) {
+					/* 跳转回调 */
+				}
+			});
+			/* 时间插件 */
+			var xcjprepaylaydate = layui.laydate;
+			xcjprepaylaydate.render({
+				elem: '#seachPrepayTime',
+				type: 'date',
+				range: true
+			});
+			/* layer插件 */
+			var xcjpplayer = layui.layer;
+			var xcjppactive = {
+				opPpAdd: function() {
+					var that = this;
+					xcjpplayer.open({
+						type: 2,
+						title: '新增预付款单',
+						shade: 0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: 'xcjAddPrepay.html',
+						zIndex: xcjpplayer.zIndex, //重点1
+					});
+				},
+				opPpck: function() {
+					var that = this;
+					xcjpplayer.open({
+						type: 2,
+						title: '查看预付款单',
+						shade: 0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: 'xcjCKPrepay.html',
+						zIndex: xcjpplayer.zIndex, //重点1
+					});
+				}
+			};
+		
+			function ppLayerClick(t) {
+				var ppothis = $(t),
+					method = ppothis.data('method');
+				xcjppactive[method] ? xcjppactive[method].call(t, ppothis) : '';
+			}
+		</script>
+	</body>
+</html>

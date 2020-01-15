@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>新增冲款单</title>
+		<link rel="stylesheet" href="../css/layui.css" />
+		<style>
+
+		</style>
+	</head>
+	<body>
+		<div class="layui-container">
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">供应商</label>
+					<div class="layui-input-inline">
+						<select name="addPMgysId" lay-verify="required" lay-search="" class="layui-select">
+							<option value="0">选择供应商</option>
+							<option value="1">layer</option>
+							<option value="2">form</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">单据日期</label>
+					<div class="layui-input-inline">
+						<input type="text" readonly="readonly" name="addPaymentTime" id="addPaymentTime" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">结算方式一</label>
+					<select name="paymentWay1" class="layui-select">
+						<option>汇款</option>
+						<option>现金</option>
+					</select>
+					<input type="text" name="addPMPayMoney1" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">单据编号</label>
+					<input type="text" readonly="readonly" name="addPMId" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">结算方式二</label>
+					<select name="paymentWay2" class="layui-select">
+						<option>汇款</option>
+						<option>现金</option>
+					</select>
+					<input type="text" name="addPMPayMoney2" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">币别</label>
+					<input type="text" name="addPMId" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">折扣率</label>
+					<input type="text" value="100.00" name="addPMdiscount" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">汇率</label>
+					<input type="text" value="1.00" name="addPMexchange-rate" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">冲款帐月</label>
+					<input type="text" class="layui-input layui-input-inline" id="addPMprompt" placeholder="yyyyMMdd">
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">凭证编号</label>
+					<input type="text" name="addPMDocument-Number" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-tab layui-tab-card">
+				<ul class="layui-tab-title">
+					<li class="layui-this">内容</li>
+					<li>预付款</li>
+					<li>备注</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<div style="overflow: scroll;height: 18.75rem;">
+							<table class="layui-table" style="height: 12.5rem;width: 93.75rem;">
+								<thead>
+									<tr>
+										<th>序号</th>
+										<th>单别</th>
+										<th>原单日期</th>
+										<th>原单单号</th>
+										<th>发票号码</th>
+										<th>交易对象</th>
+										<th>交易对象名称</th>
+										<th>部门编号</th>
+										<th>部门名称</th>
+										<th>采购人员</th>
+										<th>项目名称</th>
+										<th>币别</th>
+										<th>汇率</th>
+										<th>原单金额</th>
+										<th>现行余额</th>
+										<th>折让金额</th>
+										<th>冲款金额</th>
+										<th>冲抵金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="layui-tab-item">
+						<div style="overflow: scroll;height: 18.75rem;">
+							<table class="layui-table">
+								<thead>
+									<tr>
+										<th>应付冲款单号</th>
+										<th>来源单号</th>
+										<th>预付金额</th>
+										<th>剩余金额</th>
+										<th>取用金额</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="layui-tab-item">
+						<div class="layui-form-item layui-row">
+							<div class="layui-inline layui-col-md5">
+								<label class="layui-form-label">自定义一</label>
+								<input type="text" name="addPMcustom1" class="layui-input layui-input-inline" />
+							</div>
+							<div class="layui-inline layui-col-md5">
+								<label class="layui-form-label">自定义二</label>
+								<input type="text" name="addPMcustom12" class="layui-input layui-input-inline" />
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">备注</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" class="layui-textarea" name="addPMremark"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">所属部门</label>
+					<input type="text" name="addPMdepartment" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">制单人员</label>
+					<input type="text" name="addPMprepare-document" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">所属项目</label>
+					<input type="text" name="addPMproject" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">复核人员</label>
+					<input type="text" name="addPMre-check" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-btn-container">
+				<button type="button" class="layui-btn">载入账单</button>
+				<button type="button" class="layui-btn">载入预付</button>
+				<button type="button" class="layui-btn">冲抵账款</button>
+				<button type="button" class="layui-btn">保存</button>
+			</div>
+		</div>
+		<script src="../layui.all.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			var addpaymentlaydate = layui.laydate;
+			//执行一个laydate实例
+			addpaymentlaydate.render({
+				elem: '#addPaymentTime' //指定元素
+			});
+			addpaymentlaydate.render({
+				elem: '#addPMprompt',
+				format: 'yyyyMMdd'
+			});
+		</script>
+	</body>
+</html>

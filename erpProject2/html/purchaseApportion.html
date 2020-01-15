@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="../lib/layui/css/layui.css" media="all">
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+	</head>
+
+	<body>
+		<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6 layui-col-md-offset6">
+					<!--data-method="opPmAdd" onclick="pmLayerClick(this)"-->
+					<input type="button" class="layui-btn layui-btn-primary"   name="add" id="" value="新增" />
+					<input type="button" class="layui-btn layui-btn-primary"   name="save" id="" value="保存" />
+					<input type="button" class="layui-btn layui-btn-primary" name="" id="" value="删除" />
+					<input type="button" class="layui-btn layui-btn-primary" name="" id="" value="修改" />
+				</div>
+			</div>
+		
+		<div class="layui-container" style="border: solid black 1px; margin-top: 20px;">
+
+			<div class="layui-row">
+				<div class="layui-col-md6">
+					<b style="font-size: larger;">采购分摊作业</b>
+				</div>
+				<!--<div class="layui-col-md1 layui-col-md-offset5" >
+     <a class="layui-icon-min">一</a>
+     <a class="layui-icon">&#x1006</a>
+    </div>-->
+			</div>
+
+			<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">单据日期</label>
+						<div class="layui-input-inline">
+							<input type="text" class="layui-input" id="test1">
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">单据编号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">分摊方式</label>
+						<div class="layui-input-inline">
+							<select name="city" lay-verify="" class="layui-select">
+								<option value="">按金额</option>
+								<option value="010">按数量</option>
+								<option value="021">按重量</option>
+								<option value="0571">按材积</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">凭证编号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">待摊金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">单据编号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row">
+				<div class="layui-col-md8 layui-col-md-offset1">
+
+					<div class="layui-tab">
+						<ul class="layui-tab-title">
+							<li class="layui-this">费用明细</li>
+							<li>分摊结果</li>
+						</ul>
+						<div class="layui-tab-content">
+							<div class="layui-tab-item layui-show">
+								<div style="overflow-x: scroll; width: auto;">
+									<table class="layui-table" style="width:1600px;">
+										<colgroup>
+											<col width="150">
+											<col width="200">
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th>(栏号)</th>
+												<th>费用编号</th>
+												<th>(费用名称)</th>
+												<th>币别</th>
+												<th>汇率</th>
+												<th>金额</th>
+												<th>(金额本位币)</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+											</tr>
+												<tr>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="layui-tab-item">
+								<div style="overflow-x: scroll; width: auto;">
+									<table class="layui-table" style="width:1600px;">
+										<colgroup>
+											<col width="150">
+											<col width="200">
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th>(栏号)</th>
+												<th>采购入库单号</th>
+												<th>物料编号</th>
+												<th>(物料名称)</th>
+												<th>(规格型号)</th>
+												<th>(采购金额)</th>
+												<th>(数量)</th>
+												<th>(单位)</th>
+												<th>(重量)</th>
+												<th>(材积)</th>
+												<th>(分摊金额)</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+												<td>贤心</td>
+												<td>2016-11-29</td>
+												<td>人生就像是一场修行</td>
+												<td>贤心</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">制单人员</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md6">
+					<div class="layui-inline">
+						<label class="layui-form-label">复核人员</label>
+						<div class="layui-input-inline">
+							<input type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md3">
+					<ul class="layui-nav" lay-filter="" style="background-color: white; color: black;">
+						<li class="layui-nav-item">
+							<a href="javascript:;" style="color: black;">功能</a>
+							<dl class="layui-nav-child">
+								<!-- 二级菜单 -->
+								<dd>
+									<a href="#" data-method="zairu" onclick="pmLayerClick(this)">载入来源</a>
+								</dd>
+								<dd>
+									<a href="#">自动分摊</a>
+								</dd>
+							</dl>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="layui-row" style="margin-top: 10px;">
+				<div class="layui-col-md6 layui-col-md-offset6">
+					<div id="demo0"></div>
+				</div>
+			</div>
+		
+		
+		<!--
+      	作者：offline
+      	时间：2019-12-19
+      	描述：content
+      -->
+
+		<script src="../js/jquery-1.12.4.js"></script>
+		<script src="../lib/layui/layui.js" charset="utf-8"></script>
+		<script src="../layui.all.js"></script>
+		<!--<script src="../js/jquery.min.js"></script>-->
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use('element', function() {
+				var $ = layui.jquery,
+					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+				//触发事件
+				var active = {
+					tabAdd: function() {
+						//新增一个Tab项
+						element.tabAdd('demo', {
+							title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+								,
+							content: '内容' + (Math.random() * 1000 | 0),
+							id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+						})
+					},
+					tabDelete: function(othis) {
+						//删除指定Tab项
+						element.tabDelete('demo', '44'); //删除：“商品管理”
+
+						othis.addClass('layui-btn-disabled');
+					},
+					tabChange: function() {
+						//切换到指定Tab项
+						element.tabChange('demo', '22'); //切换到：用户管理
+					}
+				};
+
+				$('.site-demo-active').on('click', function() {
+					var othis = $(this),
+						type = othis.data('type');
+					active[type] ? active[type].call(this, othis) : '';
+				});
+
+				//Hash地址的定位
+				var layid = location.hash.replace(/^#test=/, '');
+				element.tabChange('test', layid);
+
+				element.on('tab(test)', function(elem) {
+					location.hash = 'test=' + $(this).attr('lay-id');
+				});
+
+			});
+		</script>
+		<script>
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#test1' //指定元素
+				});
+			});
+		</script>
+		<script> 
+			/* layer插件 */
+			var pmlayer = layui.layer;
+			var pmactive = {
+				opPmAdd: function() {
+					var that = this;
+					pmlayer.open({
+						type: 2,
+						title: '新增分摊',
+						shade:0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: 'purchaseApportion.html',
+						zIndex: pmlayer.zIndex, //重点1
+					});
+				},
+				zairu: function() {
+					var that = this;
+					pmlayer.open({
+						type: 2,
+						title: '载入来源',
+						shade:0.5,
+						maxmin: true,
+						area: ['1033px', '90%'],
+						content: '载入来源.html',
+						zIndex: pmlayer.zIndex, //重点1
+					});
+				}
+			};
+
+			function pmLayerClick(t) {
+				var pmothis = $(t),
+					method = pmothis.data('method');
+				pmactive[method] ? pmactive[method].call(t, pmothis) : '';
+			}
+		</script>
+		<script>
+		layui.use('laypage', function(){
+		  var laypage = layui.laypage;
+		  
+		  //执行一个laypage实例
+		   laypage.render({
+		    elem: 'demo0'
+		    ,count: 100
+		    ,first: '首页'
+		    ,last: '尾页'
+		    ,prev: '<em>←</em>'
+		    ,next: '<em>→</em>'
+		  });
+		});
+		</script>
+		<script>
+			//全部不可用
+			$(function(){
+				$("input").attr("disabled",true);
+				$("select").attr("disabled",true);
+				$("input[name='add']").attr("disabled",false);
+					$("input[name='save']").hide();
+			});
+			//单机新增
+			$("input[name='add']").click(function(){
+				$("input").attr("disabled",false);
+				$("select").attr("disabled",false);
+				//保存按钮
+				$("input[name='save']").show();
+				$("input[name='save']").attr("disabled",false);
+			});
+			//
+			$("input[name='save']").click(function(){
+				$("input[name='save']").hide();
+				$("input").attr("disabled",true);
+				$("input[name='add']").attr("disabled",false);
+				$("select").attr("disabled",true);
+			});
+		</script>
+	</body>
+
+</html>
