@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>物料类别设定</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/font.css">
+		<link rel="stylesheet" href="../css/xadmin.css">
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<style>
+		.xscz {
+			margin-left: 35px;
+			width: 150px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			//去掉默认的contextmenu事件，否则会和右键事件同时出现。
+			document.oncontextmenu = function(e) {
+				e.preventDefault();
+			};
+			document.getElementById("xsth").onmousedown = function(e) {
+				if(e.button == 2) {
+					layer.open({
+						title: '请选择操作',
+						content: '<select class=xscz onblur=xsxzcz(this)><option value=1>新增</option><option value=2>修改</option><option value=3>删除</option><option value=4>审核</option></select>'
+
+					});
+				}
+			}
+		}
+
+		function xsxzcz(obj) {
+			//alert($(obj).val());
+			if($(obj).val() == 1) {
+				$("input").prop("readonly", false);
+				$("select").prop("disabled", false);
+				$("textarea").prop("readonly", false);
+			}
+			layer.closeAll();
+		}
+	</script>
+
+	<body>
+		<div style="width: 300px;height: 40%;border: 1px solid red;margin: auto;padding: 10px;background-color: #BCD2EE;">
+			<div style="border: 1px solid pink;padding: 10px; height: 40%;background-color:	#CAE1FF;">
+				<table style="border-collapse:separate; border-spacing:0px 10px;">
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span style="color: blue;">类别编号</span>&nbsp;&nbsp;
+						</td>
+						<td><input/></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span style="color: blue;">类别名称</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>英文名称</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>存货科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>销售收入科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>销售成本科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>发出商品科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>赠送费用科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>其他收入科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>其他费用科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr style="padding: 5px 0px 0px 0px;">
+						<td>
+							<span>其他成本科目</span>&nbsp;&nbsp;
+						</td>
+						<td><input /></td>
+					</tr>
+					<tr>
+						<td>备注</td>
+						<td>
+							<textarea style="width: 160px;height: 130px;"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

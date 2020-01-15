@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>销售订单</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../css/font.css">
+		<link rel="stylesheet" href="../css/xadmin.css">
+		<script src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/xadmin.js"></script>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	</head>
+	<style>
+		.xscz {
+			margin-left: 35px;
+			width: 150px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			//去掉默认的contextmenu事件，否则会和右键事件同时出现。
+			document.oncontextmenu = function(e) {
+				e.preventDefault();
+			};
+			document.getElementById("xsth").onmousedown = function(e) {
+				if(e.button == 2) {
+					layui.use('layer', function() {
+						var layer = layui.layer;
+						layer.open({
+							title: '请选择操作',
+							type: 0,
+							content: '<select class=xscz onblur=xsxzcz(this)><option value=1>新增</option><option value=2>修改</option><option value=3>删除</option><option value=4>审核</option></select>'
+
+						});
+					});
+				}
+			}
+		}
+
+		function xsxzcz(obj) {
+			//alert($(obj).val());
+			if($(obj).val() == 1) {
+				$("input").prop("readonly", false);
+				$("select").prop("disabled", false);
+				$("textarea").prop("readonly", false);
+			}
+			layer.closeAll();
+		}
+	</script>
+
+	<body>
+		<div class="layui-container">
+			<div style="border: 1px solid pink;" id="xsth">
+				<div class="layui-col-md10 layui-col-md-offset2"></div>
+				<div class="layui-row">
+					<div class="layui-col-md5 layui-col-md-offset2">
+						<span class="layui-col-md3" style="color: blue;">客户编号</span>
+						<input type="text" class="layui-col-md-offset1" readonly="readonly" />
+					</div>
+					<div class="layui-col-md5">
+						<span class="layui-col-md2" style="color: blue;">账款归属</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+					</div><br /><br />
+					<div class="layui-col-md5 layui-col-md-offset2">
+						<span class="layui-col-md3" style="color: blue;">客户全称</span> <input type="text" class="layui-col-md-offset1 " readonly="readonly" />
+					</div>
+					<div class="layui-col-md5">
+						<span class="layui-col-md2">类别</span> <input type="text" class="layui-col-md-offset1 " readonly="readonly" />
+					</div><br /><br />
+					<div class="layui-col-md5 layui-col-md-offset2">
+						<span class="layui-col-md3">客户简称</span> <input type="text" class="layui-col-md-offset1 " readonly="readonly" />
+					</div>
+					<div class="layui-col-md5">
+						<span class="layui-col-md2">地区</span> <input type="text" class="layui-col-md-offset1 " readonly="readonly" />
+					</div><br /><br />
+					<div class="layui-col-md5 layui-col-md-offset2">
+						<span class="layui-col-md3">英文全称</span>
+						<input type="text" class="layui-col-md-offset1" readonly="readonly" />
+					</div>
+					<div class="layui-col-md5">
+						<span class="layui-col-md2">币别</span> <input type="text" class="layui-col-md-offset1 " readonly="readonly" />
+					</div><br /><br />
+					<div class="layui-col-md5 layui-col-md-offset2">
+						<span class="layui-col-md3">英文简称</span>
+						<input type="text" class="layui-col-md-offset1" readonly="readonly" />
+					</div>
+
+					<div class="layui-tab layui-col-md10 layui-col-md-offset2" style="margin-left: 10px;">
+						<ul class="layui-tab-title layui-col-md10 layui-col-md-offset2">
+							<li class="layui-this">基本信息</li>
+							<li>销售信息</li>
+							<li>收款信息</li>
+							<li>地址</li>
+							<li>其他</li>
+
+						</ul>
+						<div class="layui-tab-content layui-col-md10 layui-col-md-offset2">
+							<div class="layui-tab-item layui-show layui-tab-content " style="border: 1px solid;">
+								<table style="border-spacing: 10px 10px;">
+									<tr>
+										<td style="width: 165px;"><span>负责人</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">业务人员</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>联系人</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">税务登记号</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>联系电话一</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">资本额</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>联系电话二</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">行业别</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>联系电话三</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">电子邮件</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>移动电话</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">网页</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>银汉账户</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">传真号码</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>开户银汉</span></td>
+										<td><input></td>
+									</tr>
+								</table>
+							</div>
+
+							<div class="layui-tab-item layui-col-md12" style="border: 1px solid gray;">
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">最初销售出库日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 90px;">折数(%)</span>
+									<input type="text" class="layui-col-md-offset1" readonly="readonly" />
+								</div><br /><br />
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">最初销售退货日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 115px;">售价等级</span>
+									<select style="width: 160px;height: 25px;">
+										<option></option>
+									</select>
+								</div><br /><br />
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">最近销售出库日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 115px;">单价是否含税</span>
+									<select style="width: 160px;height: 25px;">
+										<option></option>
+									</select>
+								</div><br /><br />
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">最近销售退货日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 90px;">潜在客户编号</span>
+									<input type="text" class="layui-col-md-offset1" readonly="readonly" />
+								</div><br /><br />
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">最近拜访日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 90px;">客户建立日期</span>
+									<input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div><br /><br />
+								<div class="layui-col-md5" style="margin-left: 5px;">
+									<span class="layui-col-md5">预约拜访日</span> <input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div>
+								<div class="layui-col-md4 layui-col-md-offset2" style="margin-left: 160px;width: 280px;">
+									<span class="layui-col-md3" style="width: 90px;">终止交易日</span>
+									<input type="date" style="width: 155px;" class="layui-col-md-offset1" readonly="readonly" />
+								</div><br /><br />
+							</div>
+							<div class="layui-tab-item layui-col-md12" style="border: 1px solid gray;">
+								<table style="border-spacing: 10px 10px;">
+									<tr>
+										<td style="width: 165px;"><span>账款额度</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">期初预收款</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>剩余额度</span></td>
+										<td><input></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">期初应收款</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>收款条件</span></td>
+										<td>
+											<select style="width: 40px; height: 25px;margin-top: -5px;">
+												<option></option>
+											</select>
+											<input style="width:103px;height: 21px;margin-left: -5px;" /><span>天</span></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">期末预收款</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>每月结账日</span></td>
+										<td><input style="width: 142px;"><span>天</span></td>
+										<td style="width: 150px;"></td>
+										<td style="width: 140px;">期末应收款</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px;"><span>信用等级</span></td>
+										<td>
+											<select style="height: 25px;">
+												<option></option>
+											</select>
+										</td>
+										<td style=" width: 150px;"></td>
+										<td style="width: 140px; ">未开票金额</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px; "><span>发票类型</span></td>
+										<td><input></td>
+										<td style="width: 150px; "></td>
+										<td style="width: 140px; ">预收账款科目</td>
+										<td><input></td>
+									</tr>
+									<tr>
+										<td><br></td>
+									</tr>
+									<tr>
+										<td style="width: 165px; "><span>应收账款科目</span></td>
+										<td><input></td>
+									</tr>
+								</table>
+							</div>
+							<div class="layui-tab-item layui-col-md12" style="border: 1px solid gray;overflow-x: scroll; overflow-y: scroll;">
+								<table class="layui-table" readonly="readonly" height="500">
+
+									<thead>
+										<tr>
+											<th style="white-space: nowrap; color: blue;">地址编号</th>
+											<th style="white-space: nowrap;">地址</th>
+											<th style="white-space: nowrap;">邮政编码</th>
+											<th style="white-space: nowrap;">联系人</th>
+											<th style="white-space: nowrap;">联系人职称</th>
+											<th style="white-space: nowrap;">联系电话</th>
+											<th style="white-space: nowrap;">传真号码</th>
+											<th style="white-space: nowrap;">行走路线</th>
+											<th style="white-space: nowrap;">备注</th>
+										</tr>
+									</thead>
+									<tbody>
+
+									</tbody>
+								</table>
+							</div>
+							<div class="layui-tab-item layui-col-md12" style="border: 1px solid gray;">
+								<div class="layui-col-md6">
+									<span class="layui-col-md3" style="margin-left: 25px;">自定栏一</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<select name="" style="width: 163px;height: 25px;" class=" layui-col-md-offset1 " disabled="disabled">
+										<option value=""></option>
+									</select>
+								</div>
+								<div class="layui-col-md6">
+									<span class="layui-col-md3" style="margin-left: 82px;">自定栏二</span>
+									<select name="" style="width: 163px;height: 25px;" class=" layui-col-md-offset1" disabled="disabled">
+										<option value=""></option>
+									</select>
+								</div><br /><br />
+								<div class="layui-col-md12">
+									<span class="layui-col-md2" style="margin-left: 25px;">备注</span><textarea style="margin-left: 27px;" readonly="readonly" rows="10" cols="81"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md12 " style="padding: 10px 0px 0px 0px; ">
+						<select style="width: 100px;height: 25px; background: #1E9FFF; " class="layui-col-md2 layui-col-md-offset2 " disabled="disabled ">
+							<option>转单</option>
+						</select>
+						<select style="width: 100px;height: 25px; background: #1E9FFF; " class="layui-col-md2 " disabled="disabled ">
+							<option>功能</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			layui.use('element', function() {
+				var element = layui.element;
+			});
+		</script>
+	</body>
+
+</html>

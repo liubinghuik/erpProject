@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>查看冲款单</title>
+		<link rel="stylesheet" href="../css/layui.css" />
+		<style>
+			#xcjCKPPsave{
+				display: none;
+			}
+			.xcjshenhe{
+				display: none;
+				position: fixed;
+				background-color: white;
+				z-index: 100;
+				left: 40%;
+				top: 30%;
+			}
+			#xcjCKPPCCckbtn{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="xcjshenhe">
+			<i class="layui-icon layui-icon-auz" style="font-size: 6.25rem; color: #1E9FFF;"></i>
+		</div>
+		<input type="hidden" name="" />
+		<div class="layui-container" id="xcjCKPPInfo">
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">供应商</label>
+					<div class="layui-input-inline">
+						<select name="addPMgysId" lay-verify="required" lay-search="" class="layui-select">
+							<option value="0">选择供应商</option>
+							<option value="1">layer</option>
+							<option value="2">form</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">单据日期</label>
+					<div class="layui-input-inline">
+						<input type="text" readonly="readonly" name="xcjCKPPTime" id="xcjCKPPTime" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">结算方式一</label>
+					<select name="paymentWay1" class="layui-select">
+						<option>汇款</option>
+						<option>现金</option>
+					</select>
+					<input type="text" name="addPMPayMoney1" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">单据编号</label>
+					<input type="text" readonly="readonly" name="addPMId" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">结算方式二</label>
+					<select name="paymentWay2" class="layui-select">
+						<option>汇款</option>
+						<option>现金</option>
+					</select>
+					<input type="text" name="addPMPayMoney2" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">币别</label>
+					<input type="text" name="addPMId" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">折扣率</label>
+					<input type="text" value="100.00" name="addPMdiscount" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">汇率</label>
+					<input type="text" value="1.00" name="addPMexchange-rate" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">冲款帐月</label>
+					<input type="text" class="layui-input layui-input-inline" id="xcjCKPPprompt" placeholder="yyyyMMdd">
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">凭证编号</label>
+					<input type="text" name="addPMDocument-Number" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-tab layui-tab-card">
+				<ul class="layui-tab-title">
+					<li class="layui-this">内容</li>
+					<li>备注</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">
+						<div style="overflow: scroll;height: 18.75rem;">
+							<table class="layui-table" style="height: 12.5rem;">
+								<thead>
+									<tr>
+										<th>金额</th>
+										<th>来源别</th>
+										<th>来源单号</th>
+										<th>摘要</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="layui-tab-item">
+						<div class="layui-form-item layui-row">
+							<div class="layui-inline layui-col-md5">
+								<label class="layui-form-label">自定义一</label>
+								<input type="text" name="addPMcustom1" class="layui-input layui-input-inline" />
+							</div>
+							<div class="layui-inline layui-col-md5">
+								<label class="layui-form-label">自定义二</label>
+								<input type="text" name="addPMcustom12" class="layui-input layui-input-inline" />
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">备注</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" class="layui-textarea" name="addPMremark"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">所属部门</label>
+					<input type="text" name="addPMdepartment" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">制单人员</label>
+					<input type="text" name="addPMprepare-document" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-form-item layui-row">
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">所属项目</label>
+					<input type="text" name="addPMproject" class="layui-input layui-input-inline" />
+				</div>
+				<div class="layui-inline layui-col-md5">
+					<label class="layui-form-label">复核人员</label>
+					<input type="text" name="addPMre-check" class="layui-input layui-input-inline" />
+				</div>
+			</div>
+			<div class="layui-btn-container" id="xcjCKPPsave">
+				<button type="button" class="layui-btn" id="xcjCKPPloadbtn">载入账单</button>
+				<button type="button" class="layui-btn" id="xcjCKPPsavebtn">保存</button>
+			</div>
+			<div class="layui-btn-container" id="xcjCKPPupdate">
+				<button type="button" class="layui-btn" id="xcjCKPPckbtn">审核</button>
+				<button type="button" class="layui-btn" id="xcjCKPPCCckbtn">取消审核</button>
+				<button type="button" class="layui-btn" id="xcjCKPPupbtn">修改</button>
+			</div>
+		</div>
+		<script src="../layui.all.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script>
+			var xcjcjpaymentlaydate = layui.laydate;
+			//执行一个laydate实例
+			xcjcjpaymentlaydate.render({
+				elem: '#xcjCKPPTime' //指定元素
+			});
+			xcjcjpaymentlaydate.render({
+				elem: '#xcjCKPPprompt',
+				format: 'yyyyMMdd'
+			});
+			$(function() {
+				/* 审核变量 */
+				var xcjPPISCK=0;
+				/* 默认不能修改数据 */
+				$("#xcjCKPPInfo input").attr("disabled", "disabled");
+				$("#xcjCKPPInfo select").attr("disabled", "disabled");
+				$("#xcjCKPPInfo textarea").attr("disabled", "disabled");
+				/* 点击修改 */
+				$("#xcjCKPPupbtn").on("click", function() {
+					if(xcjPPISCK==1){
+						return false;
+					}
+					$("#xcjCKPPInfo input").removeAttr("disabled", "false");
+					$("#xcjCKPPInfo select").removeAttr("disabled", "false");
+					$("#xcjCKPPInfo textarea").removeAttr("disabled", "disabled");
+					$("#xcjCKPPupdate").hide();
+					$("#xcjCKPPsave").show();
+				});
+				/* 点击保存 */
+				$("#xcjCKPPsavebtn").on("click", function() {
+					$("#xcjCKPPInfo input").attr("disabled", "disabled");
+					$("#xcjCKPPInfo select").attr("disabled", "disabled");
+					$("#xcjCKPPInfo textarea").attr("disabled", "disabled");
+					$("#xcjCKPPsave").hide();
+					$("#xcjCKPPupdate").show();
+				});
+				/* 审核与反审核 */
+				$("#xcjCKPPckbtn").on("click", function() {
+					xcjPPISCK=1;
+					$(".xcjshenhe").show();
+					$("#xcjCKPPckbtn").hide();
+					$("#xcjCKPPCCckbtn").show();
+				});
+				$("#xcjCKPPCCckbtn").on("click", function() {
+					xcjPPISCK=0
+					$(".xcjshenhe").hide();
+					$("#xcjCKPPckbtn").show();
+					$("#xcjCKPPCCckbtn").hide();
+				});
+			})
+		</script>
+	</body>
+</html>
