@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.MaterialmasterMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Materialmaster" >
+    <id column="ProdID" property="prodid" jdbcType="VARCHAR" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="EngName" property="engname" jdbcType="VARCHAR" />
+    <result column="ClassID" property="classid" jdbcType="VARCHAR" />
+    <result column="StdUnitID" property="stdunitid" jdbcType="INTEGER" />
+    <result column="BarCodeID" property="barcodeid" jdbcType="VARCHAR" />
+    <result column="SuggestPrice" property="suggestprice" jdbcType="DOUBLE" />
+    <result column="CurrID" property="currid" jdbcType="INTEGER" />
+    <result column="ProdForm" property="prodform" jdbcType="VARCHAR" />
+    <result column="PriceOfTax" property="priceoftax" jdbcType="INTEGER" />
+    <result column="TaxItemsID" property="taxitemsid" jdbcType="INTEGER" />
+    <result column="BusiTaxRate" property="busitaxrate" jdbcType="DOUBLE" />
+    <result column="AdvanceDays" property="advancedays" jdbcType="INTEGER" />
+    <result column="MajorSupplier" property="majorsupplier" jdbcType="INTEGER" />
+    <result column="SalesPriceA" property="salespricea" jdbcType="DOUBLE" />
+    <result column="SalesPriceB" property="salespriceb" jdbcType="DOUBLE" />
+    <result column="SalesPriceC" property="salespricec" jdbcType="DOUBLE" />
+    <result column="SalesPriceD" property="salespriced" jdbcType="DOUBLE" />
+    <result column="SalesPriceE" property="salespricee" jdbcType="DOUBLE" />
+    <result column="StdPrice" property="stdprice" jdbcType="DOUBLE" />
+    <result column="BatchUsed" property="batchused" jdbcType="INTEGER" />
+    <result column="EffectDateUsed" property="effectdateused" jdbcType="INTEGER" />
+    <result column="ValidDateUsed" property="validdateused" jdbcType="INTEGER" />
+    <result column="DefValidDay" property="defvalidday" jdbcType="INTEGER" />
+    <result column="SafeQty" property="safeqty" jdbcType="INTEGER" />
+    <result column="BAvgCost" property="bavgcost" jdbcType="DOUBLE" />
+    <result column="BStdCost" property="bstdcost" jdbcType="DOUBLE" />
+    <result column="CAvgCost" property="cavgcost" jdbcType="DOUBLE" />
+    <result column="CStdCost" property="cstdcost" jdbcType="DOUBLE" />
+    <result column="BOutStockDay" property="boutstockday" jdbcType="DATE" />
+    <result column="BInStockDay" property="binstockday" jdbcType="DATE" />
+    <result column="InvalidDate" property="invaliddate" jdbcType="DATE" />
+    <result column="ProdDesc" property="proddesc" jdbcType="VARCHAR" />
+    <result column="Coulumn1" property="coulumn1" jdbcType="VARCHAR" />
+    <result column="Coulumn2" property="coulumn2" jdbcType="VARCHAR" />
+    <result column="Coulumn3" property="coulumn3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ProdID, ProdName, ProdSize, EngName, ClassID, StdUnitID, BarCodeID, SuggestPrice, 
+    CurrID, ProdForm, PriceOfTax, TaxItemsID, BusiTaxRate, AdvanceDays, MajorSupplier, 
+    SalesPriceA, SalesPriceB, SalesPriceC, SalesPriceD, SalesPriceE, StdPrice, BatchUsed, 
+    EffectDateUsed, ValidDateUsed, DefValidDay, SafeQty, BAvgCost, BStdCost, CAvgCost, 
+    CStdCost, BOutStockDay, BInStockDay, InvalidDate, ProdDesc, Coulumn1, Coulumn2, Coulumn3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaterialmasterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from materialmaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from materialmaster
+    where ProdID = #{prodid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from materialmaster
+    where ProdID = #{prodid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.MaterialmasterExample" >
+    delete from materialmaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Materialmaster" >
+    insert into materialmaster (ProdID, ProdName, ProdSize, 
+      EngName, ClassID, StdUnitID, 
+      BarCodeID, SuggestPrice, CurrID, 
+      ProdForm, PriceOfTax, TaxItemsID, 
+      BusiTaxRate, AdvanceDays, MajorSupplier, 
+      SalesPriceA, SalesPriceB, SalesPriceC, 
+      SalesPriceD, SalesPriceE, StdPrice, 
+      BatchUsed, EffectDateUsed, ValidDateUsed, 
+      DefValidDay, SafeQty, BAvgCost, 
+      BStdCost, CAvgCost, CStdCost, 
+      BOutStockDay, BInStockDay, InvalidDate, 
+      ProdDesc, Coulumn1, Coulumn2, 
+      Coulumn3)
+    values (#{prodid,jdbcType=VARCHAR}, #{prodname,jdbcType=VARCHAR}, #{prodsize,jdbcType=VARCHAR}, 
+      #{engname,jdbcType=VARCHAR}, #{classid,jdbcType=VARCHAR}, #{stdunitid,jdbcType=INTEGER}, 
+      #{barcodeid,jdbcType=VARCHAR}, #{suggestprice,jdbcType=DOUBLE}, #{currid,jdbcType=INTEGER}, 
+      #{prodform,jdbcType=VARCHAR}, #{priceoftax,jdbcType=INTEGER}, #{taxitemsid,jdbcType=INTEGER}, 
+      #{busitaxrate,jdbcType=DOUBLE}, #{advancedays,jdbcType=INTEGER}, #{majorsupplier,jdbcType=INTEGER}, 
+      #{salespricea,jdbcType=DOUBLE}, #{salespriceb,jdbcType=DOUBLE}, #{salespricec,jdbcType=DOUBLE}, 
+      #{salespriced,jdbcType=DOUBLE}, #{salespricee,jdbcType=DOUBLE}, #{stdprice,jdbcType=DOUBLE}, 
+      #{batchused,jdbcType=INTEGER}, #{effectdateused,jdbcType=INTEGER}, #{validdateused,jdbcType=INTEGER}, 
+      #{defvalidday,jdbcType=INTEGER}, #{safeqty,jdbcType=INTEGER}, #{bavgcost,jdbcType=DOUBLE}, 
+      #{bstdcost,jdbcType=DOUBLE}, #{cavgcost,jdbcType=DOUBLE}, #{cstdcost,jdbcType=DOUBLE}, 
+      #{boutstockday,jdbcType=DATE}, #{binstockday,jdbcType=DATE}, #{invaliddate,jdbcType=DATE}, 
+      #{proddesc,jdbcType=VARCHAR}, #{coulumn1,jdbcType=VARCHAR}, #{coulumn2,jdbcType=VARCHAR}, 
+      #{coulumn3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Materialmaster" >
+    insert into materialmaster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="engname != null" >
+        EngName,
+      </if>
+      <if test="classid != null" >
+        ClassID,
+      </if>
+      <if test="stdunitid != null" >
+        StdUnitID,
+      </if>
+      <if test="barcodeid != null" >
+        BarCodeID,
+      </if>
+      <if test="suggestprice != null" >
+        SuggestPrice,
+      </if>
+      <if test="currid != null" >
+        CurrID,
+      </if>
+      <if test="prodform != null" >
+        ProdForm,
+      </if>
+      <if test="priceoftax != null" >
+        PriceOfTax,
+      </if>
+      <if test="taxitemsid != null" >
+        TaxItemsID,
+      </if>
+      <if test="busitaxrate != null" >
+        BusiTaxRate,
+      </if>
+      <if test="advancedays != null" >
+        AdvanceDays,
+      </if>
+      <if test="majorsupplier != null" >
+        MajorSupplier,
+      </if>
+      <if test="salespricea != null" >
+        SalesPriceA,
+      </if>
+      <if test="salespriceb != null" >
+        SalesPriceB,
+      </if>
+      <if test="salespricec != null" >
+        SalesPriceC,
+      </if>
+      <if test="salespriced != null" >
+        SalesPriceD,
+      </if>
+      <if test="salespricee != null" >
+        SalesPriceE,
+      </if>
+      <if test="stdprice != null" >
+        StdPrice,
+      </if>
+      <if test="batchused != null" >
+        BatchUsed,
+      </if>
+      <if test="effectdateused != null" >
+        EffectDateUsed,
+      </if>
+      <if test="validdateused != null" >
+        ValidDateUsed,
+      </if>
+      <if test="defvalidday != null" >
+        DefValidDay,
+      </if>
+      <if test="safeqty != null" >
+        SafeQty,
+      </if>
+      <if test="bavgcost != null" >
+        BAvgCost,
+      </if>
+      <if test="bstdcost != null" >
+        BStdCost,
+      </if>
+      <if test="cavgcost != null" >
+        CAvgCost,
+      </if>
+      <if test="cstdcost != null" >
+        CStdCost,
+      </if>
+      <if test="boutstockday != null" >
+        BOutStockDay,
+      </if>
+      <if test="binstockday != null" >
+        BInStockDay,
+      </if>
+      <if test="invaliddate != null" >
+        InvalidDate,
+      </if>
+      <if test="proddesc != null" >
+        ProdDesc,
+      </if>
+      <if test="coulumn1 != null" >
+        Coulumn1,
+      </if>
+      <if test="coulumn2 != null" >
+        Coulumn2,
+      </if>
+      <if test="coulumn3 != null" >
+        Coulumn3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="stdunitid != null" >
+        #{stdunitid,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeid != null" >
+        #{barcodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestprice != null" >
+        #{suggestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="currid != null" >
+        #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="prodform != null" >
+        #{prodform,jdbcType=VARCHAR},
+      </if>
+      <if test="priceoftax != null" >
+        #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="taxitemsid != null" >
+        #{taxitemsid,jdbcType=INTEGER},
+      </if>
+      <if test="busitaxrate != null" >
+        #{busitaxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="advancedays != null" >
+        #{advancedays,jdbcType=INTEGER},
+      </if>
+      <if test="majorsupplier != null" >
+        #{majorsupplier,jdbcType=INTEGER},
+      </if>
+      <if test="salespricea != null" >
+        #{salespricea,jdbcType=DOUBLE},
+      </if>
+      <if test="salespriceb != null" >
+        #{salespriceb,jdbcType=DOUBLE},
+      </if>
+      <if test="salespricec != null" >
+        #{salespricec,jdbcType=DOUBLE},
+      </if>
+      <if test="salespriced != null" >
+        #{salespriced,jdbcType=DOUBLE},
+      </if>
+      <if test="salespricee != null" >
+        #{salespricee,jdbcType=DOUBLE},
+      </if>
+      <if test="stdprice != null" >
+        #{stdprice,jdbcType=DOUBLE},
+      </if>
+      <if test="batchused != null" >
+        #{batchused,jdbcType=INTEGER},
+      </if>
+      <if test="effectdateused != null" >
+        #{effectdateused,jdbcType=INTEGER},
+      </if>
+      <if test="validdateused != null" >
+        #{validdateused,jdbcType=INTEGER},
+      </if>
+      <if test="defvalidday != null" >
+        #{defvalidday,jdbcType=INTEGER},
+      </if>
+      <if test="safeqty != null" >
+        #{safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="bavgcost != null" >
+        #{bavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="bstdcost != null" >
+        #{bstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="cavgcost != null" >
+        #{cavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="cstdcost != null" >
+        #{cstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="boutstockday != null" >
+        #{boutstockday,jdbcType=DATE},
+      </if>
+      <if test="binstockday != null" >
+        #{binstockday,jdbcType=DATE},
+      </if>
+      <if test="invaliddate != null" >
+        #{invaliddate,jdbcType=DATE},
+      </if>
+      <if test="proddesc != null" >
+        #{proddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn1 != null" >
+        #{coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn2 != null" >
+        #{coulumn2,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn3 != null" >
+        #{coulumn3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.MaterialmasterExample" resultType="java.lang.Integer" >
+    select count(*) from materialmaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update materialmaster
+    <set >
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engname != null" >
+        EngName = #{record.engname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null" >
+        ClassID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stdunitid != null" >
+        StdUnitID = #{record.stdunitid,jdbcType=INTEGER},
+      </if>
+      <if test="record.barcodeid != null" >
+        BarCodeID = #{record.barcodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suggestprice != null" >
+        SuggestPrice = #{record.suggestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.currid != null" >
+        CurrID = #{record.currid,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodform != null" >
+        ProdForm = #{record.prodform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceoftax != null" >
+        PriceOfTax = #{record.priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="record.taxitemsid != null" >
+        TaxItemsID = #{record.taxitemsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.busitaxrate != null" >
+        BusiTaxRate = #{record.busitaxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.advancedays != null" >
+        AdvanceDays = #{record.advancedays,jdbcType=INTEGER},
+      </if>
+      <if test="record.majorsupplier != null" >
+        MajorSupplier = #{record.majorsupplier,jdbcType=INTEGER},
+      </if>
+      <if test="record.salespricea != null" >
+        SalesPriceA = #{record.salespricea,jdbcType=DOUBLE},
+      </if>
+      <if test="record.salespriceb != null" >
+        SalesPriceB = #{record.salespriceb,jdbcType=DOUBLE},
+      </if>
+      <if test="record.salespricec != null" >
+        SalesPriceC = #{record.salespricec,jdbcType=DOUBLE},
+      </if>
+      <if test="record.salespriced != null" >
+        SalesPriceD = #{record.salespriced,jdbcType=DOUBLE},
+      </if>
+      <if test="record.salespricee != null" >
+        SalesPriceE = #{record.salespricee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.stdprice != null" >
+        StdPrice = #{record.stdprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.batchused != null" >
+        BatchUsed = #{record.batchused,jdbcType=INTEGER},
+      </if>
+      <if test="record.effectdateused != null" >
+        EffectDateUsed = #{record.effectdateused,jdbcType=INTEGER},
+      </if>
+      <if test="record.validdateused != null" >
+        ValidDateUsed = #{record.validdateused,jdbcType=INTEGER},
+      </if>
+      <if test="record.defvalidday != null" >
+        DefValidDay = #{record.defvalidday,jdbcType=INTEGER},
+      </if>
+      <if test="record.safeqty != null" >
+        SafeQty = #{record.safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.bavgcost != null" >
+        BAvgCost = #{record.bavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bstdcost != null" >
+        BStdCost = #{record.bstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cavgcost != null" >
+        CAvgCost = #{record.cavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cstdcost != null" >
+        CStdCost = #{record.cstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.boutstockday != null" >
+        BOutStockDay = #{record.boutstockday,jdbcType=DATE},
+      </if>
+      <if test="record.binstockday != null" >
+        BInStockDay = #{record.binstockday,jdbcType=DATE},
+      </if>
+      <if test="record.invaliddate != null" >
+        InvalidDate = #{record.invaliddate,jdbcType=DATE},
+      </if>
+      <if test="record.proddesc != null" >
+        ProdDesc = #{record.proddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coulumn1 != null" >
+        Coulumn1 = #{record.coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coulumn2 != null" >
+        Coulumn2 = #{record.coulumn2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coulumn3 != null" >
+        Coulumn3 = #{record.coulumn3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update materialmaster
+    set ProdID = #{record.prodid,jdbcType=VARCHAR},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      EngName = #{record.engname,jdbcType=VARCHAR},
+      ClassID = #{record.classid,jdbcType=VARCHAR},
+      StdUnitID = #{record.stdunitid,jdbcType=INTEGER},
+      BarCodeID = #{record.barcodeid,jdbcType=VARCHAR},
+      SuggestPrice = #{record.suggestprice,jdbcType=DOUBLE},
+      CurrID = #{record.currid,jdbcType=INTEGER},
+      ProdForm = #{record.prodform,jdbcType=VARCHAR},
+      PriceOfTax = #{record.priceoftax,jdbcType=INTEGER},
+      TaxItemsID = #{record.taxitemsid,jdbcType=INTEGER},
+      BusiTaxRate = #{record.busitaxrate,jdbcType=DOUBLE},
+      AdvanceDays = #{record.advancedays,jdbcType=INTEGER},
+      MajorSupplier = #{record.majorsupplier,jdbcType=INTEGER},
+      SalesPriceA = #{record.salespricea,jdbcType=DOUBLE},
+      SalesPriceB = #{record.salespriceb,jdbcType=DOUBLE},
+      SalesPriceC = #{record.salespricec,jdbcType=DOUBLE},
+      SalesPriceD = #{record.salespriced,jdbcType=DOUBLE},
+      SalesPriceE = #{record.salespricee,jdbcType=DOUBLE},
+      StdPrice = #{record.stdprice,jdbcType=DOUBLE},
+      BatchUsed = #{record.batchused,jdbcType=INTEGER},
+      EffectDateUsed = #{record.effectdateused,jdbcType=INTEGER},
+      ValidDateUsed = #{record.validdateused,jdbcType=INTEGER},
+      DefValidDay = #{record.defvalidday,jdbcType=INTEGER},
+      SafeQty = #{record.safeqty,jdbcType=INTEGER},
+      BAvgCost = #{record.bavgcost,jdbcType=DOUBLE},
+      BStdCost = #{record.bstdcost,jdbcType=DOUBLE},
+      CAvgCost = #{record.cavgcost,jdbcType=DOUBLE},
+      CStdCost = #{record.cstdcost,jdbcType=DOUBLE},
+      BOutStockDay = #{record.boutstockday,jdbcType=DATE},
+      BInStockDay = #{record.binstockday,jdbcType=DATE},
+      InvalidDate = #{record.invaliddate,jdbcType=DATE},
+      ProdDesc = #{record.proddesc,jdbcType=VARCHAR},
+      Coulumn1 = #{record.coulumn1,jdbcType=VARCHAR},
+      Coulumn2 = #{record.coulumn2,jdbcType=VARCHAR},
+      Coulumn3 = #{record.coulumn3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Materialmaster" >
+    update materialmaster
+    <set >
+      <if test="prodname != null" >
+        ProdName = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        ProdSize = #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        EngName = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        ClassID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="stdunitid != null" >
+        StdUnitID = #{stdunitid,jdbcType=INTEGER},
+      </if>
+      <if test="barcodeid != null" >
+        BarCodeID = #{barcodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestprice != null" >
+        SuggestPrice = #{suggestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="currid != null" >
+        CurrID = #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="prodform != null" >
+        ProdForm = #{prodform,jdbcType=VARCHAR},
+      </if>
+      <if test="priceoftax != null" >
+        PriceOfTax = #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="taxitemsid != null" >
+        TaxItemsID = #{taxitemsid,jdbcType=INTEGER},
+      </if>
+      <if test="busitaxrate != null" >
+        BusiTaxRate = #{busitaxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="advancedays != null" >
+        AdvanceDays = #{advancedays,jdbcType=INTEGER},
+      </if>
+      <if test="majorsupplier != null" >
+        MajorSupplier = #{majorsupplier,jdbcType=INTEGER},
+      </if>
+      <if test="salespricea != null" >
+        SalesPriceA = #{salespricea,jdbcType=DOUBLE},
+      </if>
+      <if test="salespriceb != null" >
+        SalesPriceB = #{salespriceb,jdbcType=DOUBLE},
+      </if>
+      <if test="salespricec != null" >
+        SalesPriceC = #{salespricec,jdbcType=DOUBLE},
+      </if>
+      <if test="salespriced != null" >
+        SalesPriceD = #{salespriced,jdbcType=DOUBLE},
+      </if>
+      <if test="salespricee != null" >
+        SalesPriceE = #{salespricee,jdbcType=DOUBLE},
+      </if>
+      <if test="stdprice != null" >
+        StdPrice = #{stdprice,jdbcType=DOUBLE},
+      </if>
+      <if test="batchused != null" >
+        BatchUsed = #{batchused,jdbcType=INTEGER},
+      </if>
+      <if test="effectdateused != null" >
+        EffectDateUsed = #{effectdateused,jdbcType=INTEGER},
+      </if>
+      <if test="validdateused != null" >
+        ValidDateUsed = #{validdateused,jdbcType=INTEGER},
+      </if>
+      <if test="defvalidday != null" >
+        DefValidDay = #{defvalidday,jdbcType=INTEGER},
+      </if>
+      <if test="safeqty != null" >
+        SafeQty = #{safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="bavgcost != null" >
+        BAvgCost = #{bavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="bstdcost != null" >
+        BStdCost = #{bstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="cavgcost != null" >
+        CAvgCost = #{cavgcost,jdbcType=DOUBLE},
+      </if>
+      <if test="cstdcost != null" >
+        CStdCost = #{cstdcost,jdbcType=DOUBLE},
+      </if>
+      <if test="boutstockday != null" >
+        BOutStockDay = #{boutstockday,jdbcType=DATE},
+      </if>
+      <if test="binstockday != null" >
+        BInStockDay = #{binstockday,jdbcType=DATE},
+      </if>
+      <if test="invaliddate != null" >
+        InvalidDate = #{invaliddate,jdbcType=DATE},
+      </if>
+      <if test="proddesc != null" >
+        ProdDesc = #{proddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn1 != null" >
+        Coulumn1 = #{coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn2 != null" >
+        Coulumn2 = #{coulumn2,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn3 != null" >
+        Coulumn3 = #{coulumn3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ProdID = #{prodid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Materialmaster" >
+    update materialmaster
+    set ProdName = #{prodname,jdbcType=VARCHAR},
+      ProdSize = #{prodsize,jdbcType=VARCHAR},
+      EngName = #{engname,jdbcType=VARCHAR},
+      ClassID = #{classid,jdbcType=VARCHAR},
+      StdUnitID = #{stdunitid,jdbcType=INTEGER},
+      BarCodeID = #{barcodeid,jdbcType=VARCHAR},
+      SuggestPrice = #{suggestprice,jdbcType=DOUBLE},
+      CurrID = #{currid,jdbcType=INTEGER},
+      ProdForm = #{prodform,jdbcType=VARCHAR},
+      PriceOfTax = #{priceoftax,jdbcType=INTEGER},
+      TaxItemsID = #{taxitemsid,jdbcType=INTEGER},
+      BusiTaxRate = #{busitaxrate,jdbcType=DOUBLE},
+      AdvanceDays = #{advancedays,jdbcType=INTEGER},
+      MajorSupplier = #{majorsupplier,jdbcType=INTEGER},
+      SalesPriceA = #{salespricea,jdbcType=DOUBLE},
+      SalesPriceB = #{salespriceb,jdbcType=DOUBLE},
+      SalesPriceC = #{salespricec,jdbcType=DOUBLE},
+      SalesPriceD = #{salespriced,jdbcType=DOUBLE},
+      SalesPriceE = #{salespricee,jdbcType=DOUBLE},
+      StdPrice = #{stdprice,jdbcType=DOUBLE},
+      BatchUsed = #{batchused,jdbcType=INTEGER},
+      EffectDateUsed = #{effectdateused,jdbcType=INTEGER},
+      ValidDateUsed = #{validdateused,jdbcType=INTEGER},
+      DefValidDay = #{defvalidday,jdbcType=INTEGER},
+      SafeQty = #{safeqty,jdbcType=INTEGER},
+      BAvgCost = #{bavgcost,jdbcType=DOUBLE},
+      BStdCost = #{bstdcost,jdbcType=DOUBLE},
+      CAvgCost = #{cavgcost,jdbcType=DOUBLE},
+      CStdCost = #{cstdcost,jdbcType=DOUBLE},
+      BOutStockDay = #{boutstockday,jdbcType=DATE},
+      BInStockDay = #{binstockday,jdbcType=DATE},
+      InvalidDate = #{invaliddate,jdbcType=DATE},
+      ProdDesc = #{proddesc,jdbcType=VARCHAR},
+      Coulumn1 = #{coulumn1,jdbcType=VARCHAR},
+      Coulumn2 = #{coulumn2,jdbcType=VARCHAR},
+      Coulumn3 = #{coulumn3,jdbcType=VARCHAR}
+    where ProdID = #{prodid,jdbcType=VARCHAR}
+  </update>
+</mapper>

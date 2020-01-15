@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 
+		mybatis foreach 查询，属性colleciont 中如果传入进来的是一个参数，数据类型为list则colleciont定义为list，数组类型用array
+		separator:每次执行都会拼接，但是最后一次会省略
+		item：当前循环的对象
+	 -->
+	
+	<!--生成mybatis接口和实体mavne命令： mybatis-generator:generate -->
+	
+	<!-- ModuleExample example = new ModuleExample();
+    	Criteria c = example.createCriteria();
+    	c.andNameLike("%"+name+"%");
+    	c.andParentidEqualTo(parentId); -->
+	<classPathEntry
+		location="E:\ACCP\Y2\maven\mysql\mysql-connector-java-5.1.6-bin.jar" />
+	<context id="context1">
+		<!-- 注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/erptable?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMutilQueries=true"
+			driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+		<!-- 实体生成位置 -->
+		<javaModelGenerator targetPackage="com.accp.domain"
+			targetProject="src/main/java" />
+		<!-- mapper配置文件生成 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources" />
+		<!-- mapper接口生成 -->
+		<javaClientGenerator targetPackage="com.accp.mapper"
+			targetProject="src/main/java" type="XMLMAPPER" />
+
+		<table schema="blitem" tableName="blitem"></table>
+		<table schema="blitemdetails" tableName="blitemdetails"></table>
+		<table schema="collectionterms" tableName="collectionterms"></table>
+		<table schema="currency" tableName="currency"></table>
+		<table schema="customercategory" tableName="customercategory"></table>
+		
+		<table schema="customermaster" tableName="customermaster"></table>
+		<table schema="department" tableName="department"></table>
+		<table schema="employee" tableName="employee"></table>
+		<table schema="gathering" tableName="gathering"></table>
+		<table schema="gatheringprepay" tableName="gatheringprepay"></table>
+		
+		<table schema="materialmaster" tableName="materialmaster"></table>
+		<table schema="modifyprice" tableName="modifyprice"></table>
+		<table schema="modifypricedetails" tableName="modifypricedetails"></table>
+		<table schema="procurementshare" tableName="procurementshare"></table>
+		<table schema="procurementsharedetails" tableName="procurementsharedetails"></table>
+		
+		<table schema="procurementshareprice" tableName="procurementshareprice"></table>
+		<table schema="purchaseinquiry" tableName="purchaseinquiry"></table>
+		<table schema="purchaseinquirydetails" tableName="purchaseinquirydetails"></table>
+		<table schema="purchaseorder" tableName="purchaseorder"></table>
+		<table schema="purchaseorderdetails" tableName="purchaseorderdetails"></table>
+		
+		<table schema="purchaserequisitions" tableName="purchaserequisitions"></table>
+		<table schema="purchaserequisitionsdetails" tableName="purchaserequisitionsdetails"></table>
+		<table schema="purchaserequisitionstype" tableName="purchaserequisitionstype"></table>
+		<table schema="salesorderdetails" tableName="salesorderdetails"></table>
+		<table schema="salesorders" tableName="salesorders"></table>
+		
+		<table schema="salesrequisitions" tableName="salesrequisitions"></table>
+		<table schema="salesrequisitionsdetails" tableName="salesrequisitionsdetails"></table>
+		<table schema="salesreturn" tableName="salesreturn"></table>
+		<table schema="salesreturndetails" tableName="salesreturndetails"></table>
+		<table schema="salestock" tableName="salestock"></table>
+		
+		<table schema="salestockdetails" tableName="salestockdetails"></table>
+		<table schema="salestype" tableName="salestype"></table>
+		<table schema="storeaccount" tableName="storeaccount"></table>
+		<table schema="storeio" tableName="storeio"></table>
+		<table schema="supplier" tableName="supplier"></table>
+		
+		<table schema="supplieraddress" tableName="supplieraddress"></table>
+		<table schema="suppliercategory" tableName="suppliercategory"></table>
+		<table schema="taccountpayable" tableName="taccountpayable"></table>
+		<table schema="tadvancesdetail" tableName="tadvancesdetail"></table>
+		<table schema="tadvancesmenu" tableName="tadvancesmenu"></table>
+		
+		<table schema="tdebitnotereceivabledetail" tableName="tdebitnotereceivabledetail"></table>
+		<table schema="tdebitnotereceivablemenu" tableName="tdebitnotereceivablemenu"></table>
+		<table schema="tmaterialcategory" tableName="tmaterialcategory"></table>
+		<table schema="tpaymentdetail" tableName="tpaymentdetail"></table>
+		<table schema="tpaymentprepay" tableName="tpaymentprepay"></table>
+		
+		<table schema="tprepay" tableName="tprepay"></table>
+		<table schema="tprepaydetail" tableName="tprepaydetail"></table>
+		<table schema="tpurchasereceipt" tableName="tpurchasereceipt"></table>
+		<table schema="tpurchasereceiptdetails" tableName="tpurchasereceiptdetails"></table>
+		<table schema="tpurchasereturn" tableName="tpurchasereturn"></table>
+		
+		<table schema="tpurchasereturndetails" tableName="tpurchasereturndetails"></table>
+		<table schema="transfer" tableName="transfer"></table>
+		<table schema="transferdetails" tableName="transferdetails"></table>
+		<table schema="tunit" tableName="tunit"></table>
+		<table schema="warehouse" tableName="warehouse"></table>
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TransferMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Transfer" >
+    <id column="BillNo" property="billno" jdbcType="VARCHAR" />
+    <result column="AdjustDate" property="adjustdate" jdbcType="DATE" />
+    <result column="WareID" property="wareid" jdbcType="INTEGER" />
+    <result column="WareinID" property="wareinid" jdbcType="INTEGER" />
+    <result column="Maker" property="maker" jdbcType="VARCHAR" />
+    <result column="Permitter" property="permitter" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BillNo, AdjustDate, WareID, WareinID, Maker, Permitter, Remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TransferExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from transfer
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from transfer
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TransferExample" >
+    delete from transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Transfer" >
+    insert into transfer (BillNo, AdjustDate, WareID, 
+      WareinID, Maker, Permitter, 
+      Remark)
+    values (#{billno,jdbcType=VARCHAR}, #{adjustdate,jdbcType=DATE}, #{wareid,jdbcType=INTEGER}, 
+      #{wareinid,jdbcType=INTEGER}, #{maker,jdbcType=VARCHAR}, #{permitter,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Transfer" >
+    insert into transfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        BillNo,
+      </if>
+      <if test="adjustdate != null" >
+        AdjustDate,
+      </if>
+      <if test="wareid != null" >
+        WareID,
+      </if>
+      <if test="wareinid != null" >
+        WareinID,
+      </if>
+      <if test="maker != null" >
+        Maker,
+      </if>
+      <if test="permitter != null" >
+        Permitter,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustdate != null" >
+        #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="wareid != null" >
+        #{wareid,jdbcType=INTEGER},
+      </if>
+      <if test="wareinid != null" >
+        #{wareinid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TransferExample" resultType="java.lang.Integer" >
+    select count(*) from transfer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update transfer
+    <set >
+      <if test="record.billno != null" >
+        BillNo = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustdate != null" >
+        AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      </if>
+      <if test="record.wareid != null" >
+        WareID = #{record.wareid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wareinid != null" >
+        WareinID = #{record.wareinid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maker != null" >
+        Maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitter != null" >
+        Permitter = #{record.permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update transfer
+    set BillNo = #{record.billno,jdbcType=VARCHAR},
+      AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      WareID = #{record.wareid,jdbcType=INTEGER},
+      WareinID = #{record.wareinid,jdbcType=INTEGER},
+      Maker = #{record.maker,jdbcType=VARCHAR},
+      Permitter = #{record.permitter,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Transfer" >
+    update transfer
+    <set >
+      <if test="adjustdate != null" >
+        AdjustDate = #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="wareid != null" >
+        WareID = #{wareid,jdbcType=INTEGER},
+      </if>
+      <if test="wareinid != null" >
+        WareinID = #{wareinid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        Maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        Permitter = #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Transfer" >
+    update transfer
+    set AdjustDate = #{adjustdate,jdbcType=DATE},
+      WareID = #{wareid,jdbcType=INTEGER},
+      WareinID = #{wareinid,jdbcType=INTEGER},
+      Maker = #{maker,jdbcType=VARCHAR},
+      Permitter = #{permitter,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>

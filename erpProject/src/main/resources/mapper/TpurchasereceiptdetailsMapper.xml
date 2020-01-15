@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TpurchasereceiptdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Tpurchasereceiptdetails" >
+    <result column="LineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="ProdID" property="prodid" jdbcType="INTEGER" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="SUnitID" property="sunitid" jdbcType="VARCHAR" />
+    <result column="sQuantity" property="squantity" jdbcType="INTEGER" />
+    <result column="OldPrice" property="oldprice" jdbcType="DOUBLE" />
+    <result column="Discount" property="discount" jdbcType="DOUBLE" />
+    <result column="sPrice" property="sprice" jdbcType="DOUBLE" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="TaxRate" property="taxrate" jdbcType="DOUBLE" />
+    <result column="TaxAmt" property="taxamt" jdbcType="DOUBLE" />
+    <result column="VFTotal" property="vftotal" jdbcType="DOUBLE" />
+    <result column="HaveBatch" property="havebatch" jdbcType="VARCHAR" />
+    <result column="IsGift" property="isgift" jdbcType="INTEGER" />
+    <result column="ItemRemark" property="itemremark" jdbcType="VARCHAR" />
+    <result column="FromNO" property="fromno" jdbcType="VARCHAR" />
+    <result column="TranType" property="trantype" jdbcType="VARCHAR" />
+    <result column="MLAppFare" property="mlappfare" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LineNo, ProdID, ProdName, ProdSize, SUnitID, sQuantity, OldPrice, Discount, sPrice, 
+    Amount, TaxRate, TaxAmt, VFTotal, HaveBatch, IsGift, ItemRemark, FromNO, TranType, 
+    MLAppFare
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TpurchasereceiptdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tpurchasereceiptdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TpurchasereceiptdetailsExample" >
+    delete from tpurchasereceiptdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Tpurchasereceiptdetails" >
+    insert into tpurchasereceiptdetails (LineNo, ProdID, ProdName, 
+      ProdSize, SUnitID, sQuantity, 
+      OldPrice, Discount, sPrice, 
+      Amount, TaxRate, TaxAmt, 
+      VFTotal, HaveBatch, IsGift, 
+      ItemRemark, FromNO, TranType, 
+      MLAppFare)
+    values (#{lineno,jdbcType=INTEGER}, #{prodid,jdbcType=INTEGER}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodsize,jdbcType=VARCHAR}, #{sunitid,jdbcType=VARCHAR}, #{squantity,jdbcType=INTEGER}, 
+      #{oldprice,jdbcType=DOUBLE}, #{discount,jdbcType=DOUBLE}, #{sprice,jdbcType=DOUBLE}, 
+      #{amount,jdbcType=DOUBLE}, #{taxrate,jdbcType=DOUBLE}, #{taxamt,jdbcType=DOUBLE}, 
+      #{vftotal,jdbcType=DOUBLE}, #{havebatch,jdbcType=VARCHAR}, #{isgift,jdbcType=INTEGER}, 
+      #{itemremark,jdbcType=VARCHAR}, #{fromno,jdbcType=VARCHAR}, #{trantype,jdbcType=VARCHAR}, 
+      #{mlappfare,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Tpurchasereceiptdetails" >
+    insert into tpurchasereceiptdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        LineNo,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="sunitid != null" >
+        SUnitID,
+      </if>
+      <if test="squantity != null" >
+        sQuantity,
+      </if>
+      <if test="oldprice != null" >
+        OldPrice,
+      </if>
+      <if test="discount != null" >
+        Discount,
+      </if>
+      <if test="sprice != null" >
+        sPrice,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="taxrate != null" >
+        TaxRate,
+      </if>
+      <if test="taxamt != null" >
+        TaxAmt,
+      </if>
+      <if test="vftotal != null" >
+        VFTotal,
+      </if>
+      <if test="havebatch != null" >
+        HaveBatch,
+      </if>
+      <if test="isgift != null" >
+        IsGift,
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark,
+      </if>
+      <if test="fromno != null" >
+        FromNO,
+      </if>
+      <if test="trantype != null" >
+        TranType,
+      </if>
+      <if test="mlappfare != null" >
+        MLAppFare,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=INTEGER},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sunitid != null" >
+        #{sunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="squantity != null" >
+        #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="oldprice != null" >
+        #{oldprice,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="sprice != null" >
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="taxamt != null" >
+        #{taxamt,jdbcType=DOUBLE},
+      </if>
+      <if test="vftotal != null" >
+        #{vftotal,jdbcType=DOUBLE},
+      </if>
+      <if test="havebatch != null" >
+        #{havebatch,jdbcType=VARCHAR},
+      </if>
+      <if test="isgift != null" >
+        #{isgift,jdbcType=INTEGER},
+      </if>
+      <if test="itemremark != null" >
+        #{itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="fromno != null" >
+        #{fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="mlappfare != null" >
+        #{mlappfare,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TpurchasereceiptdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from tpurchasereceiptdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tpurchasereceiptdetails
+    <set >
+      <if test="record.lineno != null" >
+        LineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sunitid != null" >
+        SUnitID = #{record.sunitid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.squantity != null" >
+        sQuantity = #{record.squantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldprice != null" >
+        OldPrice = #{record.oldprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discount != null" >
+        Discount = #{record.discount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sprice != null" >
+        sPrice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxrate != null" >
+        TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxamt != null" >
+        TaxAmt = #{record.taxamt,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vftotal != null" >
+        VFTotal = #{record.vftotal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.havebatch != null" >
+        HaveBatch = #{record.havebatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isgift != null" >
+        IsGift = #{record.isgift,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemremark != null" >
+        ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromno != null" >
+        FromNO = #{record.fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trantype != null" >
+        TranType = #{record.trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mlappfare != null" >
+        MLAppFare = #{record.mlappfare,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tpurchasereceiptdetails
+    set LineNo = #{record.lineno,jdbcType=INTEGER},
+      ProdID = #{record.prodid,jdbcType=INTEGER},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      SUnitID = #{record.sunitid,jdbcType=VARCHAR},
+      sQuantity = #{record.squantity,jdbcType=INTEGER},
+      OldPrice = #{record.oldprice,jdbcType=DOUBLE},
+      Discount = #{record.discount,jdbcType=DOUBLE},
+      sPrice = #{record.sprice,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      TaxAmt = #{record.taxamt,jdbcType=DOUBLE},
+      VFTotal = #{record.vftotal,jdbcType=DOUBLE},
+      HaveBatch = #{record.havebatch,jdbcType=VARCHAR},
+      IsGift = #{record.isgift,jdbcType=INTEGER},
+      ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      FromNO = #{record.fromno,jdbcType=VARCHAR},
+      TranType = #{record.trantype,jdbcType=VARCHAR},
+      MLAppFare = #{record.mlappfare,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TadvancesmenuMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Tadvancesmenu" >
+    <id column="LineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="ReceivableNo" property="receivableno" jdbcType="VARCHAR" />
+    <result column="CurrencyID" property="currencyid" jdbcType="VARCHAR" />
+    <result column="ExchRate" property="exchrate" jdbcType="DOUBLE" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BillDate" property="billdate" jdbcType="DATE" />
+    <result column="ClearingOne" property="clearingone" jdbcType="VARCHAR" />
+    <result column="Paymentamout1" property="paymentamout1" jdbcType="DOUBLE" />
+    <result column="ClearingTwo" property="clearingtwo" jdbcType="VARCHAR" />
+    <result column="Paymentamout2" property="paymentamout2" jdbcType="DOUBLE" />
+    <result column="ClearingThree" property="clearingthree" jdbcType="VARCHAR" />
+    <result column="Paymentamout3" property="paymentamout3" jdbcType="DOUBLE" />
+    <result column="DiscountRate" property="discountrate" jdbcType="DOUBLE" />
+    <result column="TerminationMouth" property="terminationmouth" jdbcType="DATE" />
+    <result column="VoucherId" property="voucherid" jdbcType="VARCHAR" />
+    <result column="DepartId" property="departid" jdbcType="VARCHAR" />
+    <result column="Maker" property="maker" jdbcType="VARCHAR" />
+    <result column="Permitter" property="permitter" jdbcType="VARCHAR" />
+    <result column="Project" property="project" jdbcType="VARCHAR" />
+    <result column="Custom1" property="custom1" jdbcType="VARCHAR" />
+    <result column="Custom2" property="custom2" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LineNo, ReceivableNo, CurrencyID, ExchRate, ID, BillDate, ClearingOne, Paymentamout1, 
+    ClearingTwo, Paymentamout2, ClearingThree, Paymentamout3, DiscountRate, TerminationMouth, 
+    VoucherId, DepartId, Maker, Permitter, Project, Custom1, Custom2, Remark, State
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TadvancesmenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tadvancesmenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tadvancesmenu
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tadvancesmenu
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TadvancesmenuExample" >
+    delete from tadvancesmenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Tadvancesmenu" >
+    insert into tadvancesmenu (LineNo, ReceivableNo, CurrencyID, 
+      ExchRate, ID, BillDate, 
+      ClearingOne, Paymentamout1, ClearingTwo, 
+      Paymentamout2, ClearingThree, Paymentamout3, 
+      DiscountRate, TerminationMouth, VoucherId, 
+      DepartId, Maker, Permitter, 
+      Project, Custom1, Custom2, 
+      Remark, State)
+    values (#{lineno,jdbcType=INTEGER}, #{receivableno,jdbcType=VARCHAR}, #{currencyid,jdbcType=VARCHAR}, 
+      #{exchrate,jdbcType=DOUBLE}, #{id,jdbcType=VARCHAR}, #{billdate,jdbcType=DATE}, 
+      #{clearingone,jdbcType=VARCHAR}, #{paymentamout1,jdbcType=DOUBLE}, #{clearingtwo,jdbcType=VARCHAR}, 
+      #{paymentamout2,jdbcType=DOUBLE}, #{clearingthree,jdbcType=VARCHAR}, #{paymentamout3,jdbcType=DOUBLE}, 
+      #{discountrate,jdbcType=DOUBLE}, #{terminationmouth,jdbcType=DATE}, #{voucherid,jdbcType=VARCHAR}, 
+      #{departid,jdbcType=VARCHAR}, #{maker,jdbcType=VARCHAR}, #{permitter,jdbcType=VARCHAR}, 
+      #{project,jdbcType=VARCHAR}, #{custom1,jdbcType=VARCHAR}, #{custom2,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Tadvancesmenu" >
+    insert into tadvancesmenu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        LineNo,
+      </if>
+      <if test="receivableno != null" >
+        ReceivableNo,
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID,
+      </if>
+      <if test="exchrate != null" >
+        ExchRate,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="billdate != null" >
+        BillDate,
+      </if>
+      <if test="clearingone != null" >
+        ClearingOne,
+      </if>
+      <if test="paymentamout1 != null" >
+        Paymentamout1,
+      </if>
+      <if test="clearingtwo != null" >
+        ClearingTwo,
+      </if>
+      <if test="paymentamout2 != null" >
+        Paymentamout2,
+      </if>
+      <if test="clearingthree != null" >
+        ClearingThree,
+      </if>
+      <if test="paymentamout3 != null" >
+        Paymentamout3,
+      </if>
+      <if test="discountrate != null" >
+        DiscountRate,
+      </if>
+      <if test="terminationmouth != null" >
+        TerminationMouth,
+      </if>
+      <if test="voucherid != null" >
+        VoucherId,
+      </if>
+      <if test="departid != null" >
+        DepartId,
+      </if>
+      <if test="maker != null" >
+        Maker,
+      </if>
+      <if test="permitter != null" >
+        Permitter,
+      </if>
+      <if test="project != null" >
+        Project,
+      </if>
+      <if test="custom1 != null" >
+        Custom1,
+      </if>
+      <if test="custom2 != null" >
+        Custom2,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="receivableno != null" >
+        #{receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchrate != null" >
+        #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        #{billdate,jdbcType=DATE},
+      </if>
+      <if test="clearingone != null" >
+        #{clearingone,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout1 != null" >
+        #{paymentamout1,jdbcType=DOUBLE},
+      </if>
+      <if test="clearingtwo != null" >
+        #{clearingtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout2 != null" >
+        #{paymentamout2,jdbcType=DOUBLE},
+      </if>
+      <if test="clearingthree != null" >
+        #{clearingthree,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout3 != null" >
+        #{paymentamout3,jdbcType=DOUBLE},
+      </if>
+      <if test="discountrate != null" >
+        #{discountrate,jdbcType=DOUBLE},
+      </if>
+      <if test="terminationmouth != null" >
+        #{terminationmouth,jdbcType=DATE},
+      </if>
+      <if test="voucherid != null" >
+        #{voucherid,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TadvancesmenuExample" resultType="java.lang.Integer" >
+    select count(*) from tadvancesmenu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tadvancesmenu
+    <set >
+      <if test="record.lineno != null" >
+        LineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivableno != null" >
+        ReceivableNo = #{record.receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyid != null" >
+        CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchrate != null" >
+        ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billdate != null" >
+        BillDate = #{record.billdate,jdbcType=DATE},
+      </if>
+      <if test="record.clearingone != null" >
+        ClearingOne = #{record.clearingone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentamout1 != null" >
+        Paymentamout1 = #{record.paymentamout1,jdbcType=DOUBLE},
+      </if>
+      <if test="record.clearingtwo != null" >
+        ClearingTwo = #{record.clearingtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentamout2 != null" >
+        Paymentamout2 = #{record.paymentamout2,jdbcType=DOUBLE},
+      </if>
+      <if test="record.clearingthree != null" >
+        ClearingThree = #{record.clearingthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentamout3 != null" >
+        Paymentamout3 = #{record.paymentamout3,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discountrate != null" >
+        DiscountRate = #{record.discountrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.terminationmouth != null" >
+        TerminationMouth = #{record.terminationmouth,jdbcType=DATE},
+      </if>
+      <if test="record.voucherid != null" >
+        VoucherId = #{record.voucherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departid != null" >
+        DepartId = #{record.departid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maker != null" >
+        Maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitter != null" >
+        Permitter = #{record.permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.project != null" >
+        Project = #{record.project,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custom1 != null" >
+        Custom1 = #{record.custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custom2 != null" >
+        Custom2 = #{record.custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tadvancesmenu
+    set LineNo = #{record.lineno,jdbcType=INTEGER},
+      ReceivableNo = #{record.receivableno,jdbcType=VARCHAR},
+      CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      ID = #{record.id,jdbcType=VARCHAR},
+      BillDate = #{record.billdate,jdbcType=DATE},
+      ClearingOne = #{record.clearingone,jdbcType=VARCHAR},
+      Paymentamout1 = #{record.paymentamout1,jdbcType=DOUBLE},
+      ClearingTwo = #{record.clearingtwo,jdbcType=VARCHAR},
+      Paymentamout2 = #{record.paymentamout2,jdbcType=DOUBLE},
+      ClearingThree = #{record.clearingthree,jdbcType=VARCHAR},
+      Paymentamout3 = #{record.paymentamout3,jdbcType=DOUBLE},
+      DiscountRate = #{record.discountrate,jdbcType=DOUBLE},
+      TerminationMouth = #{record.terminationmouth,jdbcType=DATE},
+      VoucherId = #{record.voucherid,jdbcType=VARCHAR},
+      DepartId = #{record.departid,jdbcType=VARCHAR},
+      Maker = #{record.maker,jdbcType=VARCHAR},
+      Permitter = #{record.permitter,jdbcType=VARCHAR},
+      Project = #{record.project,jdbcType=VARCHAR},
+      Custom1 = #{record.custom1,jdbcType=VARCHAR},
+      Custom2 = #{record.custom2,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Tadvancesmenu" >
+    update tadvancesmenu
+    <set >
+      <if test="receivableno != null" >
+        ReceivableNo = #{receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchrate != null" >
+        ExchRate = #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="id != null" >
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        BillDate = #{billdate,jdbcType=DATE},
+      </if>
+      <if test="clearingone != null" >
+        ClearingOne = #{clearingone,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout1 != null" >
+        Paymentamout1 = #{paymentamout1,jdbcType=DOUBLE},
+      </if>
+      <if test="clearingtwo != null" >
+        ClearingTwo = #{clearingtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout2 != null" >
+        Paymentamout2 = #{paymentamout2,jdbcType=DOUBLE},
+      </if>
+      <if test="clearingthree != null" >
+        ClearingThree = #{clearingthree,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentamout3 != null" >
+        Paymentamout3 = #{paymentamout3,jdbcType=DOUBLE},
+      </if>
+      <if test="discountrate != null" >
+        DiscountRate = #{discountrate,jdbcType=DOUBLE},
+      </if>
+      <if test="terminationmouth != null" >
+        TerminationMouth = #{terminationmouth,jdbcType=DATE},
+      </if>
+      <if test="voucherid != null" >
+        VoucherId = #{voucherid,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        DepartId = #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null" >
+        Maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        Permitter = #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        Project = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="custom1 != null" >
+        Custom1 = #{custom1,jdbcType=VARCHAR},
+      </if>
+      <if test="custom2 != null" >
+        Custom2 = #{custom2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Tadvancesmenu" >
+    update tadvancesmenu
+    set ReceivableNo = #{receivableno,jdbcType=VARCHAR},
+      CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      ExchRate = #{exchrate,jdbcType=DOUBLE},
+      ID = #{id,jdbcType=VARCHAR},
+      BillDate = #{billdate,jdbcType=DATE},
+      ClearingOne = #{clearingone,jdbcType=VARCHAR},
+      Paymentamout1 = #{paymentamout1,jdbcType=DOUBLE},
+      ClearingTwo = #{clearingtwo,jdbcType=VARCHAR},
+      Paymentamout2 = #{paymentamout2,jdbcType=DOUBLE},
+      ClearingThree = #{clearingthree,jdbcType=VARCHAR},
+      Paymentamout3 = #{paymentamout3,jdbcType=DOUBLE},
+      DiscountRate = #{discountrate,jdbcType=DOUBLE},
+      TerminationMouth = #{terminationmouth,jdbcType=DATE},
+      VoucherId = #{voucherid,jdbcType=VARCHAR},
+      DepartId = #{departid,jdbcType=VARCHAR},
+      Maker = #{maker,jdbcType=VARCHAR},
+      Permitter = #{permitter,jdbcType=VARCHAR},
+      Project = #{project,jdbcType=VARCHAR},
+      Custom1 = #{custom1,jdbcType=VARCHAR},
+      Custom2 = #{custom2,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      State = #{state,jdbcType=INTEGER}
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+</mapper>

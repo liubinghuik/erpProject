@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TransferdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Transferdetails" >
+    <id column="BillNo" property="billno" jdbcType="VARCHAR" />
+    <result column="ProdID" property="prodid" jdbcType="VARCHAR" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="Unit" property="unit" jdbcType="VARCHAR" />
+    <result column="CurQty" property="curqty" jdbcType="INTEGER" />
+    <result column="HaveBatch" property="havebatch" jdbcType="VARCHAR" />
+    <result column="ItemRemark" property="itemremark" jdbcType="VARCHAR" />
+    <result column="ServiceValidity" property="servicevalidity" jdbcType="VARCHAR" />
+    <result column="Coulumn1" property="coulumn1" jdbcType="VARCHAR" />
+    <result column="Coulumn2" property="coulumn2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BillNo, ProdID, ProdName, ProdSize, Unit, CurQty, HaveBatch, ItemRemark, ServiceValidity, 
+    Coulumn1, Coulumn2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TransferdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from transferdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from transferdetails
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from transferdetails
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TransferdetailsExample" >
+    delete from transferdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Transferdetails" >
+    insert into transferdetails (BillNo, ProdID, ProdName, 
+      ProdSize, Unit, CurQty, 
+      HaveBatch, ItemRemark, ServiceValidity, 
+      Coulumn1, Coulumn2)
+    values (#{billno,jdbcType=VARCHAR}, #{prodid,jdbcType=VARCHAR}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodsize,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{curqty,jdbcType=INTEGER}, 
+      #{havebatch,jdbcType=VARCHAR}, #{itemremark,jdbcType=VARCHAR}, #{servicevalidity,jdbcType=VARCHAR}, 
+      #{coulumn1,jdbcType=VARCHAR}, #{coulumn2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Transferdetails" >
+    insert into transferdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        BillNo,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="unit != null" >
+        Unit,
+      </if>
+      <if test="curqty != null" >
+        CurQty,
+      </if>
+      <if test="havebatch != null" >
+        HaveBatch,
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark,
+      </if>
+      <if test="servicevalidity != null" >
+        ServiceValidity,
+      </if>
+      <if test="coulumn1 != null" >
+        Coulumn1,
+      </if>
+      <if test="coulumn2 != null" >
+        Coulumn2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="curqty != null" >
+        #{curqty,jdbcType=INTEGER},
+      </if>
+      <if test="havebatch != null" >
+        #{havebatch,jdbcType=VARCHAR},
+      </if>
+      <if test="itemremark != null" >
+        #{itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="servicevalidity != null" >
+        #{servicevalidity,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn1 != null" >
+        #{coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn2 != null" >
+        #{coulumn2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TransferdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from transferdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update transferdetails
+    <set >
+      <if test="record.billno != null" >
+        BillNo = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        Unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.curqty != null" >
+        CurQty = #{record.curqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.havebatch != null" >
+        HaveBatch = #{record.havebatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemremark != null" >
+        ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.servicevalidity != null" >
+        ServiceValidity = #{record.servicevalidity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coulumn1 != null" >
+        Coulumn1 = #{record.coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coulumn2 != null" >
+        Coulumn2 = #{record.coulumn2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update transferdetails
+    set BillNo = #{record.billno,jdbcType=VARCHAR},
+      ProdID = #{record.prodid,jdbcType=VARCHAR},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      Unit = #{record.unit,jdbcType=VARCHAR},
+      CurQty = #{record.curqty,jdbcType=INTEGER},
+      HaveBatch = #{record.havebatch,jdbcType=VARCHAR},
+      ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      ServiceValidity = #{record.servicevalidity,jdbcType=VARCHAR},
+      Coulumn1 = #{record.coulumn1,jdbcType=VARCHAR},
+      Coulumn2 = #{record.coulumn2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Transferdetails" >
+    update transferdetails
+    <set >
+      <if test="prodid != null" >
+        ProdID = #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        ProdName = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        ProdSize = #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="curqty != null" >
+        CurQty = #{curqty,jdbcType=INTEGER},
+      </if>
+      <if test="havebatch != null" >
+        HaveBatch = #{havebatch,jdbcType=VARCHAR},
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark = #{itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="servicevalidity != null" >
+        ServiceValidity = #{servicevalidity,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn1 != null" >
+        Coulumn1 = #{coulumn1,jdbcType=VARCHAR},
+      </if>
+      <if test="coulumn2 != null" >
+        Coulumn2 = #{coulumn2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Transferdetails" >
+    update transferdetails
+    set ProdID = #{prodid,jdbcType=VARCHAR},
+      ProdName = #{prodname,jdbcType=VARCHAR},
+      ProdSize = #{prodsize,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=VARCHAR},
+      CurQty = #{curqty,jdbcType=INTEGER},
+      HaveBatch = #{havebatch,jdbcType=VARCHAR},
+      ItemRemark = #{itemremark,jdbcType=VARCHAR},
+      ServiceValidity = #{servicevalidity,jdbcType=VARCHAR},
+      Coulumn1 = #{coulumn1,jdbcType=VARCHAR},
+      Coulumn2 = #{coulumn2,jdbcType=VARCHAR}
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>

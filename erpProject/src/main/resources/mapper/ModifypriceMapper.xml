@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ModifypriceMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Modifyprice" >
+    <id column="MPId" property="mpid" jdbcType="VARCHAR" />
+    <result column="AdjustDate" property="adjustdate" jdbcType="DATE" />
+    <result column="IncSubjectId" property="incsubjectid" jdbcType="VARCHAR" />
+    <result column="DecSubjectId" property="decsubjectid" jdbcType="VARCHAR" />
+    <result column="VoucherNo" property="voucherno" jdbcType="VARCHAR" />
+    <result column="ArrangeStyle" property="arrangestyle" jdbcType="VARCHAR" />
+    <result column="Maker" property="maker" jdbcType="VARCHAR" />
+    <result column="Permitter" property="permitter" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="VARCHAR" />
+    <result column="Column1" property="column1" jdbcType="VARCHAR" />
+    <result column="Column2" property="column2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MPId, AdjustDate, IncSubjectId, DecSubjectId, VoucherNo, ArrangeStyle, Maker, Permitter, 
+    Status, Column1, Column2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ModifypriceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from modifyprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from modifyprice
+    where MPId = #{mpid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from modifyprice
+    where MPId = #{mpid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ModifypriceExample" >
+    delete from modifyprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Modifyprice" >
+    insert into modifyprice (MPId, AdjustDate, IncSubjectId, 
+      DecSubjectId, VoucherNo, ArrangeStyle, 
+      Maker, Permitter, Status, 
+      Column1, Column2)
+    values (#{mpid,jdbcType=VARCHAR}, #{adjustdate,jdbcType=DATE}, #{incsubjectid,jdbcType=VARCHAR}, 
+      #{decsubjectid,jdbcType=VARCHAR}, #{voucherno,jdbcType=VARCHAR}, #{arrangestyle,jdbcType=VARCHAR}, 
+      #{maker,jdbcType=VARCHAR}, #{permitter,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{column1,jdbcType=VARCHAR}, #{column2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Modifyprice" >
+    insert into modifyprice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mpid != null" >
+        MPId,
+      </if>
+      <if test="adjustdate != null" >
+        AdjustDate,
+      </if>
+      <if test="incsubjectid != null" >
+        IncSubjectId,
+      </if>
+      <if test="decsubjectid != null" >
+        DecSubjectId,
+      </if>
+      <if test="voucherno != null" >
+        VoucherNo,
+      </if>
+      <if test="arrangestyle != null" >
+        ArrangeStyle,
+      </if>
+      <if test="maker != null" >
+        Maker,
+      </if>
+      <if test="permitter != null" >
+        Permitter,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="column1 != null" >
+        Column1,
+      </if>
+      <if test="column2 != null" >
+        Column2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mpid != null" >
+        #{mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustdate != null" >
+        #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="incsubjectid != null" >
+        #{incsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="decsubjectid != null" >
+        #{decsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherno != null" >
+        #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangestyle != null" >
+        #{arrangestyle,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        #{column2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ModifypriceExample" resultType="java.lang.Integer" >
+    select count(*) from modifyprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update modifyprice
+    <set >
+      <if test="record.mpid != null" >
+        MPId = #{record.mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustdate != null" >
+        AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      </if>
+      <if test="record.incsubjectid != null" >
+        IncSubjectId = #{record.incsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decsubjectid != null" >
+        DecSubjectId = #{record.decsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherno != null" >
+        VoucherNo = #{record.voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrangestyle != null" >
+        ArrangeStyle = #{record.arrangestyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maker != null" >
+        Maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitter != null" >
+        Permitter = #{record.permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        Status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column1 != null" >
+        Column1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column2 != null" >
+        Column2 = #{record.column2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update modifyprice
+    set MPId = #{record.mpid,jdbcType=VARCHAR},
+      AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      IncSubjectId = #{record.incsubjectid,jdbcType=VARCHAR},
+      DecSubjectId = #{record.decsubjectid,jdbcType=VARCHAR},
+      VoucherNo = #{record.voucherno,jdbcType=VARCHAR},
+      ArrangeStyle = #{record.arrangestyle,jdbcType=VARCHAR},
+      Maker = #{record.maker,jdbcType=VARCHAR},
+      Permitter = #{record.permitter,jdbcType=VARCHAR},
+      Status = #{record.status,jdbcType=VARCHAR},
+      Column1 = #{record.column1,jdbcType=VARCHAR},
+      Column2 = #{record.column2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Modifyprice" >
+    update modifyprice
+    <set >
+      <if test="adjustdate != null" >
+        AdjustDate = #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="incsubjectid != null" >
+        IncSubjectId = #{incsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="decsubjectid != null" >
+        DecSubjectId = #{decsubjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherno != null" >
+        VoucherNo = #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangestyle != null" >
+        ArrangeStyle = #{arrangestyle,jdbcType=VARCHAR},
+      </if>
+      <if test="maker != null" >
+        Maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        Permitter = #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        Column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        Column2 = #{column2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MPId = #{mpid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Modifyprice" >
+    update modifyprice
+    set AdjustDate = #{adjustdate,jdbcType=DATE},
+      IncSubjectId = #{incsubjectid,jdbcType=VARCHAR},
+      DecSubjectId = #{decsubjectid,jdbcType=VARCHAR},
+      VoucherNo = #{voucherno,jdbcType=VARCHAR},
+      ArrangeStyle = #{arrangestyle,jdbcType=VARCHAR},
+      Maker = #{maker,jdbcType=VARCHAR},
+      Permitter = #{permitter,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=VARCHAR},
+      Column1 = #{column1,jdbcType=VARCHAR},
+      Column2 = #{column2,jdbcType=VARCHAR}
+    where MPId = #{mpid,jdbcType=VARCHAR}
+  </update>
+</mapper>

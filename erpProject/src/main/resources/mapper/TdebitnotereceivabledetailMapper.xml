@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TdebitnotereceivabledetailMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Tdebitnotereceivabledetail" >
+    <id column="LineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="ReceivableNo" property="receivableno" jdbcType="VARCHAR" />
+    <result column="Date" property="date" jdbcType="DATE" />
+    <result column="BillNo" property="billno" jdbcType="VARCHAR" />
+    <result column="Invoice" property="invoice" jdbcType="VARCHAR" />
+    <result column="CustID" property="custid" jdbcType="VARCHAR" />
+    <result column="TradingName" property="tradingname" jdbcType="VARCHAR" />
+    <result column="DepartID" property="departid" jdbcType="VARCHAR" />
+    <result column="DepartName" property="departname" jdbcType="VARCHAR" />
+    <result column="PersonID" property="personid" jdbcType="VARCHAR" />
+    <result column="ObjectName" property="objectname" jdbcType="VARCHAR" />
+    <result column="CurrencyID" property="currencyid" jdbcType="VARCHAR" />
+    <result column="ExchRate" property="exchrate" jdbcType="DOUBLE" />
+    <result column="YdanMoney" property="ydanmoney" jdbcType="DOUBLE" />
+    <result column="XXingMoney" property="xxingmoney" jdbcType="DOUBLE" />
+    <result column="ZRangMoney" property="zrangmoney" jdbcType="DOUBLE" />
+    <result column="CKuanMoney" property="ckuanmoney" jdbcType="DOUBLE" />
+    <result column="CDiMoney" property="cdimoney" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LineNo, ReceivableNo, Date, BillNo, Invoice, CustID, TradingName, DepartID, DepartName, 
+    PersonID, ObjectName, CurrencyID, ExchRate, YdanMoney, XXingMoney, ZRangMoney, CKuanMoney, 
+    CDiMoney
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TdebitnotereceivabledetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tdebitnotereceivabledetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tdebitnotereceivabledetail
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tdebitnotereceivabledetail
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TdebitnotereceivabledetailExample" >
+    delete from tdebitnotereceivabledetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Tdebitnotereceivabledetail" >
+    insert into tdebitnotereceivabledetail (LineNo, ReceivableNo, Date, 
+      BillNo, Invoice, CustID, 
+      TradingName, DepartID, DepartName, 
+      PersonID, ObjectName, CurrencyID, 
+      ExchRate, YdanMoney, XXingMoney, 
+      ZRangMoney, CKuanMoney, CDiMoney
+      )
+    values (#{lineno,jdbcType=INTEGER}, #{receivableno,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+      #{billno,jdbcType=VARCHAR}, #{invoice,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{tradingname,jdbcType=VARCHAR}, #{departid,jdbcType=VARCHAR}, #{departname,jdbcType=VARCHAR}, 
+      #{personid,jdbcType=VARCHAR}, #{objectname,jdbcType=VARCHAR}, #{currencyid,jdbcType=VARCHAR}, 
+      #{exchrate,jdbcType=DOUBLE}, #{ydanmoney,jdbcType=DOUBLE}, #{xxingmoney,jdbcType=DOUBLE}, 
+      #{zrangmoney,jdbcType=DOUBLE}, #{ckuanmoney,jdbcType=DOUBLE}, #{cdimoney,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Tdebitnotereceivabledetail" >
+    insert into tdebitnotereceivabledetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        LineNo,
+      </if>
+      <if test="receivableno != null" >
+        ReceivableNo,
+      </if>
+      <if test="date != null" >
+        Date,
+      </if>
+      <if test="billno != null" >
+        BillNo,
+      </if>
+      <if test="invoice != null" >
+        Invoice,
+      </if>
+      <if test="custid != null" >
+        CustID,
+      </if>
+      <if test="tradingname != null" >
+        TradingName,
+      </if>
+      <if test="departid != null" >
+        DepartID,
+      </if>
+      <if test="departname != null" >
+        DepartName,
+      </if>
+      <if test="personid != null" >
+        PersonID,
+      </if>
+      <if test="objectname != null" >
+        ObjectName,
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID,
+      </if>
+      <if test="exchrate != null" >
+        ExchRate,
+      </if>
+      <if test="ydanmoney != null" >
+        YdanMoney,
+      </if>
+      <if test="xxingmoney != null" >
+        XXingMoney,
+      </if>
+      <if test="zrangmoney != null" >
+        ZRangMoney,
+      </if>
+      <if test="ckuanmoney != null" >
+        CKuanMoney,
+      </if>
+      <if test="cdimoney != null" >
+        CDiMoney,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="receivableno != null" >
+        #{receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="custid != null" >
+        #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingname != null" >
+        #{tradingname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="departname != null" >
+        #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null" >
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="objectname != null" >
+        #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchrate != null" >
+        #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="ydanmoney != null" >
+        #{ydanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="xxingmoney != null" >
+        #{xxingmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="zrangmoney != null" >
+        #{zrangmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ckuanmoney != null" >
+        #{ckuanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="cdimoney != null" >
+        #{cdimoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TdebitnotereceivabledetailExample" resultType="java.lang.Integer" >
+    select count(*) from tdebitnotereceivabledetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tdebitnotereceivabledetail
+    <set >
+      <if test="record.lineno != null" >
+        LineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivableno != null" >
+        ReceivableNo = #{record.receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        Date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.billno != null" >
+        BillNo = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoice != null" >
+        Invoice = #{record.invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custid != null" >
+        CustID = #{record.custid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradingname != null" >
+        TradingName = #{record.tradingname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departid != null" >
+        DepartID = #{record.departid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departname != null" >
+        DepartName = #{record.departname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personid != null" >
+        PersonID = #{record.personid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectname != null" >
+        ObjectName = #{record.objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyid != null" >
+        CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchrate != null" >
+        ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ydanmoney != null" >
+        YdanMoney = #{record.ydanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.xxingmoney != null" >
+        XXingMoney = #{record.xxingmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.zrangmoney != null" >
+        ZRangMoney = #{record.zrangmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ckuanmoney != null" >
+        CKuanMoney = #{record.ckuanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cdimoney != null" >
+        CDiMoney = #{record.cdimoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tdebitnotereceivabledetail
+    set LineNo = #{record.lineno,jdbcType=INTEGER},
+      ReceivableNo = #{record.receivableno,jdbcType=VARCHAR},
+      Date = #{record.date,jdbcType=DATE},
+      BillNo = #{record.billno,jdbcType=VARCHAR},
+      Invoice = #{record.invoice,jdbcType=VARCHAR},
+      CustID = #{record.custid,jdbcType=VARCHAR},
+      TradingName = #{record.tradingname,jdbcType=VARCHAR},
+      DepartID = #{record.departid,jdbcType=VARCHAR},
+      DepartName = #{record.departname,jdbcType=VARCHAR},
+      PersonID = #{record.personid,jdbcType=VARCHAR},
+      ObjectName = #{record.objectname,jdbcType=VARCHAR},
+      CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      YdanMoney = #{record.ydanmoney,jdbcType=DOUBLE},
+      XXingMoney = #{record.xxingmoney,jdbcType=DOUBLE},
+      ZRangMoney = #{record.zrangmoney,jdbcType=DOUBLE},
+      CKuanMoney = #{record.ckuanmoney,jdbcType=DOUBLE},
+      CDiMoney = #{record.cdimoney,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Tdebitnotereceivabledetail" >
+    update tdebitnotereceivabledetail
+    <set >
+      <if test="receivableno != null" >
+        ReceivableNo = #{receivableno,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        Date = #{date,jdbcType=DATE},
+      </if>
+      <if test="billno != null" >
+        BillNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        Invoice = #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="custid != null" >
+        CustID = #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="tradingname != null" >
+        TradingName = #{tradingname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        DepartID = #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="departname != null" >
+        DepartName = #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null" >
+        PersonID = #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="objectname != null" >
+        ObjectName = #{objectname,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchrate != null" >
+        ExchRate = #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="ydanmoney != null" >
+        YdanMoney = #{ydanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="xxingmoney != null" >
+        XXingMoney = #{xxingmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="zrangmoney != null" >
+        ZRangMoney = #{zrangmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="ckuanmoney != null" >
+        CKuanMoney = #{ckuanmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="cdimoney != null" >
+        CDiMoney = #{cdimoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Tdebitnotereceivabledetail" >
+    update tdebitnotereceivabledetail
+    set ReceivableNo = #{receivableno,jdbcType=VARCHAR},
+      Date = #{date,jdbcType=DATE},
+      BillNo = #{billno,jdbcType=VARCHAR},
+      Invoice = #{invoice,jdbcType=VARCHAR},
+      CustID = #{custid,jdbcType=VARCHAR},
+      TradingName = #{tradingname,jdbcType=VARCHAR},
+      DepartID = #{departid,jdbcType=VARCHAR},
+      DepartName = #{departname,jdbcType=VARCHAR},
+      PersonID = #{personid,jdbcType=VARCHAR},
+      ObjectName = #{objectname,jdbcType=VARCHAR},
+      CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      ExchRate = #{exchrate,jdbcType=DOUBLE},
+      YdanMoney = #{ydanmoney,jdbcType=DOUBLE},
+      XXingMoney = #{xxingmoney,jdbcType=DOUBLE},
+      ZRangMoney = #{zrangmoney,jdbcType=DOUBLE},
+      CKuanMoney = #{ckuanmoney,jdbcType=DOUBLE},
+      CDiMoney = #{cdimoney,jdbcType=DOUBLE}
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+</mapper>

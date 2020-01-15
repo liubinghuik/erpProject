@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ProcurementsharepriceMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Procurementshareprice" >
+    <id column="PSID" property="psid" jdbcType="VARCHAR" />
+    <id column="PSPId" property="pspid" jdbcType="VARCHAR" />
+    <result column="FeeClassID" property="feeclassid" jdbcType="VARCHAR" />
+    <result column="FareClassName" property="fareclassname" jdbcType="VARCHAR" />
+    <result column="CurrID" property="currid" jdbcType="VARCHAR" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="ExchRate" property="exchrate" jdbcType="DOUBLE" />
+    <result column="MLAmount" property="mlamount" jdbcType="DOUBLE" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="COLUMN1" property="column1" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PSID, PSPId, FeeClassID, FareClassName, CurrID, Amount, ExchRate, MLAmount, Remarks, 
+    COLUMN1
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ProcurementsharepriceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from procurementshareprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.accp.domain.ProcurementsharepriceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from procurementshareprice
+    where PSID = #{psid,jdbcType=VARCHAR}
+      and PSPId = #{pspid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.accp.domain.ProcurementsharepriceKey" >
+    delete from procurementshareprice
+    where PSID = #{psid,jdbcType=VARCHAR}
+      and PSPId = #{pspid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ProcurementsharepriceExample" >
+    delete from procurementshareprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Procurementshareprice" >
+    insert into procurementshareprice (PSID, PSPId, FeeClassID, 
+      FareClassName, CurrID, Amount, 
+      ExchRate, MLAmount, Remarks, 
+      COLUMN1)
+    values (#{psid,jdbcType=VARCHAR}, #{pspid,jdbcType=VARCHAR}, #{feeclassid,jdbcType=VARCHAR}, 
+      #{fareclassname,jdbcType=VARCHAR}, #{currid,jdbcType=VARCHAR}, #{amount,jdbcType=DOUBLE}, 
+      #{exchrate,jdbcType=DOUBLE}, #{mlamount,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, 
+      #{column1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Procurementshareprice" >
+    insert into procurementshareprice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psid != null" >
+        PSID,
+      </if>
+      <if test="pspid != null" >
+        PSPId,
+      </if>
+      <if test="feeclassid != null" >
+        FeeClassID,
+      </if>
+      <if test="fareclassname != null" >
+        FareClassName,
+      </if>
+      <if test="currid != null" >
+        CurrID,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="exchrate != null" >
+        ExchRate,
+      </if>
+      <if test="mlamount != null" >
+        MLAmount,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+      <if test="column1 != null" >
+        COLUMN1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psid != null" >
+        #{psid,jdbcType=VARCHAR},
+      </if>
+      <if test="pspid != null" >
+        #{pspid,jdbcType=VARCHAR},
+      </if>
+      <if test="feeclassid != null" >
+        #{feeclassid,jdbcType=VARCHAR},
+      </if>
+      <if test="fareclassname != null" >
+        #{fareclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="currid != null" >
+        #{currid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="exchrate != null" >
+        #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="mlamount != null" >
+        #{mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ProcurementsharepriceExample" resultType="java.lang.Integer" >
+    select count(*) from procurementshareprice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update procurementshareprice
+    <set >
+      <if test="record.psid != null" >
+        PSID = #{record.psid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pspid != null" >
+        PSPId = #{record.pspid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.feeclassid != null" >
+        FeeClassID = #{record.feeclassid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fareclassname != null" >
+        FareClassName = #{record.fareclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currid != null" >
+        CurrID = #{record.currid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.exchrate != null" >
+        ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mlamount != null" >
+        MLAmount = #{record.mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null" >
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column1 != null" >
+        COLUMN1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update procurementshareprice
+    set PSID = #{record.psid,jdbcType=VARCHAR},
+      PSPId = #{record.pspid,jdbcType=VARCHAR},
+      FeeClassID = #{record.feeclassid,jdbcType=VARCHAR},
+      FareClassName = #{record.fareclassname,jdbcType=VARCHAR},
+      CurrID = #{record.currid,jdbcType=VARCHAR},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      MLAmount = #{record.mlamount,jdbcType=DOUBLE},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      COLUMN1 = #{record.column1,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Procurementshareprice" >
+    update procurementshareprice
+    <set >
+      <if test="feeclassid != null" >
+        FeeClassID = #{feeclassid,jdbcType=VARCHAR},
+      </if>
+      <if test="fareclassname != null" >
+        FareClassName = #{fareclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="currid != null" >
+        CurrID = #{currid,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="exchrate != null" >
+        ExchRate = #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="mlamount != null" >
+        MLAmount = #{mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        COLUMN1 = #{column1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PSID = #{psid,jdbcType=VARCHAR}
+      and PSPId = #{pspid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Procurementshareprice" >
+    update procurementshareprice
+    set FeeClassID = #{feeclassid,jdbcType=VARCHAR},
+      FareClassName = #{fareclassname,jdbcType=VARCHAR},
+      CurrID = #{currid,jdbcType=VARCHAR},
+      Amount = #{amount,jdbcType=DOUBLE},
+      ExchRate = #{exchrate,jdbcType=DOUBLE},
+      MLAmount = #{mlamount,jdbcType=DOUBLE},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      COLUMN1 = #{column1,jdbcType=VARCHAR}
+    where PSID = #{psid,jdbcType=VARCHAR}
+      and PSPId = #{pspid,jdbcType=VARCHAR}
+  </update>
+</mapper>

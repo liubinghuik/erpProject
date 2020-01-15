@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.StoreioMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Storeio" >
+    <id column="LineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="FromNO" property="fromno" jdbcType="VARCHAR" />
+    <result column="TranType" property="trantype" jdbcType="VARCHAR" />
+    <result column="WareHouseID" property="warehouseid" jdbcType="VARCHAR" />
+    <result column="sQuantity" property="squantity" jdbcType="INTEGER" />
+    <result column="CMID" property="cmid" jdbcType="VARCHAR" />
+    <result column="SID" property="sid" jdbcType="VARCHAR" />
+    <result column="sPrice" property="sprice" jdbcType="DOUBLE" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="outintime" property="outintime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LineNo, FromNO, TranType, WareHouseID, sQuantity, CMID, SID, sPrice, Amount, outintime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.StoreioExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storeio
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from storeio
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from storeio
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.StoreioExample" >
+    delete from storeio
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Storeio" >
+    insert into storeio (LineNo, FromNO, TranType, 
+      WareHouseID, sQuantity, CMID, 
+      SID, sPrice, Amount, 
+      outintime)
+    values (#{lineno,jdbcType=INTEGER}, #{fromno,jdbcType=VARCHAR}, #{trantype,jdbcType=VARCHAR}, 
+      #{warehouseid,jdbcType=VARCHAR}, #{squantity,jdbcType=INTEGER}, #{cmid,jdbcType=VARCHAR}, 
+      #{sid,jdbcType=VARCHAR}, #{sprice,jdbcType=DOUBLE}, #{amount,jdbcType=DOUBLE}, 
+      #{outintime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Storeio" >
+    insert into storeio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        LineNo,
+      </if>
+      <if test="fromno != null" >
+        FromNO,
+      </if>
+      <if test="trantype != null" >
+        TranType,
+      </if>
+      <if test="warehouseid != null" >
+        WareHouseID,
+      </if>
+      <if test="squantity != null" >
+        sQuantity,
+      </if>
+      <if test="cmid != null" >
+        CMID,
+      </if>
+      <if test="sid != null" >
+        SID,
+      </if>
+      <if test="sprice != null" >
+        sPrice,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="outintime != null" >
+        outintime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="fromno != null" >
+        #{fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseid != null" >
+        #{warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="squantity != null" >
+        #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="cmid != null" >
+        #{cmid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sprice != null" >
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="outintime != null" >
+        #{outintime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.StoreioExample" resultType="java.lang.Integer" >
+    select count(*) from storeio
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update storeio
+    <set >
+      <if test="record.lineno != null" >
+        LineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromno != null" >
+        FromNO = #{record.fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trantype != null" >
+        TranType = #{record.trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warehouseid != null" >
+        WareHouseID = #{record.warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.squantity != null" >
+        sQuantity = #{record.squantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmid != null" >
+        CMID = #{record.cmid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        SID = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sprice != null" >
+        sPrice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.outintime != null" >
+        outintime = #{record.outintime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update storeio
+    set LineNo = #{record.lineno,jdbcType=INTEGER},
+      FromNO = #{record.fromno,jdbcType=VARCHAR},
+      TranType = #{record.trantype,jdbcType=VARCHAR},
+      WareHouseID = #{record.warehouseid,jdbcType=VARCHAR},
+      sQuantity = #{record.squantity,jdbcType=INTEGER},
+      CMID = #{record.cmid,jdbcType=VARCHAR},
+      SID = #{record.sid,jdbcType=VARCHAR},
+      sPrice = #{record.sprice,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      outintime = #{record.outintime,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Storeio" >
+    update storeio
+    <set >
+      <if test="fromno != null" >
+        FromNO = #{fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        TranType = #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseid != null" >
+        WareHouseID = #{warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="squantity != null" >
+        sQuantity = #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="cmid != null" >
+        CMID = #{cmid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        SID = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sprice != null" >
+        sPrice = #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="outintime != null" >
+        outintime = #{outintime,jdbcType=DATE},
+      </if>
+    </set>
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Storeio" >
+    update storeio
+    set FromNO = #{fromno,jdbcType=VARCHAR},
+      TranType = #{trantype,jdbcType=VARCHAR},
+      WareHouseID = #{warehouseid,jdbcType=VARCHAR},
+      sQuantity = #{squantity,jdbcType=INTEGER},
+      CMID = #{cmid,jdbcType=VARCHAR},
+      SID = #{sid,jdbcType=VARCHAR},
+      sPrice = #{sprice,jdbcType=DOUBLE},
+      Amount = #{amount,jdbcType=DOUBLE},
+      outintime = #{outintime,jdbcType=DATE}
+    where LineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+</mapper>

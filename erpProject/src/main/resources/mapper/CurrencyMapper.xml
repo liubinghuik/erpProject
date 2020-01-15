@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CurrencyMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Currency" >
+    <id column="CurrencyID" property="currencyid" jdbcType="VARCHAR" />
+    <result column="CurrencyName" property="currencyname" jdbcType="VARCHAR" />
+    <result column="ShortName" property="shortname" jdbcType="VARCHAR" />
+    <result column="EngName" property="engname" jdbcType="VARCHAR" />
+    <result column="ModifyDate" property="modifydate" jdbcType="DATE" />
+    <result column="FixedRate" property="fixedrate" jdbcType="DOUBLE" />
+    <result column="BuyInRate" property="buyinrate" jdbcType="DOUBLE" />
+    <result column="SellOutRate" property="selloutrate" jdbcType="DOUBLE" />
+    <result column="PriceDeciDigits" property="pricedecidigits" jdbcType="VARCHAR" />
+    <result column="AmountDeciDigits" property="amountdecidigits" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CurrencyID, CurrencyName, ShortName, EngName, ModifyDate, FixedRate, BuyInRate, SellOutRate, 
+    PriceDeciDigits, AmountDeciDigits
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CurrencyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from currency
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from currency
+    where CurrencyID = #{currencyid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from currency
+    where CurrencyID = #{currencyid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CurrencyExample" >
+    delete from currency
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Currency" >
+    insert into currency (CurrencyID, CurrencyName, ShortName, 
+      EngName, ModifyDate, FixedRate, 
+      BuyInRate, SellOutRate, PriceDeciDigits, 
+      AmountDeciDigits)
+    values (#{currencyid,jdbcType=VARCHAR}, #{currencyname,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, 
+      #{engname,jdbcType=VARCHAR}, #{modifydate,jdbcType=DATE}, #{fixedrate,jdbcType=DOUBLE}, 
+      #{buyinrate,jdbcType=DOUBLE}, #{selloutrate,jdbcType=DOUBLE}, #{pricedecidigits,jdbcType=VARCHAR}, 
+      #{amountdecidigits,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Currency" >
+    insert into currency
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="currencyid != null" >
+        CurrencyID,
+      </if>
+      <if test="currencyname != null" >
+        CurrencyName,
+      </if>
+      <if test="shortname != null" >
+        ShortName,
+      </if>
+      <if test="engname != null" >
+        EngName,
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate,
+      </if>
+      <if test="fixedrate != null" >
+        FixedRate,
+      </if>
+      <if test="buyinrate != null" >
+        BuyInRate,
+      </if>
+      <if test="selloutrate != null" >
+        SellOutRate,
+      </if>
+      <if test="pricedecidigits != null" >
+        PriceDeciDigits,
+      </if>
+      <if test="amountdecidigits != null" >
+        AmountDeciDigits,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="currencyid != null" >
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyname != null" >
+        #{currencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=DATE},
+      </if>
+      <if test="fixedrate != null" >
+        #{fixedrate,jdbcType=DOUBLE},
+      </if>
+      <if test="buyinrate != null" >
+        #{buyinrate,jdbcType=DOUBLE},
+      </if>
+      <if test="selloutrate != null" >
+        #{selloutrate,jdbcType=DOUBLE},
+      </if>
+      <if test="pricedecidigits != null" >
+        #{pricedecidigits,jdbcType=VARCHAR},
+      </if>
+      <if test="amountdecidigits != null" >
+        #{amountdecidigits,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CurrencyExample" resultType="java.lang.Integer" >
+    select count(*) from currency
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update currency
+    <set >
+      <if test="record.currencyid != null" >
+        CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyname != null" >
+        CurrencyName = #{record.currencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortname != null" >
+        ShortName = #{record.shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engname != null" >
+        EngName = #{record.engname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifydate != null" >
+        ModifyDate = #{record.modifydate,jdbcType=DATE},
+      </if>
+      <if test="record.fixedrate != null" >
+        FixedRate = #{record.fixedrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.buyinrate != null" >
+        BuyInRate = #{record.buyinrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.selloutrate != null" >
+        SellOutRate = #{record.selloutrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pricedecidigits != null" >
+        PriceDeciDigits = #{record.pricedecidigits,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amountdecidigits != null" >
+        AmountDeciDigits = #{record.amountdecidigits,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update currency
+    set CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      CurrencyName = #{record.currencyname,jdbcType=VARCHAR},
+      ShortName = #{record.shortname,jdbcType=VARCHAR},
+      EngName = #{record.engname,jdbcType=VARCHAR},
+      ModifyDate = #{record.modifydate,jdbcType=DATE},
+      FixedRate = #{record.fixedrate,jdbcType=DOUBLE},
+      BuyInRate = #{record.buyinrate,jdbcType=DOUBLE},
+      SellOutRate = #{record.selloutrate,jdbcType=DOUBLE},
+      PriceDeciDigits = #{record.pricedecidigits,jdbcType=VARCHAR},
+      AmountDeciDigits = #{record.amountdecidigits,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Currency" >
+    update currency
+    <set >
+      <if test="currencyname != null" >
+        CurrencyName = #{currencyname,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        ShortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        EngName = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        ModifyDate = #{modifydate,jdbcType=DATE},
+      </if>
+      <if test="fixedrate != null" >
+        FixedRate = #{fixedrate,jdbcType=DOUBLE},
+      </if>
+      <if test="buyinrate != null" >
+        BuyInRate = #{buyinrate,jdbcType=DOUBLE},
+      </if>
+      <if test="selloutrate != null" >
+        SellOutRate = #{selloutrate,jdbcType=DOUBLE},
+      </if>
+      <if test="pricedecidigits != null" >
+        PriceDeciDigits = #{pricedecidigits,jdbcType=VARCHAR},
+      </if>
+      <if test="amountdecidigits != null" >
+        AmountDeciDigits = #{amountdecidigits,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CurrencyID = #{currencyid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Currency" >
+    update currency
+    set CurrencyName = #{currencyname,jdbcType=VARCHAR},
+      ShortName = #{shortname,jdbcType=VARCHAR},
+      EngName = #{engname,jdbcType=VARCHAR},
+      ModifyDate = #{modifydate,jdbcType=DATE},
+      FixedRate = #{fixedrate,jdbcType=DOUBLE},
+      BuyInRate = #{buyinrate,jdbcType=DOUBLE},
+      SellOutRate = #{selloutrate,jdbcType=DOUBLE},
+      PriceDeciDigits = #{pricedecidigits,jdbcType=VARCHAR},
+      AmountDeciDigits = #{amountdecidigits,jdbcType=VARCHAR}
+    where CurrencyID = #{currencyid,jdbcType=VARCHAR}
+  </update>
+</mapper>

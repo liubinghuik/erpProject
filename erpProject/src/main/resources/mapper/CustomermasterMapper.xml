@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.CustomermasterMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Customermaster" >
+    <id column="Cmid" property="cmid" jdbcType="INTEGER" />
+    <result column="FundsAttribution" property="fundsattribution" jdbcType="VARCHAR" />
+    <result column="FullName" property="fullname" jdbcType="VARCHAR" />
+    <result column="ClassID" property="classid" jdbcType="VARCHAR" />
+    <result column="ShortName" property="shortname" jdbcType="VARCHAR" />
+    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="EngFullName" property="engfullname" jdbcType="VARCHAR" />
+    <result column="EngShortName" property="engshortname" jdbcType="VARCHAR" />
+    <result column="CurrencyID" property="currencyid" jdbcType="VARCHAR" />
+    <result column="ChiefName" property="chiefname" jdbcType="VARCHAR" />
+    <result column="LinkMan" property="linkman" jdbcType="VARCHAR" />
+    <result column="PersonID" property="personid" jdbcType="VARCHAR" />
+    <result column="TaxNo" property="taxno" jdbcType="VARCHAR" />
+    <result column="Capitalization" property="capitalization" jdbcType="DOUBLE" />
+    <result column="IndustrialClass" property="industrialclass" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="WebAddress" property="webaddress" jdbcType="VARCHAR" />
+    <result column="FaxNo" property="faxno" jdbcType="VARCHAR" />
+    <result column="Telephone1" property="telephone1" jdbcType="VARCHAR" />
+    <result column="Telephone2" property="telephone2" jdbcType="VARCHAR" />
+    <result column="Telephone3" property="telephone3" jdbcType="VARCHAR" />
+    <result column="MobileTel" property="mobiletel" jdbcType="VARCHAR" />
+    <result column="BankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="BankID" property="bankid" jdbcType="VARCHAR" />
+    <result column="EarliestTradeDate" property="earliesttradedate" jdbcType="DATE" />
+    <result column="FirstTradeDate" property="firsttradedate" jdbcType="DATE" />
+    <result column="LatelyTradeturnDate" property="latelytradeturndate" jdbcType="DATE" />
+    <result column="LatelyReturnDate" property="latelyreturndate" jdbcType="DATE" />
+    <result column="RateOfDiscount" property="rateofdiscount" jdbcType="DOUBLE" />
+    <result column="PriceRank" property="pricerank" jdbcType="INTEGER" />
+    <result column="PriceofTax" property="priceoftax" jdbcType="INTEGER" />
+    <result column="TransNewID" property="transnewid" jdbcType="VARCHAR" />
+    <result column="BuildUpDate" property="buildupdate" jdbcType="DATE" />
+    <result column="InvalidDate" property="invaliddate" jdbcType="DATE" />
+    <result column="AmountQuota" property="amountquota" jdbcType="DOUBLE" />
+    <result column="RemainQuota" property="remainquota" jdbcType="DOUBLE" />
+    <result column="RecvWay" property="recvway" jdbcType="INTEGER" />
+    <result column="DistDays" property="distdays" jdbcType="INTEGER" />
+    <result column="DayOfClose" property="dayofclose" jdbcType="INTEGER" />
+    <result column="CreditLevel" property="creditlevel" jdbcType="VARCHAR" />
+    <result column="StartAdvRecv" property="startadvrecv" jdbcType="DOUBLE" />
+    <result column="StartReceivable" property="startreceivable" jdbcType="DOUBLE" />
+    <result column="CurAdvRecv" property="curadvrecv" jdbcType="DOUBLE" />
+    <result column="CurReceivable" property="curreceivable" jdbcType="DOUBLE" />
+    <result column="WMoney" property="wmoney" jdbcType="DOUBLE" />
+    <result column="YAdvRecv" property="yadvrecv" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="Column1" property="column1" jdbcType="VARCHAR" />
+    <result column="Column2" property="column2" jdbcType="VARCHAR" />
+    <result column="Column3" property="column3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Cmid, FundsAttribution, FullName, ClassID, ShortName, Area, EngFullName, EngShortName, 
+    CurrencyID, ChiefName, LinkMan, PersonID, TaxNo, Capitalization, IndustrialClass, 
+    Email, WebAddress, FaxNo, Telephone1, Telephone2, Telephone3, MobileTel, BankAccount, 
+    BankID, EarliestTradeDate, FirstTradeDate, LatelyTradeturnDate, LatelyReturnDate, 
+    RateOfDiscount, PriceRank, PriceofTax, TransNewID, BuildUpDate, InvalidDate, AmountQuota, 
+    RemainQuota, RecvWay, DistDays, DayOfClose, CreditLevel, StartAdvRecv, StartReceivable, 
+    CurAdvRecv, CurReceivable, WMoney, YAdvRecv, Remark, Column1, Column2, Column3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.CustomermasterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customermaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customermaster
+    where Cmid = #{cmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customermaster
+    where Cmid = #{cmid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.CustomermasterExample" >
+    delete from customermaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Customermaster" >
+    insert into customermaster (Cmid, FundsAttribution, FullName, 
+      ClassID, ShortName, Area, 
+      EngFullName, EngShortName, CurrencyID, 
+      ChiefName, LinkMan, PersonID, 
+      TaxNo, Capitalization, IndustrialClass, 
+      Email, WebAddress, FaxNo, 
+      Telephone1, Telephone2, Telephone3, 
+      MobileTel, BankAccount, BankID, 
+      EarliestTradeDate, FirstTradeDate, LatelyTradeturnDate, 
+      LatelyReturnDate, RateOfDiscount, PriceRank, 
+      PriceofTax, TransNewID, BuildUpDate, 
+      InvalidDate, AmountQuota, RemainQuota, 
+      RecvWay, DistDays, DayOfClose, 
+      CreditLevel, StartAdvRecv, StartReceivable, 
+      CurAdvRecv, CurReceivable, WMoney, 
+      YAdvRecv, Remark, Column1, 
+      Column2, Column3)
+    values (#{cmid,jdbcType=INTEGER}, #{fundsattribution,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, 
+      #{classid,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{engfullname,jdbcType=VARCHAR}, #{engshortname,jdbcType=VARCHAR}, #{currencyid,jdbcType=VARCHAR}, 
+      #{chiefname,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{personid,jdbcType=VARCHAR}, 
+      #{taxno,jdbcType=VARCHAR}, #{capitalization,jdbcType=DOUBLE}, #{industrialclass,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{webaddress,jdbcType=VARCHAR}, #{faxno,jdbcType=VARCHAR}, 
+      #{telephone1,jdbcType=VARCHAR}, #{telephone2,jdbcType=VARCHAR}, #{telephone3,jdbcType=VARCHAR}, 
+      #{mobiletel,jdbcType=VARCHAR}, #{bankaccount,jdbcType=VARCHAR}, #{bankid,jdbcType=VARCHAR}, 
+      #{earliesttradedate,jdbcType=DATE}, #{firsttradedate,jdbcType=DATE}, #{latelytradeturndate,jdbcType=DATE}, 
+      #{latelyreturndate,jdbcType=DATE}, #{rateofdiscount,jdbcType=DOUBLE}, #{pricerank,jdbcType=INTEGER}, 
+      #{priceoftax,jdbcType=INTEGER}, #{transnewid,jdbcType=VARCHAR}, #{buildupdate,jdbcType=DATE}, 
+      #{invaliddate,jdbcType=DATE}, #{amountquota,jdbcType=DOUBLE}, #{remainquota,jdbcType=DOUBLE}, 
+      #{recvway,jdbcType=INTEGER}, #{distdays,jdbcType=INTEGER}, #{dayofclose,jdbcType=INTEGER}, 
+      #{creditlevel,jdbcType=VARCHAR}, #{startadvrecv,jdbcType=DOUBLE}, #{startreceivable,jdbcType=DOUBLE}, 
+      #{curadvrecv,jdbcType=DOUBLE}, #{curreceivable,jdbcType=DOUBLE}, #{wmoney,jdbcType=DOUBLE}, 
+      #{yadvrecv,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{column1,jdbcType=VARCHAR}, 
+      #{column2,jdbcType=VARCHAR}, #{column3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Customermaster" >
+    insert into customermaster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmid != null" >
+        Cmid,
+      </if>
+      <if test="fundsattribution != null" >
+        FundsAttribution,
+      </if>
+      <if test="fullname != null" >
+        FullName,
+      </if>
+      <if test="classid != null" >
+        ClassID,
+      </if>
+      <if test="shortname != null" >
+        ShortName,
+      </if>
+      <if test="area != null" >
+        Area,
+      </if>
+      <if test="engfullname != null" >
+        EngFullName,
+      </if>
+      <if test="engshortname != null" >
+        EngShortName,
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID,
+      </if>
+      <if test="chiefname != null" >
+        ChiefName,
+      </if>
+      <if test="linkman != null" >
+        LinkMan,
+      </if>
+      <if test="personid != null" >
+        PersonID,
+      </if>
+      <if test="taxno != null" >
+        TaxNo,
+      </if>
+      <if test="capitalization != null" >
+        Capitalization,
+      </if>
+      <if test="industrialclass != null" >
+        IndustrialClass,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="webaddress != null" >
+        WebAddress,
+      </if>
+      <if test="faxno != null" >
+        FaxNo,
+      </if>
+      <if test="telephone1 != null" >
+        Telephone1,
+      </if>
+      <if test="telephone2 != null" >
+        Telephone2,
+      </if>
+      <if test="telephone3 != null" >
+        Telephone3,
+      </if>
+      <if test="mobiletel != null" >
+        MobileTel,
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount,
+      </if>
+      <if test="bankid != null" >
+        BankID,
+      </if>
+      <if test="earliesttradedate != null" >
+        EarliestTradeDate,
+      </if>
+      <if test="firsttradedate != null" >
+        FirstTradeDate,
+      </if>
+      <if test="latelytradeturndate != null" >
+        LatelyTradeturnDate,
+      </if>
+      <if test="latelyreturndate != null" >
+        LatelyReturnDate,
+      </if>
+      <if test="rateofdiscount != null" >
+        RateOfDiscount,
+      </if>
+      <if test="pricerank != null" >
+        PriceRank,
+      </if>
+      <if test="priceoftax != null" >
+        PriceofTax,
+      </if>
+      <if test="transnewid != null" >
+        TransNewID,
+      </if>
+      <if test="buildupdate != null" >
+        BuildUpDate,
+      </if>
+      <if test="invaliddate != null" >
+        InvalidDate,
+      </if>
+      <if test="amountquota != null" >
+        AmountQuota,
+      </if>
+      <if test="remainquota != null" >
+        RemainQuota,
+      </if>
+      <if test="recvway != null" >
+        RecvWay,
+      </if>
+      <if test="distdays != null" >
+        DistDays,
+      </if>
+      <if test="dayofclose != null" >
+        DayOfClose,
+      </if>
+      <if test="creditlevel != null" >
+        CreditLevel,
+      </if>
+      <if test="startadvrecv != null" >
+        StartAdvRecv,
+      </if>
+      <if test="startreceivable != null" >
+        StartReceivable,
+      </if>
+      <if test="curadvrecv != null" >
+        CurAdvRecv,
+      </if>
+      <if test="curreceivable != null" >
+        CurReceivable,
+      </if>
+      <if test="wmoney != null" >
+        WMoney,
+      </if>
+      <if test="yadvrecv != null" >
+        YAdvRecv,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="column1 != null" >
+        Column1,
+      </if>
+      <if test="column2 != null" >
+        Column2,
+      </if>
+      <if test="column3 != null" >
+        Column3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmid != null" >
+        #{cmid,jdbcType=INTEGER},
+      </if>
+      <if test="fundsattribution != null" >
+        #{fundsattribution,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="engfullname != null" >
+        #{engfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="engshortname != null" >
+        #{engshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="chiefname != null" >
+        #{chiefname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null" >
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="taxno != null" >
+        #{taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalization != null" >
+        #{capitalization,jdbcType=DOUBLE},
+      </if>
+      <if test="industrialclass != null" >
+        #{industrialclass,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="webaddress != null" >
+        #{webaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="faxno != null" >
+        #{faxno,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null" >
+        #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null" >
+        #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone3 != null" >
+        #{telephone3,jdbcType=VARCHAR},
+      </if>
+      <if test="mobiletel != null" >
+        #{mobiletel,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null" >
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="earliesttradedate != null" >
+        #{earliesttradedate,jdbcType=DATE},
+      </if>
+      <if test="firsttradedate != null" >
+        #{firsttradedate,jdbcType=DATE},
+      </if>
+      <if test="latelytradeturndate != null" >
+        #{latelytradeturndate,jdbcType=DATE},
+      </if>
+      <if test="latelyreturndate != null" >
+        #{latelyreturndate,jdbcType=DATE},
+      </if>
+      <if test="rateofdiscount != null" >
+        #{rateofdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="pricerank != null" >
+        #{pricerank,jdbcType=INTEGER},
+      </if>
+      <if test="priceoftax != null" >
+        #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="transnewid != null" >
+        #{transnewid,jdbcType=VARCHAR},
+      </if>
+      <if test="buildupdate != null" >
+        #{buildupdate,jdbcType=DATE},
+      </if>
+      <if test="invaliddate != null" >
+        #{invaliddate,jdbcType=DATE},
+      </if>
+      <if test="amountquota != null" >
+        #{amountquota,jdbcType=DOUBLE},
+      </if>
+      <if test="remainquota != null" >
+        #{remainquota,jdbcType=DOUBLE},
+      </if>
+      <if test="recvway != null" >
+        #{recvway,jdbcType=INTEGER},
+      </if>
+      <if test="distdays != null" >
+        #{distdays,jdbcType=INTEGER},
+      </if>
+      <if test="dayofclose != null" >
+        #{dayofclose,jdbcType=INTEGER},
+      </if>
+      <if test="creditlevel != null" >
+        #{creditlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="startadvrecv != null" >
+        #{startadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="startreceivable != null" >
+        #{startreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="curadvrecv != null" >
+        #{curadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="curreceivable != null" >
+        #{curreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="wmoney != null" >
+        #{wmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="yadvrecv != null" >
+        #{yadvrecv,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        #{column3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.CustomermasterExample" resultType="java.lang.Integer" >
+    select count(*) from customermaster
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customermaster
+    <set >
+      <if test="record.cmid != null" >
+        Cmid = #{record.cmid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fundsattribution != null" >
+        FundsAttribution = #{record.fundsattribution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fullname != null" >
+        FullName = #{record.fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null" >
+        ClassID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortname != null" >
+        ShortName = #{record.shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        Area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engfullname != null" >
+        EngFullName = #{record.engfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.engshortname != null" >
+        EngShortName = #{record.engshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyid != null" >
+        CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chiefname != null" >
+        ChiefName = #{record.chiefname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkman != null" >
+        LinkMan = #{record.linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personid != null" >
+        PersonID = #{record.personid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxno != null" >
+        TaxNo = #{record.taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.capitalization != null" >
+        Capitalization = #{record.capitalization,jdbcType=DOUBLE},
+      </if>
+      <if test="record.industrialclass != null" >
+        IndustrialClass = #{record.industrialclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        Email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webaddress != null" >
+        WebAddress = #{record.webaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faxno != null" >
+        FaxNo = #{record.faxno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone1 != null" >
+        Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone2 != null" >
+        Telephone2 = #{record.telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone3 != null" >
+        Telephone3 = #{record.telephone3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobiletel != null" >
+        MobileTel = #{record.mobiletel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        BankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankid != null" >
+        BankID = #{record.bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.earliesttradedate != null" >
+        EarliestTradeDate = #{record.earliesttradedate,jdbcType=DATE},
+      </if>
+      <if test="record.firsttradedate != null" >
+        FirstTradeDate = #{record.firsttradedate,jdbcType=DATE},
+      </if>
+      <if test="record.latelytradeturndate != null" >
+        LatelyTradeturnDate = #{record.latelytradeturndate,jdbcType=DATE},
+      </if>
+      <if test="record.latelyreturndate != null" >
+        LatelyReturnDate = #{record.latelyreturndate,jdbcType=DATE},
+      </if>
+      <if test="record.rateofdiscount != null" >
+        RateOfDiscount = #{record.rateofdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pricerank != null" >
+        PriceRank = #{record.pricerank,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceoftax != null" >
+        PriceofTax = #{record.priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="record.transnewid != null" >
+        TransNewID = #{record.transnewid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buildupdate != null" >
+        BuildUpDate = #{record.buildupdate,jdbcType=DATE},
+      </if>
+      <if test="record.invaliddate != null" >
+        InvalidDate = #{record.invaliddate,jdbcType=DATE},
+      </if>
+      <if test="record.amountquota != null" >
+        AmountQuota = #{record.amountquota,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remainquota != null" >
+        RemainQuota = #{record.remainquota,jdbcType=DOUBLE},
+      </if>
+      <if test="record.recvway != null" >
+        RecvWay = #{record.recvway,jdbcType=INTEGER},
+      </if>
+      <if test="record.distdays != null" >
+        DistDays = #{record.distdays,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayofclose != null" >
+        DayOfClose = #{record.dayofclose,jdbcType=INTEGER},
+      </if>
+      <if test="record.creditlevel != null" >
+        CreditLevel = #{record.creditlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startadvrecv != null" >
+        StartAdvRecv = #{record.startadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="record.startreceivable != null" >
+        StartReceivable = #{record.startreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="record.curadvrecv != null" >
+        CurAdvRecv = #{record.curadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="record.curreceivable != null" >
+        CurReceivable = #{record.curreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="record.wmoney != null" >
+        WMoney = #{record.wmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.yadvrecv != null" >
+        YAdvRecv = #{record.yadvrecv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column1 != null" >
+        Column1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column2 != null" >
+        Column2 = #{record.column2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column3 != null" >
+        Column3 = #{record.column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customermaster
+    set Cmid = #{record.cmid,jdbcType=INTEGER},
+      FundsAttribution = #{record.fundsattribution,jdbcType=VARCHAR},
+      FullName = #{record.fullname,jdbcType=VARCHAR},
+      ClassID = #{record.classid,jdbcType=VARCHAR},
+      ShortName = #{record.shortname,jdbcType=VARCHAR},
+      Area = #{record.area,jdbcType=VARCHAR},
+      EngFullName = #{record.engfullname,jdbcType=VARCHAR},
+      EngShortName = #{record.engshortname,jdbcType=VARCHAR},
+      CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
+      ChiefName = #{record.chiefname,jdbcType=VARCHAR},
+      LinkMan = #{record.linkman,jdbcType=VARCHAR},
+      PersonID = #{record.personid,jdbcType=VARCHAR},
+      TaxNo = #{record.taxno,jdbcType=VARCHAR},
+      Capitalization = #{record.capitalization,jdbcType=DOUBLE},
+      IndustrialClass = #{record.industrialclass,jdbcType=VARCHAR},
+      Email = #{record.email,jdbcType=VARCHAR},
+      WebAddress = #{record.webaddress,jdbcType=VARCHAR},
+      FaxNo = #{record.faxno,jdbcType=VARCHAR},
+      Telephone1 = #{record.telephone1,jdbcType=VARCHAR},
+      Telephone2 = #{record.telephone2,jdbcType=VARCHAR},
+      Telephone3 = #{record.telephone3,jdbcType=VARCHAR},
+      MobileTel = #{record.mobiletel,jdbcType=VARCHAR},
+      BankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      BankID = #{record.bankid,jdbcType=VARCHAR},
+      EarliestTradeDate = #{record.earliesttradedate,jdbcType=DATE},
+      FirstTradeDate = #{record.firsttradedate,jdbcType=DATE},
+      LatelyTradeturnDate = #{record.latelytradeturndate,jdbcType=DATE},
+      LatelyReturnDate = #{record.latelyreturndate,jdbcType=DATE},
+      RateOfDiscount = #{record.rateofdiscount,jdbcType=DOUBLE},
+      PriceRank = #{record.pricerank,jdbcType=INTEGER},
+      PriceofTax = #{record.priceoftax,jdbcType=INTEGER},
+      TransNewID = #{record.transnewid,jdbcType=VARCHAR},
+      BuildUpDate = #{record.buildupdate,jdbcType=DATE},
+      InvalidDate = #{record.invaliddate,jdbcType=DATE},
+      AmountQuota = #{record.amountquota,jdbcType=DOUBLE},
+      RemainQuota = #{record.remainquota,jdbcType=DOUBLE},
+      RecvWay = #{record.recvway,jdbcType=INTEGER},
+      DistDays = #{record.distdays,jdbcType=INTEGER},
+      DayOfClose = #{record.dayofclose,jdbcType=INTEGER},
+      CreditLevel = #{record.creditlevel,jdbcType=VARCHAR},
+      StartAdvRecv = #{record.startadvrecv,jdbcType=DOUBLE},
+      StartReceivable = #{record.startreceivable,jdbcType=DOUBLE},
+      CurAdvRecv = #{record.curadvrecv,jdbcType=DOUBLE},
+      CurReceivable = #{record.curreceivable,jdbcType=DOUBLE},
+      WMoney = #{record.wmoney,jdbcType=DOUBLE},
+      YAdvRecv = #{record.yadvrecv,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      Column1 = #{record.column1,jdbcType=VARCHAR},
+      Column2 = #{record.column2,jdbcType=VARCHAR},
+      Column3 = #{record.column3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Customermaster" >
+    update customermaster
+    <set >
+      <if test="fundsattribution != null" >
+        FundsAttribution = #{fundsattribution,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        FullName = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        ClassID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null" >
+        ShortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        Area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="engfullname != null" >
+        EngFullName = #{engfullname,jdbcType=VARCHAR},
+      </if>
+      <if test="engshortname != null" >
+        EngShortName = #{engshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="chiefname != null" >
+        ChiefName = #{chiefname,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        LinkMan = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null" >
+        PersonID = #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="taxno != null" >
+        TaxNo = #{taxno,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalization != null" >
+        Capitalization = #{capitalization,jdbcType=DOUBLE},
+      </if>
+      <if test="industrialclass != null" >
+        IndustrialClass = #{industrialclass,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="webaddress != null" >
+        WebAddress = #{webaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="faxno != null" >
+        FaxNo = #{faxno,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone1 != null" >
+        Telephone1 = #{telephone1,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone2 != null" >
+        Telephone2 = #{telephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone3 != null" >
+        Telephone3 = #{telephone3,jdbcType=VARCHAR},
+      </if>
+      <if test="mobiletel != null" >
+        MobileTel = #{mobiletel,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null" >
+        BankID = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="earliesttradedate != null" >
+        EarliestTradeDate = #{earliesttradedate,jdbcType=DATE},
+      </if>
+      <if test="firsttradedate != null" >
+        FirstTradeDate = #{firsttradedate,jdbcType=DATE},
+      </if>
+      <if test="latelytradeturndate != null" >
+        LatelyTradeturnDate = #{latelytradeturndate,jdbcType=DATE},
+      </if>
+      <if test="latelyreturndate != null" >
+        LatelyReturnDate = #{latelyreturndate,jdbcType=DATE},
+      </if>
+      <if test="rateofdiscount != null" >
+        RateOfDiscount = #{rateofdiscount,jdbcType=DOUBLE},
+      </if>
+      <if test="pricerank != null" >
+        PriceRank = #{pricerank,jdbcType=INTEGER},
+      </if>
+      <if test="priceoftax != null" >
+        PriceofTax = #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="transnewid != null" >
+        TransNewID = #{transnewid,jdbcType=VARCHAR},
+      </if>
+      <if test="buildupdate != null" >
+        BuildUpDate = #{buildupdate,jdbcType=DATE},
+      </if>
+      <if test="invaliddate != null" >
+        InvalidDate = #{invaliddate,jdbcType=DATE},
+      </if>
+      <if test="amountquota != null" >
+        AmountQuota = #{amountquota,jdbcType=DOUBLE},
+      </if>
+      <if test="remainquota != null" >
+        RemainQuota = #{remainquota,jdbcType=DOUBLE},
+      </if>
+      <if test="recvway != null" >
+        RecvWay = #{recvway,jdbcType=INTEGER},
+      </if>
+      <if test="distdays != null" >
+        DistDays = #{distdays,jdbcType=INTEGER},
+      </if>
+      <if test="dayofclose != null" >
+        DayOfClose = #{dayofclose,jdbcType=INTEGER},
+      </if>
+      <if test="creditlevel != null" >
+        CreditLevel = #{creditlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="startadvrecv != null" >
+        StartAdvRecv = #{startadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="startreceivable != null" >
+        StartReceivable = #{startreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="curadvrecv != null" >
+        CurAdvRecv = #{curadvrecv,jdbcType=DOUBLE},
+      </if>
+      <if test="curreceivable != null" >
+        CurReceivable = #{curreceivable,jdbcType=DOUBLE},
+      </if>
+      <if test="wmoney != null" >
+        WMoney = #{wmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="yadvrecv != null" >
+        YAdvRecv = #{yadvrecv,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        Column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        Column2 = #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        Column3 = #{column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Cmid = #{cmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Customermaster" >
+    update customermaster
+    set FundsAttribution = #{fundsattribution,jdbcType=VARCHAR},
+      FullName = #{fullname,jdbcType=VARCHAR},
+      ClassID = #{classid,jdbcType=VARCHAR},
+      ShortName = #{shortname,jdbcType=VARCHAR},
+      Area = #{area,jdbcType=VARCHAR},
+      EngFullName = #{engfullname,jdbcType=VARCHAR},
+      EngShortName = #{engshortname,jdbcType=VARCHAR},
+      CurrencyID = #{currencyid,jdbcType=VARCHAR},
+      ChiefName = #{chiefname,jdbcType=VARCHAR},
+      LinkMan = #{linkman,jdbcType=VARCHAR},
+      PersonID = #{personid,jdbcType=VARCHAR},
+      TaxNo = #{taxno,jdbcType=VARCHAR},
+      Capitalization = #{capitalization,jdbcType=DOUBLE},
+      IndustrialClass = #{industrialclass,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      WebAddress = #{webaddress,jdbcType=VARCHAR},
+      FaxNo = #{faxno,jdbcType=VARCHAR},
+      Telephone1 = #{telephone1,jdbcType=VARCHAR},
+      Telephone2 = #{telephone2,jdbcType=VARCHAR},
+      Telephone3 = #{telephone3,jdbcType=VARCHAR},
+      MobileTel = #{mobiletel,jdbcType=VARCHAR},
+      BankAccount = #{bankaccount,jdbcType=VARCHAR},
+      BankID = #{bankid,jdbcType=VARCHAR},
+      EarliestTradeDate = #{earliesttradedate,jdbcType=DATE},
+      FirstTradeDate = #{firsttradedate,jdbcType=DATE},
+      LatelyTradeturnDate = #{latelytradeturndate,jdbcType=DATE},
+      LatelyReturnDate = #{latelyreturndate,jdbcType=DATE},
+      RateOfDiscount = #{rateofdiscount,jdbcType=DOUBLE},
+      PriceRank = #{pricerank,jdbcType=INTEGER},
+      PriceofTax = #{priceoftax,jdbcType=INTEGER},
+      TransNewID = #{transnewid,jdbcType=VARCHAR},
+      BuildUpDate = #{buildupdate,jdbcType=DATE},
+      InvalidDate = #{invaliddate,jdbcType=DATE},
+      AmountQuota = #{amountquota,jdbcType=DOUBLE},
+      RemainQuota = #{remainquota,jdbcType=DOUBLE},
+      RecvWay = #{recvway,jdbcType=INTEGER},
+      DistDays = #{distdays,jdbcType=INTEGER},
+      DayOfClose = #{dayofclose,jdbcType=INTEGER},
+      CreditLevel = #{creditlevel,jdbcType=VARCHAR},
+      StartAdvRecv = #{startadvrecv,jdbcType=DOUBLE},
+      StartReceivable = #{startreceivable,jdbcType=DOUBLE},
+      CurAdvRecv = #{curadvrecv,jdbcType=DOUBLE},
+      CurReceivable = #{curreceivable,jdbcType=DOUBLE},
+      WMoney = #{wmoney,jdbcType=DOUBLE},
+      YAdvRecv = #{yadvrecv,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Column1 = #{column1,jdbcType=VARCHAR},
+      Column2 = #{column2,jdbcType=VARCHAR},
+      Column3 = #{column3,jdbcType=VARCHAR}
+    where Cmid = #{cmid,jdbcType=INTEGER}
+  </update>
+</mapper>

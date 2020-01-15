@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.StoreaccountMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Storeaccount" >
+    <id column="lineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="WareHouseID" property="warehouseid" jdbcType="VARCHAR" />
+    <result column="ProdID" property="prodid" jdbcType="VARCHAR" />
+    <result column="BAllAmt" property="ballamt" jdbcType="INTEGER" />
+    <result column="CAllAmt" property="callamt" jdbcType="INTEGER" />
+    <result column="sPrice" property="sprice" jdbcType="DOUBLE" />
+    <result column="CAllCost" property="callcost" jdbcType="DOUBLE" />
+    <result column="SafeQty" property="safeqty" jdbcType="INTEGER" />
+    <result column="FBegPrice" property="fbegprice" jdbcType="DOUBLE" />
+    <result column="FBegSum" property="fbegsum" jdbcType="DOUBLE" />
+    <result column="January" property="january" jdbcType="INTEGER" />
+    <result column="Period" property="period" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    lineNo, WareHouseID, ProdID, BAllAmt, CAllAmt, sPrice, CAllCost, SafeQty, FBegPrice, 
+    FBegSum, January, Period
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.StoreaccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storeaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from storeaccount
+    where lineNo = #{lineno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from storeaccount
+    where lineNo = #{lineno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.StoreaccountExample" >
+    delete from storeaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Storeaccount" >
+    insert into storeaccount (lineNo, WareHouseID, ProdID, 
+      BAllAmt, CAllAmt, sPrice, 
+      CAllCost, SafeQty, FBegPrice, 
+      FBegSum, January, Period
+      )
+    values (#{lineno,jdbcType=INTEGER}, #{warehouseid,jdbcType=VARCHAR}, #{prodid,jdbcType=VARCHAR}, 
+      #{ballamt,jdbcType=INTEGER}, #{callamt,jdbcType=INTEGER}, #{sprice,jdbcType=DOUBLE}, 
+      #{callcost,jdbcType=DOUBLE}, #{safeqty,jdbcType=INTEGER}, #{fbegprice,jdbcType=DOUBLE}, 
+      #{fbegsum,jdbcType=DOUBLE}, #{january,jdbcType=INTEGER}, #{period,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Storeaccount" >
+    insert into storeaccount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        lineNo,
+      </if>
+      <if test="warehouseid != null" >
+        WareHouseID,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="ballamt != null" >
+        BAllAmt,
+      </if>
+      <if test="callamt != null" >
+        CAllAmt,
+      </if>
+      <if test="sprice != null" >
+        sPrice,
+      </if>
+      <if test="callcost != null" >
+        CAllCost,
+      </if>
+      <if test="safeqty != null" >
+        SafeQty,
+      </if>
+      <if test="fbegprice != null" >
+        FBegPrice,
+      </if>
+      <if test="fbegsum != null" >
+        FBegSum,
+      </if>
+      <if test="january != null" >
+        January,
+      </if>
+      <if test="period != null" >
+        Period,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseid != null" >
+        #{warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="ballamt != null" >
+        #{ballamt,jdbcType=INTEGER},
+      </if>
+      <if test="callamt != null" >
+        #{callamt,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null" >
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="callcost != null" >
+        #{callcost,jdbcType=DOUBLE},
+      </if>
+      <if test="safeqty != null" >
+        #{safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="fbegprice != null" >
+        #{fbegprice,jdbcType=DOUBLE},
+      </if>
+      <if test="fbegsum != null" >
+        #{fbegsum,jdbcType=DOUBLE},
+      </if>
+      <if test="january != null" >
+        #{january,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.StoreaccountExample" resultType="java.lang.Integer" >
+    select count(*) from storeaccount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update storeaccount
+    <set >
+      <if test="record.lineno != null" >
+        lineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.warehouseid != null" >
+        WareHouseID = #{record.warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ballamt != null" >
+        BAllAmt = #{record.ballamt,jdbcType=INTEGER},
+      </if>
+      <if test="record.callamt != null" >
+        CAllAmt = #{record.callamt,jdbcType=INTEGER},
+      </if>
+      <if test="record.sprice != null" >
+        sPrice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.callcost != null" >
+        CAllCost = #{record.callcost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.safeqty != null" >
+        SafeQty = #{record.safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.fbegprice != null" >
+        FBegPrice = #{record.fbegprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fbegsum != null" >
+        FBegSum = #{record.fbegsum,jdbcType=DOUBLE},
+      </if>
+      <if test="record.january != null" >
+        January = #{record.january,jdbcType=INTEGER},
+      </if>
+      <if test="record.period != null" >
+        Period = #{record.period,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update storeaccount
+    set lineNo = #{record.lineno,jdbcType=INTEGER},
+      WareHouseID = #{record.warehouseid,jdbcType=VARCHAR},
+      ProdID = #{record.prodid,jdbcType=VARCHAR},
+      BAllAmt = #{record.ballamt,jdbcType=INTEGER},
+      CAllAmt = #{record.callamt,jdbcType=INTEGER},
+      sPrice = #{record.sprice,jdbcType=DOUBLE},
+      CAllCost = #{record.callcost,jdbcType=DOUBLE},
+      SafeQty = #{record.safeqty,jdbcType=INTEGER},
+      FBegPrice = #{record.fbegprice,jdbcType=DOUBLE},
+      FBegSum = #{record.fbegsum,jdbcType=DOUBLE},
+      January = #{record.january,jdbcType=INTEGER},
+      Period = #{record.period,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Storeaccount" >
+    update storeaccount
+    <set >
+      <if test="warehouseid != null" >
+        WareHouseID = #{warehouseid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null" >
+        ProdID = #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="ballamt != null" >
+        BAllAmt = #{ballamt,jdbcType=INTEGER},
+      </if>
+      <if test="callamt != null" >
+        CAllAmt = #{callamt,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null" >
+        sPrice = #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="callcost != null" >
+        CAllCost = #{callcost,jdbcType=DOUBLE},
+      </if>
+      <if test="safeqty != null" >
+        SafeQty = #{safeqty,jdbcType=INTEGER},
+      </if>
+      <if test="fbegprice != null" >
+        FBegPrice = #{fbegprice,jdbcType=DOUBLE},
+      </if>
+      <if test="fbegsum != null" >
+        FBegSum = #{fbegsum,jdbcType=DOUBLE},
+      </if>
+      <if test="january != null" >
+        January = #{january,jdbcType=INTEGER},
+      </if>
+      <if test="period != null" >
+        Period = #{period,jdbcType=INTEGER},
+      </if>
+    </set>
+    where lineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Storeaccount" >
+    update storeaccount
+    set WareHouseID = #{warehouseid,jdbcType=VARCHAR},
+      ProdID = #{prodid,jdbcType=VARCHAR},
+      BAllAmt = #{ballamt,jdbcType=INTEGER},
+      CAllAmt = #{callamt,jdbcType=INTEGER},
+      sPrice = #{sprice,jdbcType=DOUBLE},
+      CAllCost = #{callcost,jdbcType=DOUBLE},
+      SafeQty = #{safeqty,jdbcType=INTEGER},
+      FBegPrice = #{fbegprice,jdbcType=DOUBLE},
+      FBegSum = #{fbegsum,jdbcType=DOUBLE},
+      January = #{january,jdbcType=INTEGER},
+      Period = #{period,jdbcType=INTEGER}
+    where lineNo = #{lineno,jdbcType=INTEGER}
+  </update>
+</mapper>

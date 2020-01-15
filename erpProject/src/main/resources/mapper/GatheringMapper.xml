@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.GatheringMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Gathering" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Billstype" property="billstype" jdbcType="VARCHAR" />
+    <result column="BillsNo" property="billsno" jdbcType="VARCHAR" />
+    <result column="Date" property="date" jdbcType="DATE" />
+    <result column="Kid" property="kid" jdbcType="VARCHAR" />
+    <result column="Payment" property="payment" jdbcType="DOUBLE" />
+    <result column="Balance" property="balance" jdbcType="DOUBLE" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, Billstype, BillsNo, Date, Kid, Payment, Balance, State
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.GatheringExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gathering
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gathering
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gathering
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.GatheringExample" >
+    delete from gathering
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Gathering" >
+    insert into gathering (Id, Billstype, BillsNo, 
+      Date, Kid, Payment, Balance, 
+      State)
+    values (#{id,jdbcType=INTEGER}, #{billstype,jdbcType=VARCHAR}, #{billsno,jdbcType=VARCHAR}, 
+      #{date,jdbcType=DATE}, #{kid,jdbcType=VARCHAR}, #{payment,jdbcType=DOUBLE}, #{balance,jdbcType=DOUBLE}, 
+      #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Gathering" >
+    insert into gathering
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="billstype != null" >
+        Billstype,
+      </if>
+      <if test="billsno != null" >
+        BillsNo,
+      </if>
+      <if test="date != null" >
+        Date,
+      </if>
+      <if test="kid != null" >
+        Kid,
+      </if>
+      <if test="payment != null" >
+        Payment,
+      </if>
+      <if test="balance != null" >
+        Balance,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billstype != null" >
+        #{billstype,jdbcType=VARCHAR},
+      </if>
+      <if test="billsno != null" >
+        #{billsno,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="kid != null" >
+        #{kid,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.GatheringExample" resultType="java.lang.Integer" >
+    select count(*) from gathering
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gathering
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.billstype != null" >
+        Billstype = #{record.billstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billsno != null" >
+        BillsNo = #{record.billsno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        Date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.kid != null" >
+        Kid = #{record.kid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payment != null" >
+        Payment = #{record.payment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.balance != null" >
+        Balance = #{record.balance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gathering
+    set Id = #{record.id,jdbcType=INTEGER},
+      Billstype = #{record.billstype,jdbcType=VARCHAR},
+      BillsNo = #{record.billsno,jdbcType=VARCHAR},
+      Date = #{record.date,jdbcType=DATE},
+      Kid = #{record.kid,jdbcType=VARCHAR},
+      Payment = #{record.payment,jdbcType=DOUBLE},
+      Balance = #{record.balance,jdbcType=DOUBLE},
+      State = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Gathering" >
+    update gathering
+    <set >
+      <if test="billstype != null" >
+        Billstype = #{billstype,jdbcType=VARCHAR},
+      </if>
+      <if test="billsno != null" >
+        BillsNo = #{billsno,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        Date = #{date,jdbcType=DATE},
+      </if>
+      <if test="kid != null" >
+        Kid = #{kid,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null" >
+        Payment = #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        Balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Gathering" >
+    update gathering
+    set Billstype = #{billstype,jdbcType=VARCHAR},
+      BillsNo = #{billsno,jdbcType=VARCHAR},
+      Date = #{date,jdbcType=DATE},
+      Kid = #{kid,jdbcType=VARCHAR},
+      Payment = #{payment,jdbcType=DOUBLE},
+      Balance = #{balance,jdbcType=DOUBLE},
+      State = #{state,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

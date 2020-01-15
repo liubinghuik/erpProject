@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.SalesorderdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Salesorderdetails" >
+    <result column="LineNo" property="lineno" jdbcType="INTEGER" />
+    <result column="ProdID" property="prodid" jdbcType="VARCHAR" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="UnitName" property="unitname" jdbcType="VARCHAR" />
+    <result column="sQuantity" property="squantity" jdbcType="INTEGER" />
+    <result column="OldPrice" property="oldprice" jdbcType="DOUBLE" />
+    <result column="Discount" property="discount" jdbcType="DOUBLE" />
+    <result column="sPrice" property="sprice" jdbcType="DOUBLE" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="TaxRate" property="taxrate" jdbcType="DOUBLE" />
+    <result column="TaxAmt" property="taxamt" jdbcType="DOUBLE" />
+    <result column="VFTotal" property="vftotal" jdbcType="DOUBLE" />
+    <result column="HasThsQuantity" property="hasthsquantity" jdbcType="INTEGER" />
+    <result column="PreInDate" property="preindate" jdbcType="DATE" />
+    <result column="QtyRemain" property="qtyremain" jdbcType="INTEGER" />
+    <result column="IsGift" property="isgift" jdbcType="INTEGER" />
+    <result column="TranType" property="trantype" jdbcType="VARCHAR" />
+    <result column="FromNo" property="fromno" jdbcType="VARCHAR" />
+    <result column="Clients" property="clients" jdbcType="VARCHAR" />
+    <result column="GatheringDate" property="gatheringdate" jdbcType="DATE" />
+    <result column="GatheringCondition" property="gatheringcondition" jdbcType="INTEGER" />
+    <result column="Gatheringt" property="gatheringt" jdbcType="INTEGER" />
+    <result column="Gatheringtday" property="gatheringtday" jdbcType="INTEGER" />
+    <result column="ItemRemark" property="itemremark" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LineNo, ProdID, ProdName, ProdSize, UnitName, sQuantity, OldPrice, Discount, sPrice, 
+    Amount, TaxRate, TaxAmt, VFTotal, HasThsQuantity, PreInDate, QtyRemain, IsGift, TranType, 
+    FromNo, Clients, GatheringDate, GatheringCondition, Gatheringt, Gatheringtday, ItemRemark, 
+    Remark, State
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.SalesorderdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from salesorderdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.accp.domain.SalesorderdetailsExample" >
+    delete from salesorderdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Salesorderdetails" >
+    insert into salesorderdetails (LineNo, ProdID, ProdName, 
+      ProdSize, UnitName, sQuantity, 
+      OldPrice, Discount, sPrice, 
+      Amount, TaxRate, TaxAmt, 
+      VFTotal, HasThsQuantity, PreInDate, 
+      QtyRemain, IsGift, TranType, 
+      FromNo, Clients, GatheringDate, 
+      GatheringCondition, Gatheringt, Gatheringtday, 
+      ItemRemark, Remark, State
+      )
+    values (#{lineno,jdbcType=INTEGER}, #{prodid,jdbcType=VARCHAR}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodsize,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, #{squantity,jdbcType=INTEGER}, 
+      #{oldprice,jdbcType=DOUBLE}, #{discount,jdbcType=DOUBLE}, #{sprice,jdbcType=DOUBLE}, 
+      #{amount,jdbcType=DOUBLE}, #{taxrate,jdbcType=DOUBLE}, #{taxamt,jdbcType=DOUBLE}, 
+      #{vftotal,jdbcType=DOUBLE}, #{hasthsquantity,jdbcType=INTEGER}, #{preindate,jdbcType=DATE}, 
+      #{qtyremain,jdbcType=INTEGER}, #{isgift,jdbcType=INTEGER}, #{trantype,jdbcType=VARCHAR}, 
+      #{fromno,jdbcType=VARCHAR}, #{clients,jdbcType=VARCHAR}, #{gatheringdate,jdbcType=DATE}, 
+      #{gatheringcondition,jdbcType=INTEGER}, #{gatheringt,jdbcType=INTEGER}, #{gatheringtday,jdbcType=INTEGER}, 
+      #{itemremark,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Salesorderdetails" >
+    insert into salesorderdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        LineNo,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="unitname != null" >
+        UnitName,
+      </if>
+      <if test="squantity != null" >
+        sQuantity,
+      </if>
+      <if test="oldprice != null" >
+        OldPrice,
+      </if>
+      <if test="discount != null" >
+        Discount,
+      </if>
+      <if test="sprice != null" >
+        sPrice,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="taxrate != null" >
+        TaxRate,
+      </if>
+      <if test="taxamt != null" >
+        TaxAmt,
+      </if>
+      <if test="vftotal != null" >
+        VFTotal,
+      </if>
+      <if test="hasthsquantity != null" >
+        HasThsQuantity,
+      </if>
+      <if test="preindate != null" >
+        PreInDate,
+      </if>
+      <if test="qtyremain != null" >
+        QtyRemain,
+      </if>
+      <if test="isgift != null" >
+        IsGift,
+      </if>
+      <if test="trantype != null" >
+        TranType,
+      </if>
+      <if test="fromno != null" >
+        FromNo,
+      </if>
+      <if test="clients != null" >
+        Clients,
+      </if>
+      <if test="gatheringdate != null" >
+        GatheringDate,
+      </if>
+      <if test="gatheringcondition != null" >
+        GatheringCondition,
+      </if>
+      <if test="gatheringt != null" >
+        Gatheringt,
+      </if>
+      <if test="gatheringtday != null" >
+        Gatheringtday,
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lineno != null" >
+        #{lineno,jdbcType=INTEGER},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="squantity != null" >
+        #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="oldprice != null" >
+        #{oldprice,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="sprice != null" >
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="taxamt != null" >
+        #{taxamt,jdbcType=DOUBLE},
+      </if>
+      <if test="vftotal != null" >
+        #{vftotal,jdbcType=DOUBLE},
+      </if>
+      <if test="hasthsquantity != null" >
+        #{hasthsquantity,jdbcType=INTEGER},
+      </if>
+      <if test="preindate != null" >
+        #{preindate,jdbcType=DATE},
+      </if>
+      <if test="qtyremain != null" >
+        #{qtyremain,jdbcType=INTEGER},
+      </if>
+      <if test="isgift != null" >
+        #{isgift,jdbcType=INTEGER},
+      </if>
+      <if test="trantype != null" >
+        #{trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="fromno != null" >
+        #{fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="clients != null" >
+        #{clients,jdbcType=VARCHAR},
+      </if>
+      <if test="gatheringdate != null" >
+        #{gatheringdate,jdbcType=DATE},
+      </if>
+      <if test="gatheringcondition != null" >
+        #{gatheringcondition,jdbcType=INTEGER},
+      </if>
+      <if test="gatheringt != null" >
+        #{gatheringt,jdbcType=INTEGER},
+      </if>
+      <if test="gatheringtday != null" >
+        #{gatheringtday,jdbcType=INTEGER},
+      </if>
+      <if test="itemremark != null" >
+        #{itemremark,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.SalesorderdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from salesorderdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update salesorderdetails
+    <set >
+      <if test="record.lineno != null" >
+        LineNo = #{record.lineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitname != null" >
+        UnitName = #{record.unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.squantity != null" >
+        sQuantity = #{record.squantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldprice != null" >
+        OldPrice = #{record.oldprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discount != null" >
+        Discount = #{record.discount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sprice != null" >
+        sPrice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxrate != null" >
+        TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxamt != null" >
+        TaxAmt = #{record.taxamt,jdbcType=DOUBLE},
+      </if>
+      <if test="record.vftotal != null" >
+        VFTotal = #{record.vftotal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.hasthsquantity != null" >
+        HasThsQuantity = #{record.hasthsquantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.preindate != null" >
+        PreInDate = #{record.preindate,jdbcType=DATE},
+      </if>
+      <if test="record.qtyremain != null" >
+        QtyRemain = #{record.qtyremain,jdbcType=INTEGER},
+      </if>
+      <if test="record.isgift != null" >
+        IsGift = #{record.isgift,jdbcType=INTEGER},
+      </if>
+      <if test="record.trantype != null" >
+        TranType = #{record.trantype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fromno != null" >
+        FromNo = #{record.fromno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clients != null" >
+        Clients = #{record.clients,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gatheringdate != null" >
+        GatheringDate = #{record.gatheringdate,jdbcType=DATE},
+      </if>
+      <if test="record.gatheringcondition != null" >
+        GatheringCondition = #{record.gatheringcondition,jdbcType=INTEGER},
+      </if>
+      <if test="record.gatheringt != null" >
+        Gatheringt = #{record.gatheringt,jdbcType=INTEGER},
+      </if>
+      <if test="record.gatheringtday != null" >
+        Gatheringtday = #{record.gatheringtday,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemremark != null" >
+        ItemRemark = #{record.itemremark,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        State = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update salesorderdetails
+    set LineNo = #{record.lineno,jdbcType=INTEGER},
+      ProdID = #{record.prodid,jdbcType=VARCHAR},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      UnitName = #{record.unitname,jdbcType=VARCHAR},
+      sQuantity = #{record.squantity,jdbcType=INTEGER},
+      OldPrice = #{record.oldprice,jdbcType=DOUBLE},
+      Discount = #{record.discount,jdbcType=DOUBLE},
+      sPrice = #{record.sprice,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      TaxAmt = #{record.taxamt,jdbcType=DOUBLE},
+      VFTotal = #{record.vftotal,jdbcType=DOUBLE},
+      HasThsQuantity = #{record.hasthsquantity,jdbcType=INTEGER},
+      PreInDate = #{record.preindate,jdbcType=DATE},
+      QtyRemain = #{record.qtyremain,jdbcType=INTEGER},
+      IsGift = #{record.isgift,jdbcType=INTEGER},
+      TranType = #{record.trantype,jdbcType=VARCHAR},
+      FromNo = #{record.fromno,jdbcType=VARCHAR},
+      Clients = #{record.clients,jdbcType=VARCHAR},
+      GatheringDate = #{record.gatheringdate,jdbcType=DATE},
+      GatheringCondition = #{record.gatheringcondition,jdbcType=INTEGER},
+      Gatheringt = #{record.gatheringt,jdbcType=INTEGER},
+      Gatheringtday = #{record.gatheringtday,jdbcType=INTEGER},
+      ItemRemark = #{record.itemremark,jdbcType=INTEGER},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

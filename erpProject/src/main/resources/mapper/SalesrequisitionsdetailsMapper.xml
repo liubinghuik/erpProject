@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.SalesrequisitionsdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Salesrequisitionsdetails" >
+    <result column="SerNO" property="serno" jdbcType="VARCHAR" />
+    <result column="ProdID" property="prodid" jdbcType="VARCHAR" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="UnitName" property="unitname" jdbcType="VARCHAR" />
+    <result column="sQuantity" property="squantity" jdbcType="INTEGER" />
+    <result column="ZkqPrice" property="zkqprice" jdbcType="DOUBLE" />
+    <result column="Discount" property="discount" jdbcType="DOUBLE" />
+    <result column="UnitPrice" property="unitprice" jdbcType="DOUBLE" />
+    <result column="Price" property="price" jdbcType="DOUBLE" />
+    <result column="TaxRate" property="taxrate" jdbcType="DOUBLE" />
+    <result column="Taxlimit" property="taxlimit" jdbcType="DOUBLE" />
+    <result column="TaxInclusivePrice" property="taxinclusiveprice" jdbcType="DOUBLE" />
+    <result column="Complimentart" property="complimentart" jdbcType="INTEGER" />
+    <result column="ItemRemark" property="itemremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SerNO, ProdID, ProdName, ProdSize, UnitName, sQuantity, ZkqPrice, Discount, UnitPrice, 
+    Price, TaxRate, Taxlimit, TaxInclusivePrice, Complimentart, ItemRemark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.SalesrequisitionsdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from salesrequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.accp.domain.SalesrequisitionsdetailsExample" >
+    delete from salesrequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Salesrequisitionsdetails" >
+    insert into salesrequisitionsdetails (SerNO, ProdID, ProdName, 
+      ProdSize, UnitName, sQuantity, 
+      ZkqPrice, Discount, UnitPrice, 
+      Price, TaxRate, Taxlimit, 
+      TaxInclusivePrice, Complimentart, ItemRemark
+      )
+    values (#{serno,jdbcType=VARCHAR}, #{prodid,jdbcType=VARCHAR}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodsize,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, #{squantity,jdbcType=INTEGER}, 
+      #{zkqprice,jdbcType=DOUBLE}, #{discount,jdbcType=DOUBLE}, #{unitprice,jdbcType=DOUBLE}, 
+      #{price,jdbcType=DOUBLE}, #{taxrate,jdbcType=DOUBLE}, #{taxlimit,jdbcType=DOUBLE}, 
+      #{taxinclusiveprice,jdbcType=DOUBLE}, #{complimentart,jdbcType=INTEGER}, #{itemremark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Salesrequisitionsdetails" >
+    insert into salesrequisitionsdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serno != null" >
+        SerNO,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="unitname != null" >
+        UnitName,
+      </if>
+      <if test="squantity != null" >
+        sQuantity,
+      </if>
+      <if test="zkqprice != null" >
+        ZkqPrice,
+      </if>
+      <if test="discount != null" >
+        Discount,
+      </if>
+      <if test="unitprice != null" >
+        UnitPrice,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="taxrate != null" >
+        TaxRate,
+      </if>
+      <if test="taxlimit != null" >
+        Taxlimit,
+      </if>
+      <if test="taxinclusiveprice != null" >
+        TaxInclusivePrice,
+      </if>
+      <if test="complimentart != null" >
+        Complimentart,
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serno != null" >
+        #{serno,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null" >
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="squantity != null" >
+        #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="zkqprice != null" >
+        #{zkqprice,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="unitprice != null" >
+        #{unitprice,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="taxlimit != null" >
+        #{taxlimit,jdbcType=DOUBLE},
+      </if>
+      <if test="taxinclusiveprice != null" >
+        #{taxinclusiveprice,jdbcType=DOUBLE},
+      </if>
+      <if test="complimentart != null" >
+        #{complimentart,jdbcType=INTEGER},
+      </if>
+      <if test="itemremark != null" >
+        #{itemremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.SalesrequisitionsdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from salesrequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update salesrequisitionsdetails
+    <set >
+      <if test="record.serno != null" >
+        SerNO = #{record.serno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitname != null" >
+        UnitName = #{record.unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.squantity != null" >
+        sQuantity = #{record.squantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.zkqprice != null" >
+        ZkqPrice = #{record.zkqprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.discount != null" >
+        Discount = #{record.discount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unitprice != null" >
+        UnitPrice = #{record.unitprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.price != null" >
+        Price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxrate != null" >
+        TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxlimit != null" >
+        Taxlimit = #{record.taxlimit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.taxinclusiveprice != null" >
+        TaxInclusivePrice = #{record.taxinclusiveprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.complimentart != null" >
+        Complimentart = #{record.complimentart,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemremark != null" >
+        ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update salesrequisitionsdetails
+    set SerNO = #{record.serno,jdbcType=VARCHAR},
+      ProdID = #{record.prodid,jdbcType=VARCHAR},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      UnitName = #{record.unitname,jdbcType=VARCHAR},
+      sQuantity = #{record.squantity,jdbcType=INTEGER},
+      ZkqPrice = #{record.zkqprice,jdbcType=DOUBLE},
+      Discount = #{record.discount,jdbcType=DOUBLE},
+      UnitPrice = #{record.unitprice,jdbcType=DOUBLE},
+      Price = #{record.price,jdbcType=DOUBLE},
+      TaxRate = #{record.taxrate,jdbcType=DOUBLE},
+      Taxlimit = #{record.taxlimit,jdbcType=DOUBLE},
+      TaxInclusivePrice = #{record.taxinclusiveprice,jdbcType=DOUBLE},
+      Complimentart = #{record.complimentart,jdbcType=INTEGER},
+      ItemRemark = #{record.itemremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

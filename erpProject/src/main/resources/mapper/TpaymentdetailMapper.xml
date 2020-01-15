@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.TpaymentdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Tpaymentdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="sourcetype" property="sourcetype" jdbcType="VARCHAR" />
+    <result column="sourceno" property="sourceno" jdbcType="VARCHAR" />
+    <result column="sourcedate" property="sourcedate" jdbcType="DATE" />
+    <result column="invoicenumber" property="invoicenumber" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="departID" property="departid" jdbcType="VARCHAR" />
+    <result column="departName" property="departname" jdbcType="VARCHAR" />
+    <result column="buyer" property="buyer" jdbcType="VARCHAR" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="currencyID" property="currencyid" jdbcType="VARCHAR" />
+    <result column="exchangeRate" property="exchangerate" jdbcType="DOUBLE" />
+    <result column="payment" property="payment" jdbcType="DOUBLE" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="rebate" property="rebate" jdbcType="DOUBLE" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="chargeAgainst" property="chargeagainst" jdbcType="DOUBLE" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pid, sourcetype, sourceno, sourcedate, invoicenumber, sid, sname, departID, departName, 
+    buyer, project, currencyID, exchangeRate, payment, balance, rebate, money, chargeAgainst, 
+    state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.TpaymentdetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tpaymentdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tpaymentdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tpaymentdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.TpaymentdetailExample" >
+    delete from tpaymentdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Tpaymentdetail" >
+    insert into tpaymentdetail (id, pid, sourcetype, 
+      sourceno, sourcedate, invoicenumber, 
+      sid, sname, departID, 
+      departName, buyer, project, 
+      currencyID, exchangeRate, payment, 
+      balance, rebate, money, 
+      chargeAgainst, state)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{sourcetype,jdbcType=VARCHAR}, 
+      #{sourceno,jdbcType=VARCHAR}, #{sourcedate,jdbcType=DATE}, #{invoicenumber,jdbcType=VARCHAR}, 
+      #{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{departid,jdbcType=VARCHAR}, 
+      #{departname,jdbcType=VARCHAR}, #{buyer,jdbcType=VARCHAR}, #{project,jdbcType=VARCHAR}, 
+      #{currencyid,jdbcType=VARCHAR}, #{exchangerate,jdbcType=DOUBLE}, #{payment,jdbcType=DOUBLE}, 
+      #{balance,jdbcType=DOUBLE}, #{rebate,jdbcType=DOUBLE}, #{money,jdbcType=DOUBLE}, 
+      #{chargeagainst,jdbcType=DOUBLE}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Tpaymentdetail" >
+    insert into tpaymentdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="sourcetype != null" >
+        sourcetype,
+      </if>
+      <if test="sourceno != null" >
+        sourceno,
+      </if>
+      <if test="sourcedate != null" >
+        sourcedate,
+      </if>
+      <if test="invoicenumber != null" >
+        invoicenumber,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="departid != null" >
+        departID,
+      </if>
+      <if test="departname != null" >
+        departName,
+      </if>
+      <if test="buyer != null" >
+        buyer,
+      </if>
+      <if test="project != null" >
+        project,
+      </if>
+      <if test="currencyid != null" >
+        currencyID,
+      </if>
+      <if test="exchangerate != null" >
+        exchangeRate,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="chargeagainst != null" >
+        chargeAgainst,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetype != null" >
+        #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceno != null" >
+        #{sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcedate != null" >
+        #{sourcedate,jdbcType=DATE},
+      </if>
+      <if test="invoicenumber != null" >
+        #{invoicenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="departname != null" >
+        #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null" >
+        #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangerate != null" >
+        #{exchangerate,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DOUBLE},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="chargeagainst != null" >
+        #{chargeagainst,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.TpaymentdetailExample" resultType="java.lang.Integer" >
+    select count(*) from tpaymentdetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tpaymentdetail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourcetype != null" >
+        sourcetype = #{record.sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceno != null" >
+        sourceno = #{record.sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourcedate != null" >
+        sourcedate = #{record.sourcedate,jdbcType=DATE},
+      </if>
+      <if test="record.invoicenumber != null" >
+        invoicenumber = #{record.invoicenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null" >
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departid != null" >
+        departID = #{record.departid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departname != null" >
+        departName = #{record.departname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyer != null" >
+        buyer = #{record.buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.project != null" >
+        project = #{record.project,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currencyid != null" >
+        currencyID = #{record.currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchangerate != null" >
+        exchangeRate = #{record.exchangerate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.payment != null" >
+        payment = #{record.payment,jdbcType=DOUBLE},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rebate != null" >
+        rebate = #{record.rebate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DOUBLE},
+      </if>
+      <if test="record.chargeagainst != null" >
+        chargeAgainst = #{record.chargeagainst,jdbcType=DOUBLE},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tpaymentdetail
+    set id = #{record.id,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      sourcetype = #{record.sourcetype,jdbcType=VARCHAR},
+      sourceno = #{record.sourceno,jdbcType=VARCHAR},
+      sourcedate = #{record.sourcedate,jdbcType=DATE},
+      invoicenumber = #{record.invoicenumber,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      departID = #{record.departid,jdbcType=VARCHAR},
+      departName = #{record.departname,jdbcType=VARCHAR},
+      buyer = #{record.buyer,jdbcType=VARCHAR},
+      project = #{record.project,jdbcType=VARCHAR},
+      currencyID = #{record.currencyid,jdbcType=VARCHAR},
+      exchangeRate = #{record.exchangerate,jdbcType=DOUBLE},
+      payment = #{record.payment,jdbcType=DOUBLE},
+      balance = #{record.balance,jdbcType=DOUBLE},
+      rebate = #{record.rebate,jdbcType=DOUBLE},
+      money = #{record.money,jdbcType=DOUBLE},
+      chargeAgainst = #{record.chargeagainst,jdbcType=DOUBLE},
+      state = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Tpaymentdetail" >
+    update tpaymentdetail
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcetype != null" >
+        sourcetype = #{sourcetype,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceno != null" >
+        sourceno = #{sourceno,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcedate != null" >
+        sourcedate = #{sourcedate,jdbcType=DATE},
+      </if>
+      <if test="invoicenumber != null" >
+        invoicenumber = #{invoicenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        departID = #{departid,jdbcType=VARCHAR},
+      </if>
+      <if test="departname != null" >
+        departName = #{departname,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null" >
+        buyer = #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        project = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyid != null" >
+        currencyID = #{currencyid,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangerate != null" >
+        exchangeRate = #{exchangerate,jdbcType=DOUBLE},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DOUBLE},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="chargeagainst != null" >
+        chargeAgainst = #{chargeagainst,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Tpaymentdetail" >
+    update tpaymentdetail
+    set pid = #{pid,jdbcType=VARCHAR},
+      sourcetype = #{sourcetype,jdbcType=VARCHAR},
+      sourceno = #{sourceno,jdbcType=VARCHAR},
+      sourcedate = #{sourcedate,jdbcType=DATE},
+      invoicenumber = #{invoicenumber,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      sname = #{sname,jdbcType=VARCHAR},
+      departID = #{departid,jdbcType=VARCHAR},
+      departName = #{departname,jdbcType=VARCHAR},
+      buyer = #{buyer,jdbcType=VARCHAR},
+      project = #{project,jdbcType=VARCHAR},
+      currencyID = #{currencyid,jdbcType=VARCHAR},
+      exchangeRate = #{exchangerate,jdbcType=DOUBLE},
+      payment = #{payment,jdbcType=DOUBLE},
+      balance = #{balance,jdbcType=DOUBLE},
+      rebate = #{rebate,jdbcType=DOUBLE},
+      money = #{money,jdbcType=DOUBLE},
+      chargeAgainst = #{chargeagainst,jdbcType=DOUBLE},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

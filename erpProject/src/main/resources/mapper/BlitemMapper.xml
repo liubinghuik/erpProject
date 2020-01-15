@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.BlitemMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Blitem" >
+    <id column="BillNo" property="billno" jdbcType="VARCHAR" />
+    <result column="AdjustDate" property="adjustdate" jdbcType="DATE" />
+    <result column="WareID" property="wareid" jdbcType="INTEGER" />
+    <result column="VoucherNo" property="voucherno" jdbcType="VARCHAR" />
+    <result column="IncSubjectID" property="incsubjectid" jdbcType="INTEGER" />
+    <result column="DecSujectID" property="decsujectid" jdbcType="INTEGER" />
+    <result column="ZeroFilter" property="zerofilter" jdbcType="INTEGER" />
+    <result column="SalesID" property="salesid" jdbcType="INTEGER" />
+    <result column="DepartID" property="departid" jdbcType="INTEGER" />
+    <result column="Maker" property="maker" jdbcType="VARCHAR" />
+    <result column="Permitter" property="permitter" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BillNo, AdjustDate, WareID, VoucherNo, IncSubjectID, DecSujectID, ZeroFilter, SalesID, 
+    DepartID, Maker, Permitter, Remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.BlitemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from blitem
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from blitem
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.BlitemExample" >
+    delete from blitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Blitem" >
+    insert into blitem (BillNo, AdjustDate, WareID, 
+      VoucherNo, IncSubjectID, DecSujectID, 
+      ZeroFilter, SalesID, DepartID, 
+      Maker, Permitter, Remark
+      )
+    values (#{billno,jdbcType=VARCHAR}, #{adjustdate,jdbcType=DATE}, #{wareid,jdbcType=INTEGER}, 
+      #{voucherno,jdbcType=VARCHAR}, #{incsubjectid,jdbcType=INTEGER}, #{decsujectid,jdbcType=INTEGER}, 
+      #{zerofilter,jdbcType=INTEGER}, #{salesid,jdbcType=INTEGER}, #{departid,jdbcType=INTEGER}, 
+      #{maker,jdbcType=VARCHAR}, #{permitter,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Blitem" >
+    insert into blitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        BillNo,
+      </if>
+      <if test="adjustdate != null" >
+        AdjustDate,
+      </if>
+      <if test="wareid != null" >
+        WareID,
+      </if>
+      <if test="voucherno != null" >
+        VoucherNo,
+      </if>
+      <if test="incsubjectid != null" >
+        IncSubjectID,
+      </if>
+      <if test="decsujectid != null" >
+        DecSujectID,
+      </if>
+      <if test="zerofilter != null" >
+        ZeroFilter,
+      </if>
+      <if test="salesid != null" >
+        SalesID,
+      </if>
+      <if test="departid != null" >
+        DepartID,
+      </if>
+      <if test="maker != null" >
+        Maker,
+      </if>
+      <if test="permitter != null" >
+        Permitter,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustdate != null" >
+        #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="wareid != null" >
+        #{wareid,jdbcType=INTEGER},
+      </if>
+      <if test="voucherno != null" >
+        #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="incsubjectid != null" >
+        #{incsubjectid,jdbcType=INTEGER},
+      </if>
+      <if test="decsujectid != null" >
+        #{decsujectid,jdbcType=INTEGER},
+      </if>
+      <if test="zerofilter != null" >
+        #{zerofilter,jdbcType=INTEGER},
+      </if>
+      <if test="salesid != null" >
+        #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.BlitemExample" resultType="java.lang.Integer" >
+    select count(*) from blitem
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update blitem
+    <set >
+      <if test="record.billno != null" >
+        BillNo = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adjustdate != null" >
+        AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      </if>
+      <if test="record.wareid != null" >
+        WareID = #{record.wareid,jdbcType=INTEGER},
+      </if>
+      <if test="record.voucherno != null" >
+        VoucherNo = #{record.voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incsubjectid != null" >
+        IncSubjectID = #{record.incsubjectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.decsujectid != null" >
+        DecSujectID = #{record.decsujectid,jdbcType=INTEGER},
+      </if>
+      <if test="record.zerofilter != null" >
+        ZeroFilter = #{record.zerofilter,jdbcType=INTEGER},
+      </if>
+      <if test="record.salesid != null" >
+        SalesID = #{record.salesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.departid != null" >
+        DepartID = #{record.departid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maker != null" >
+        Maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitter != null" >
+        Permitter = #{record.permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update blitem
+    set BillNo = #{record.billno,jdbcType=VARCHAR},
+      AdjustDate = #{record.adjustdate,jdbcType=DATE},
+      WareID = #{record.wareid,jdbcType=INTEGER},
+      VoucherNo = #{record.voucherno,jdbcType=VARCHAR},
+      IncSubjectID = #{record.incsubjectid,jdbcType=INTEGER},
+      DecSujectID = #{record.decsujectid,jdbcType=INTEGER},
+      ZeroFilter = #{record.zerofilter,jdbcType=INTEGER},
+      SalesID = #{record.salesid,jdbcType=INTEGER},
+      DepartID = #{record.departid,jdbcType=INTEGER},
+      Maker = #{record.maker,jdbcType=VARCHAR},
+      Permitter = #{record.permitter,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Blitem" >
+    update blitem
+    <set >
+      <if test="adjustdate != null" >
+        AdjustDate = #{adjustdate,jdbcType=DATE},
+      </if>
+      <if test="wareid != null" >
+        WareID = #{wareid,jdbcType=INTEGER},
+      </if>
+      <if test="voucherno != null" >
+        VoucherNo = #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="incsubjectid != null" >
+        IncSubjectID = #{incsubjectid,jdbcType=INTEGER},
+      </if>
+      <if test="decsujectid != null" >
+        DecSujectID = #{decsujectid,jdbcType=INTEGER},
+      </if>
+      <if test="zerofilter != null" >
+        ZeroFilter = #{zerofilter,jdbcType=INTEGER},
+      </if>
+      <if test="salesid != null" >
+        SalesID = #{salesid,jdbcType=INTEGER},
+      </if>
+      <if test="departid != null" >
+        DepartID = #{departid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        Maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        Permitter = #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Blitem" >
+    update blitem
+    set AdjustDate = #{adjustdate,jdbcType=DATE},
+      WareID = #{wareid,jdbcType=INTEGER},
+      VoucherNo = #{voucherno,jdbcType=VARCHAR},
+      IncSubjectID = #{incsubjectid,jdbcType=INTEGER},
+      DecSujectID = #{decsujectid,jdbcType=INTEGER},
+      ZeroFilter = #{zerofilter,jdbcType=INTEGER},
+      SalesID = #{salesid,jdbcType=INTEGER},
+      DepartID = #{departid,jdbcType=INTEGER},
+      Maker = #{maker,jdbcType=VARCHAR},
+      Permitter = #{permitter,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>

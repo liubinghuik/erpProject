@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ProcurementshareMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Procurementshare" >
+    <id column="PSId" property="psid" jdbcType="VARCHAR" />
+    <result column="CreateDate" property="createdate" jdbcType="DATE" />
+    <result column="MlAmount" property="mlamount" jdbcType="DOUBLE" />
+    <result column="AssignStyle" property="assignstyle" jdbcType="VARCHAR" />
+    <result column="VoucherNO" property="voucherno" jdbcType="VARCHAR" />
+    <result column="MakerSign" property="makersign" jdbcType="VARCHAR" />
+    <result column="PermitterSign" property="permittersign" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="Column1" property="column1" jdbcType="VARCHAR" />
+    <result column="Audit" property="audit" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PSId, CreateDate, MlAmount, AssignStyle, VoucherNO, MakerSign, PermitterSign, STATUS, 
+    Remark, Column1, Audit
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ProcurementshareExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from procurementshare
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from procurementshare
+    where PSId = #{psid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from procurementshare
+    where PSId = #{psid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ProcurementshareExample" >
+    delete from procurementshare
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Procurementshare" >
+    insert into procurementshare (PSId, CreateDate, MlAmount, 
+      AssignStyle, VoucherNO, MakerSign, 
+      PermitterSign, STATUS, Remark, 
+      Column1, Audit)
+    values (#{psid,jdbcType=VARCHAR}, #{createdate,jdbcType=DATE}, #{mlamount,jdbcType=DOUBLE}, 
+      #{assignstyle,jdbcType=VARCHAR}, #{voucherno,jdbcType=VARCHAR}, #{makersign,jdbcType=VARCHAR}, 
+      #{permittersign,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{column1,jdbcType=VARCHAR}, #{audit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Procurementshare" >
+    insert into procurementshare
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psid != null" >
+        PSId,
+      </if>
+      <if test="createdate != null" >
+        CreateDate,
+      </if>
+      <if test="mlamount != null" >
+        MlAmount,
+      </if>
+      <if test="assignstyle != null" >
+        AssignStyle,
+      </if>
+      <if test="voucherno != null" >
+        VoucherNO,
+      </if>
+      <if test="makersign != null" >
+        MakerSign,
+      </if>
+      <if test="permittersign != null" >
+        PermitterSign,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="column1 != null" >
+        Column1,
+      </if>
+      <if test="audit != null" >
+        Audit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psid != null" >
+        #{psid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="mlamount != null" >
+        #{mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="assignstyle != null" >
+        #{assignstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherno != null" >
+        #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="makersign != null" >
+        #{makersign,jdbcType=VARCHAR},
+      </if>
+      <if test="permittersign != null" >
+        #{permittersign,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ProcurementshareExample" resultType="java.lang.Integer" >
+    select count(*) from procurementshare
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update procurementshare
+    <set >
+      <if test="record.psid != null" >
+        PSId = #{record.psid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        CreateDate = #{record.createdate,jdbcType=DATE},
+      </if>
+      <if test="record.mlamount != null" >
+        MlAmount = #{record.mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.assignstyle != null" >
+        AssignStyle = #{record.assignstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.voucherno != null" >
+        VoucherNO = #{record.voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.makersign != null" >
+        MakerSign = #{record.makersign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permittersign != null" >
+        PermitterSign = #{record.permittersign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column1 != null" >
+        Column1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audit != null" >
+        Audit = #{record.audit,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update procurementshare
+    set PSId = #{record.psid,jdbcType=VARCHAR},
+      CreateDate = #{record.createdate,jdbcType=DATE},
+      MlAmount = #{record.mlamount,jdbcType=DOUBLE},
+      AssignStyle = #{record.assignstyle,jdbcType=VARCHAR},
+      VoucherNO = #{record.voucherno,jdbcType=VARCHAR},
+      MakerSign = #{record.makersign,jdbcType=VARCHAR},
+      PermitterSign = #{record.permittersign,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      Column1 = #{record.column1,jdbcType=VARCHAR},
+      Audit = #{record.audit,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Procurementshare" >
+    update procurementshare
+    <set >
+      <if test="createdate != null" >
+        CreateDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="mlamount != null" >
+        MlAmount = #{mlamount,jdbcType=DOUBLE},
+      </if>
+      <if test="assignstyle != null" >
+        AssignStyle = #{assignstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherno != null" >
+        VoucherNO = #{voucherno,jdbcType=VARCHAR},
+      </if>
+      <if test="makersign != null" >
+        MakerSign = #{makersign,jdbcType=VARCHAR},
+      </if>
+      <if test="permittersign != null" >
+        PermitterSign = #{permittersign,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        Column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        Audit = #{audit,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PSId = #{psid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Procurementshare" >
+    update procurementshare
+    set CreateDate = #{createdate,jdbcType=DATE},
+      MlAmount = #{mlamount,jdbcType=DOUBLE},
+      AssignStyle = #{assignstyle,jdbcType=VARCHAR},
+      VoucherNO = #{voucherno,jdbcType=VARCHAR},
+      MakerSign = #{makersign,jdbcType=VARCHAR},
+      PermitterSign = #{permittersign,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Column1 = #{column1,jdbcType=VARCHAR},
+      Audit = #{audit,jdbcType=INTEGER}
+    where PSId = #{psid,jdbcType=VARCHAR}
+  </update>
+</mapper>

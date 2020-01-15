@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PurchaserequisitionsdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Purchaserequisitionsdetails" >
+    <id column="SerNO" property="serno" jdbcType="INTEGER" />
+    <result column="ProdID" property="prodid" jdbcType="DATE" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="SUnitID" property="sunitid" jdbcType="INTEGER" />
+    <result column="SQuantity" property="squantity" jdbcType="INTEGER" />
+    <result column="CurrID" property="currid" jdbcType="INTEGER" />
+    <result column="SPrice" property="sprice" jdbcType="DOUBLE" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="LastestCurrID" property="lastestcurrid" jdbcType="INTEGER" />
+    <result column="LastestPrice" property="lastestprice" jdbcType="DOUBLE" />
+    <result column="LastestAmount" property="lastestamount" jdbcType="DOUBLE" />
+    <result column="PreInDate" property="preindate" jdbcType="DATE" />
+    <result column="SuggestPurDate" property="suggestpurdate" jdbcType="DATE" />
+    <result column="QtyRemain" property="qtyremain" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ItemRemark" property="itemremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.accp.domain.PurchaserequisitionsdetailsWithBLOBs" extends="BaseResultMap" >
+    <result column="TranType" property="trantype" jdbcType="VARBINARY" />
+    <result column="FromNo" property="fromno" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SerNO, ProdID, ProdName, ProdSize, SUnitID, SQuantity, CurrID, SPrice, Amount, LastestCurrID, 
+    LastestPrice, LastestAmount, PreInDate, SuggestPurDate, QtyRemain, Remark, ItemRemark
+  </sql>
+  <sql id="Blob_Column_List" >
+    TranType, FromNo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.accp.domain.PurchaserequisitionsdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from purchaserequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PurchaserequisitionsdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from purchaserequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from purchaserequisitionsdetails
+    where SerNO = #{serno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from purchaserequisitionsdetails
+    where SerNO = #{serno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PurchaserequisitionsdetailsExample" >
+    delete from purchaserequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.PurchaserequisitionsdetailsWithBLOBs" >
+    insert into purchaserequisitionsdetails (SerNO, ProdID, ProdName, 
+      ProdSize, SUnitID, SQuantity, 
+      CurrID, SPrice, Amount, 
+      LastestCurrID, LastestPrice, LastestAmount, 
+      PreInDate, SuggestPurDate, QtyRemain, 
+      Remark, ItemRemark, TranType, 
+      FromNo)
+    values (#{serno,jdbcType=INTEGER}, #{prodid,jdbcType=DATE}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodsize,jdbcType=VARCHAR}, #{sunitid,jdbcType=INTEGER}, #{squantity,jdbcType=INTEGER}, 
+      #{currid,jdbcType=INTEGER}, #{sprice,jdbcType=DOUBLE}, #{amount,jdbcType=DOUBLE}, 
+      #{lastestcurrid,jdbcType=INTEGER}, #{lastestprice,jdbcType=DOUBLE}, #{lastestamount,jdbcType=DOUBLE}, 
+      #{preindate,jdbcType=DATE}, #{suggestpurdate,jdbcType=DATE}, #{qtyremain,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{itemremark,jdbcType=VARCHAR}, #{trantype,jdbcType=VARBINARY}, 
+      #{fromno,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.PurchaserequisitionsdetailsWithBLOBs" >
+    insert into purchaserequisitionsdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serno != null" >
+        SerNO,
+      </if>
+      <if test="prodid != null" >
+        ProdID,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="sunitid != null" >
+        SUnitID,
+      </if>
+      <if test="squantity != null" >
+        SQuantity,
+      </if>
+      <if test="currid != null" >
+        CurrID,
+      </if>
+      <if test="sprice != null" >
+        SPrice,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="lastestcurrid != null" >
+        LastestCurrID,
+      </if>
+      <if test="lastestprice != null" >
+        LastestPrice,
+      </if>
+      <if test="lastestamount != null" >
+        LastestAmount,
+      </if>
+      <if test="preindate != null" >
+        PreInDate,
+      </if>
+      <if test="suggestpurdate != null" >
+        SuggestPurDate,
+      </if>
+      <if test="qtyremain != null" >
+        QtyRemain,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark,
+      </if>
+      <if test="trantype != null" >
+        TranType,
+      </if>
+      <if test="fromno != null" >
+        FromNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serno != null" >
+        #{serno,jdbcType=INTEGER},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=DATE},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sunitid != null" >
+        #{sunitid,jdbcType=INTEGER},
+      </if>
+      <if test="squantity != null" >
+        #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="currid != null" >
+        #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null" >
+        #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="lastestcurrid != null" >
+        #{lastestcurrid,jdbcType=INTEGER},
+      </if>
+      <if test="lastestprice != null" >
+        #{lastestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="lastestamount != null" >
+        #{lastestamount,jdbcType=DOUBLE},
+      </if>
+      <if test="preindate != null" >
+        #{preindate,jdbcType=DATE},
+      </if>
+      <if test="suggestpurdate != null" >
+        #{suggestpurdate,jdbcType=DATE},
+      </if>
+      <if test="qtyremain != null" >
+        #{qtyremain,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="itemremark != null" >
+        #{itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        #{trantype,jdbcType=VARBINARY},
+      </if>
+      <if test="fromno != null" >
+        #{fromno,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PurchaserequisitionsdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from purchaserequisitionsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update purchaserequisitionsdetails
+    <set >
+      <if test="record.serno != null" >
+        SerNO = #{record.serno,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodid != null" >
+        ProdID = #{record.prodid,jdbcType=DATE},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sunitid != null" >
+        SUnitID = #{record.sunitid,jdbcType=INTEGER},
+      </if>
+      <if test="record.squantity != null" >
+        SQuantity = #{record.squantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.currid != null" >
+        CurrID = #{record.currid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sprice != null" >
+        SPrice = #{record.sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lastestcurrid != null" >
+        LastestCurrID = #{record.lastestcurrid,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastestprice != null" >
+        LastestPrice = #{record.lastestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lastestamount != null" >
+        LastestAmount = #{record.lastestamount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.preindate != null" >
+        PreInDate = #{record.preindate,jdbcType=DATE},
+      </if>
+      <if test="record.suggestpurdate != null" >
+        SuggestPurDate = #{record.suggestpurdate,jdbcType=DATE},
+      </if>
+      <if test="record.qtyremain != null" >
+        QtyRemain = #{record.qtyremain,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        Remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemremark != null" >
+        ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trantype != null" >
+        TranType = #{record.trantype,jdbcType=VARBINARY},
+      </if>
+      <if test="record.fromno != null" >
+        FromNo = #{record.fromno,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update purchaserequisitionsdetails
+    set SerNO = #{record.serno,jdbcType=INTEGER},
+      ProdID = #{record.prodid,jdbcType=DATE},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      SUnitID = #{record.sunitid,jdbcType=INTEGER},
+      SQuantity = #{record.squantity,jdbcType=INTEGER},
+      CurrID = #{record.currid,jdbcType=INTEGER},
+      SPrice = #{record.sprice,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      LastestCurrID = #{record.lastestcurrid,jdbcType=INTEGER},
+      LastestPrice = #{record.lastestprice,jdbcType=DOUBLE},
+      LastestAmount = #{record.lastestamount,jdbcType=DOUBLE},
+      PreInDate = #{record.preindate,jdbcType=DATE},
+      SuggestPurDate = #{record.suggestpurdate,jdbcType=DATE},
+      QtyRemain = #{record.qtyremain,jdbcType=INTEGER},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      ItemRemark = #{record.itemremark,jdbcType=VARCHAR},
+      TranType = #{record.trantype,jdbcType=VARBINARY},
+      FromNo = #{record.fromno,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update purchaserequisitionsdetails
+    set SerNO = #{record.serno,jdbcType=INTEGER},
+      ProdID = #{record.prodid,jdbcType=DATE},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      SUnitID = #{record.sunitid,jdbcType=INTEGER},
+      SQuantity = #{record.squantity,jdbcType=INTEGER},
+      CurrID = #{record.currid,jdbcType=INTEGER},
+      SPrice = #{record.sprice,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      LastestCurrID = #{record.lastestcurrid,jdbcType=INTEGER},
+      LastestPrice = #{record.lastestprice,jdbcType=DOUBLE},
+      LastestAmount = #{record.lastestamount,jdbcType=DOUBLE},
+      PreInDate = #{record.preindate,jdbcType=DATE},
+      SuggestPurDate = #{record.suggestpurdate,jdbcType=DATE},
+      QtyRemain = #{record.qtyremain,jdbcType=INTEGER},
+      Remark = #{record.remark,jdbcType=VARCHAR},
+      ItemRemark = #{record.itemremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.PurchaserequisitionsdetailsWithBLOBs" >
+    update purchaserequisitionsdetails
+    <set >
+      <if test="prodid != null" >
+        ProdID = #{prodid,jdbcType=DATE},
+      </if>
+      <if test="prodname != null" >
+        ProdName = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        ProdSize = #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sunitid != null" >
+        SUnitID = #{sunitid,jdbcType=INTEGER},
+      </if>
+      <if test="squantity != null" >
+        SQuantity = #{squantity,jdbcType=INTEGER},
+      </if>
+      <if test="currid != null" >
+        CurrID = #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="sprice != null" >
+        SPrice = #{sprice,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="lastestcurrid != null" >
+        LastestCurrID = #{lastestcurrid,jdbcType=INTEGER},
+      </if>
+      <if test="lastestprice != null" >
+        LastestPrice = #{lastestprice,jdbcType=DOUBLE},
+      </if>
+      <if test="lastestamount != null" >
+        LastestAmount = #{lastestamount,jdbcType=DOUBLE},
+      </if>
+      <if test="preindate != null" >
+        PreInDate = #{preindate,jdbcType=DATE},
+      </if>
+      <if test="suggestpurdate != null" >
+        SuggestPurDate = #{suggestpurdate,jdbcType=DATE},
+      </if>
+      <if test="qtyremain != null" >
+        QtyRemain = #{qtyremain,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="itemremark != null" >
+        ItemRemark = #{itemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="trantype != null" >
+        TranType = #{trantype,jdbcType=VARBINARY},
+      </if>
+      <if test="fromno != null" >
+        FromNo = #{fromno,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where SerNO = #{serno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.accp.domain.PurchaserequisitionsdetailsWithBLOBs" >
+    update purchaserequisitionsdetails
+    set ProdID = #{prodid,jdbcType=DATE},
+      ProdName = #{prodname,jdbcType=VARCHAR},
+      ProdSize = #{prodsize,jdbcType=VARCHAR},
+      SUnitID = #{sunitid,jdbcType=INTEGER},
+      SQuantity = #{squantity,jdbcType=INTEGER},
+      CurrID = #{currid,jdbcType=INTEGER},
+      SPrice = #{sprice,jdbcType=DOUBLE},
+      Amount = #{amount,jdbcType=DOUBLE},
+      LastestCurrID = #{lastestcurrid,jdbcType=INTEGER},
+      LastestPrice = #{lastestprice,jdbcType=DOUBLE},
+      LastestAmount = #{lastestamount,jdbcType=DOUBLE},
+      PreInDate = #{preindate,jdbcType=DATE},
+      SuggestPurDate = #{suggestpurdate,jdbcType=DATE},
+      QtyRemain = #{qtyremain,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      ItemRemark = #{itemremark,jdbcType=VARCHAR},
+      TranType = #{trantype,jdbcType=VARBINARY},
+      FromNo = #{fromno,jdbcType=VARBINARY}
+    where SerNO = #{serno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Purchaserequisitionsdetails" >
+    update purchaserequisitionsdetails
+    set ProdID = #{prodid,jdbcType=DATE},
+      ProdName = #{prodname,jdbcType=VARCHAR},
+      ProdSize = #{prodsize,jdbcType=VARCHAR},
+      SUnitID = #{sunitid,jdbcType=INTEGER},
+      SQuantity = #{squantity,jdbcType=INTEGER},
+      CurrID = #{currid,jdbcType=INTEGER},
+      SPrice = #{sprice,jdbcType=DOUBLE},
+      Amount = #{amount,jdbcType=DOUBLE},
+      LastestCurrID = #{lastestcurrid,jdbcType=INTEGER},
+      LastestPrice = #{lastestprice,jdbcType=DOUBLE},
+      LastestAmount = #{lastestamount,jdbcType=DOUBLE},
+      PreInDate = #{preindate,jdbcType=DATE},
+      SuggestPurDate = #{suggestpurdate,jdbcType=DATE},
+      QtyRemain = #{qtyremain,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      ItemRemark = #{itemremark,jdbcType=VARCHAR}
+    where SerNO = #{serno,jdbcType=INTEGER}
+  </update>
+</mapper>

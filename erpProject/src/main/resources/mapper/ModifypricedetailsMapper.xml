@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ModifypricedetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Modifypricedetails" >
+    <id column="MPDId" property="mpdid" jdbcType="VARCHAR" />
+    <id column="MPId" property="mpid" jdbcType="VARCHAR" />
+    <result column="ProdId" property="prodid" jdbcType="VARCHAR" />
+    <result column="ProdName" property="prodname" jdbcType="VARCHAR" />
+    <result column="ProdSize" property="prodsize" jdbcType="VARCHAR" />
+    <result column="Unit" property="unit" jdbcType="VARCHAR" />
+    <result column="CurQty" property="curqty" jdbcType="INTEGER" />
+    <result column="LCostAvg" property="lcostavg" jdbcType="DOUBLE" />
+    <result column="Price" property="price" jdbcType="DOUBLE" />
+    <result column="Amount" property="amount" jdbcType="DOUBLE" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="Column1" property="column1" jdbcType="VARCHAR" />
+    <result column="Column2" property="column2" jdbcType="VARCHAR" />
+    <result column="Column3" property="column3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MPDId, MPId, ProdId, ProdName, ProdSize, Unit, CurQty, LCostAvg, Price, Amount, Remarks, 
+    Column1, Column2, Column3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ModifypricedetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from modifypricedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.accp.domain.ModifypricedetailsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from modifypricedetails
+    where MPDId = #{mpdid,jdbcType=VARCHAR}
+      and MPId = #{mpid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.accp.domain.ModifypricedetailsKey" >
+    delete from modifypricedetails
+    where MPDId = #{mpdid,jdbcType=VARCHAR}
+      and MPId = #{mpid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ModifypricedetailsExample" >
+    delete from modifypricedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Modifypricedetails" >
+    insert into modifypricedetails (MPDId, MPId, ProdId, 
+      ProdName, ProdSize, Unit, 
+      CurQty, LCostAvg, Price, 
+      Amount, Remarks, Column1, 
+      Column2, Column3)
+    values (#{mpdid,jdbcType=VARCHAR}, #{mpid,jdbcType=VARCHAR}, #{prodid,jdbcType=VARCHAR}, 
+      #{prodname,jdbcType=VARCHAR}, #{prodsize,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{curqty,jdbcType=INTEGER}, #{lcostavg,jdbcType=DOUBLE}, #{price,jdbcType=DOUBLE}, 
+      #{amount,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}, #{column1,jdbcType=VARCHAR}, 
+      #{column2,jdbcType=VARCHAR}, #{column3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Modifypricedetails" >
+    insert into modifypricedetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mpdid != null" >
+        MPDId,
+      </if>
+      <if test="mpid != null" >
+        MPId,
+      </if>
+      <if test="prodid != null" >
+        ProdId,
+      </if>
+      <if test="prodname != null" >
+        ProdName,
+      </if>
+      <if test="prodsize != null" >
+        ProdSize,
+      </if>
+      <if test="unit != null" >
+        Unit,
+      </if>
+      <if test="curqty != null" >
+        CurQty,
+      </if>
+      <if test="lcostavg != null" >
+        LCostAvg,
+      </if>
+      <if test="price != null" >
+        Price,
+      </if>
+      <if test="amount != null" >
+        Amount,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+      <if test="column1 != null" >
+        Column1,
+      </if>
+      <if test="column2 != null" >
+        Column2,
+      </if>
+      <if test="column3 != null" >
+        Column3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mpdid != null" >
+        #{mpdid,jdbcType=VARCHAR},
+      </if>
+      <if test="mpid != null" >
+        #{mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null" >
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="curqty != null" >
+        #{curqty,jdbcType=INTEGER},
+      </if>
+      <if test="lcostavg != null" >
+        #{lcostavg,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        #{column3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ModifypricedetailsExample" resultType="java.lang.Integer" >
+    select count(*) from modifypricedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update modifypricedetails
+    <set >
+      <if test="record.mpdid != null" >
+        MPDId = #{record.mpdid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mpid != null" >
+        MPId = #{record.mpid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodid != null" >
+        ProdId = #{record.prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodname != null" >
+        ProdName = #{record.prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodsize != null" >
+        ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unit != null" >
+        Unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.curqty != null" >
+        CurQty = #{record.curqty,jdbcType=INTEGER},
+      </if>
+      <if test="record.lcostavg != null" >
+        LCostAvg = #{record.lcostavg,jdbcType=DOUBLE},
+      </if>
+      <if test="record.price != null" >
+        Price = #{record.price,jdbcType=DOUBLE},
+      </if>
+      <if test="record.amount != null" >
+        Amount = #{record.amount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remarks != null" >
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column1 != null" >
+        Column1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column2 != null" >
+        Column2 = #{record.column2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column3 != null" >
+        Column3 = #{record.column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update modifypricedetails
+    set MPDId = #{record.mpdid,jdbcType=VARCHAR},
+      MPId = #{record.mpid,jdbcType=VARCHAR},
+      ProdId = #{record.prodid,jdbcType=VARCHAR},
+      ProdName = #{record.prodname,jdbcType=VARCHAR},
+      ProdSize = #{record.prodsize,jdbcType=VARCHAR},
+      Unit = #{record.unit,jdbcType=VARCHAR},
+      CurQty = #{record.curqty,jdbcType=INTEGER},
+      LCostAvg = #{record.lcostavg,jdbcType=DOUBLE},
+      Price = #{record.price,jdbcType=DOUBLE},
+      Amount = #{record.amount,jdbcType=DOUBLE},
+      Remarks = #{record.remarks,jdbcType=VARCHAR},
+      Column1 = #{record.column1,jdbcType=VARCHAR},
+      Column2 = #{record.column2,jdbcType=VARCHAR},
+      Column3 = #{record.column3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Modifypricedetails" >
+    update modifypricedetails
+    <set >
+      <if test="prodid != null" >
+        ProdId = #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null" >
+        ProdName = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodsize != null" >
+        ProdSize = #{prodsize,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="curqty != null" >
+        CurQty = #{curqty,jdbcType=INTEGER},
+      </if>
+      <if test="lcostavg != null" >
+        LCostAvg = #{lcostavg,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        Price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        Amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null" >
+        Column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        Column2 = #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        Column3 = #{column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MPDId = #{mpdid,jdbcType=VARCHAR}
+      and MPId = #{mpid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Modifypricedetails" >
+    update modifypricedetails
+    set ProdId = #{prodid,jdbcType=VARCHAR},
+      ProdName = #{prodname,jdbcType=VARCHAR},
+      ProdSize = #{prodsize,jdbcType=VARCHAR},
+      Unit = #{unit,jdbcType=VARCHAR},
+      CurQty = #{curqty,jdbcType=INTEGER},
+      LCostAvg = #{lcostavg,jdbcType=DOUBLE},
+      Price = #{price,jdbcType=DOUBLE},
+      Amount = #{amount,jdbcType=DOUBLE},
+      Remarks = #{remarks,jdbcType=VARCHAR},
+      Column1 = #{column1,jdbcType=VARCHAR},
+      Column2 = #{column2,jdbcType=VARCHAR},
+      Column3 = #{column3,jdbcType=VARCHAR}
+    where MPDId = #{mpdid,jdbcType=VARCHAR}
+      and MPId = #{mpid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PurchaseorderMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Purchaseorder" >
+    <id column="BillNo" property="billno" jdbcType="VARCHAR" />
+    <result column="BillDate" property="billdate" jdbcType="DATE" />
+    <result column="CurrID" property="currid" jdbcType="INTEGER" />
+    <result column="ExchRate" property="exchrate" jdbcType="DOUBLE" />
+    <result column="CustomerID" property="customerid" jdbcType="VARCHAR" />
+    <result column="AddressID" property="addressid" jdbcType="VARCHAR" />
+    <result column="BillStyleID" property="billstyleid" jdbcType="INTEGER" />
+    <result column="PriceOfTax" property="priceoftax" jdbcType="INTEGER" />
+    <result column="BillStatus" property="billstatus" jdbcType="INTEGER" />
+    <result column="OutAddress" property="outaddress" jdbcType="VARCHAR" />
+    <result column="SalesName" property="salesname" jdbcType="VARCHAR" />
+    <result column="DepartID" property="departid" jdbcType="INTEGER" />
+    <result column="Maker" property="maker" jdbcType="VARCHAR" />
+    <result column="Permitter" property="permitter" jdbcType="VARCHAR" />
+    <result column="PojectName" property="pojectname" jdbcType="VARCHAR" />
+    <result column="Audit" property="audit" jdbcType="INTEGER" />
+    <result column="column1" property="column1" jdbcType="VARCHAR" />
+    <result column="Column2" property="column2" jdbcType="VARCHAR" />
+    <result column="Column3" property="column3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BillNo, BillDate, CurrID, ExchRate, CustomerID, AddressID, BillStyleID, PriceOfTax, 
+    BillStatus, OutAddress, SalesName, DepartID, Maker, Permitter, PojectName, Audit, 
+    column1, Column2, Column3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PurchaseorderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from purchaseorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from purchaseorder
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from purchaseorder
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PurchaseorderExample" >
+    delete from purchaseorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Purchaseorder" >
+    insert into purchaseorder (BillNo, BillDate, CurrID, 
+      ExchRate, CustomerID, AddressID, 
+      BillStyleID, PriceOfTax, BillStatus, 
+      OutAddress, SalesName, DepartID, 
+      Maker, Permitter, PojectName, 
+      Audit, column1, Column2, 
+      Column3)
+    values (#{billno,jdbcType=VARCHAR}, #{billdate,jdbcType=DATE}, #{currid,jdbcType=INTEGER}, 
+      #{exchrate,jdbcType=DOUBLE}, #{customerid,jdbcType=VARCHAR}, #{addressid,jdbcType=VARCHAR}, 
+      #{billstyleid,jdbcType=INTEGER}, #{priceoftax,jdbcType=INTEGER}, #{billstatus,jdbcType=INTEGER}, 
+      #{outaddress,jdbcType=VARCHAR}, #{salesname,jdbcType=VARCHAR}, #{departid,jdbcType=INTEGER}, 
+      #{maker,jdbcType=VARCHAR}, #{permitter,jdbcType=VARCHAR}, #{pojectname,jdbcType=VARCHAR}, 
+      #{audit,jdbcType=INTEGER}, #{column1,jdbcType=VARCHAR}, #{column2,jdbcType=VARCHAR}, 
+      #{column3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Purchaseorder" >
+    insert into purchaseorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        BillNo,
+      </if>
+      <if test="billdate != null" >
+        BillDate,
+      </if>
+      <if test="currid != null" >
+        CurrID,
+      </if>
+      <if test="exchrate != null" >
+        ExchRate,
+      </if>
+      <if test="customerid != null" >
+        CustomerID,
+      </if>
+      <if test="addressid != null" >
+        AddressID,
+      </if>
+      <if test="billstyleid != null" >
+        BillStyleID,
+      </if>
+      <if test="priceoftax != null" >
+        PriceOfTax,
+      </if>
+      <if test="billstatus != null" >
+        BillStatus,
+      </if>
+      <if test="outaddress != null" >
+        OutAddress,
+      </if>
+      <if test="salesname != null" >
+        SalesName,
+      </if>
+      <if test="departid != null" >
+        DepartID,
+      </if>
+      <if test="maker != null" >
+        Maker,
+      </if>
+      <if test="permitter != null" >
+        Permitter,
+      </if>
+      <if test="pojectname != null" >
+        PojectName,
+      </if>
+      <if test="audit != null" >
+        Audit,
+      </if>
+      <if test="column1 != null" >
+        column1,
+      </if>
+      <if test="column2 != null" >
+        Column2,
+      </if>
+      <if test="column3 != null" >
+        Column3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="billdate != null" >
+        #{billdate,jdbcType=DATE},
+      </if>
+      <if test="currid != null" >
+        #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="exchrate != null" >
+        #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="customerid != null" >
+        #{customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=VARCHAR},
+      </if>
+      <if test="billstyleid != null" >
+        #{billstyleid,jdbcType=INTEGER},
+      </if>
+      <if test="priceoftax != null" >
+        #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="billstatus != null" >
+        #{billstatus,jdbcType=INTEGER},
+      </if>
+      <if test="outaddress != null" >
+        #{outaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="salesname != null" >
+        #{salesname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        #{departid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="pojectname != null" >
+        #{pojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="column1 != null" >
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        #{column3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PurchaseorderExample" resultType="java.lang.Integer" >
+    select count(*) from purchaseorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update purchaseorder
+    <set >
+      <if test="record.billno != null" >
+        BillNo = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billdate != null" >
+        BillDate = #{record.billdate,jdbcType=DATE},
+      </if>
+      <if test="record.currid != null" >
+        CurrID = #{record.currid,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchrate != null" >
+        ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.customerid != null" >
+        CustomerID = #{record.customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressid != null" >
+        AddressID = #{record.addressid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billstyleid != null" >
+        BillStyleID = #{record.billstyleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceoftax != null" >
+        PriceOfTax = #{record.priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="record.billstatus != null" >
+        BillStatus = #{record.billstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.outaddress != null" >
+        OutAddress = #{record.outaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesname != null" >
+        SalesName = #{record.salesname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departid != null" >
+        DepartID = #{record.departid,jdbcType=INTEGER},
+      </if>
+      <if test="record.maker != null" >
+        Maker = #{record.maker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitter != null" >
+        Permitter = #{record.permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pojectname != null" >
+        PojectName = #{record.pojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audit != null" >
+        Audit = #{record.audit,jdbcType=INTEGER},
+      </if>
+      <if test="record.column1 != null" >
+        column1 = #{record.column1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column2 != null" >
+        Column2 = #{record.column2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column3 != null" >
+        Column3 = #{record.column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update purchaseorder
+    set BillNo = #{record.billno,jdbcType=VARCHAR},
+      BillDate = #{record.billdate,jdbcType=DATE},
+      CurrID = #{record.currid,jdbcType=INTEGER},
+      ExchRate = #{record.exchrate,jdbcType=DOUBLE},
+      CustomerID = #{record.customerid,jdbcType=VARCHAR},
+      AddressID = #{record.addressid,jdbcType=VARCHAR},
+      BillStyleID = #{record.billstyleid,jdbcType=INTEGER},
+      PriceOfTax = #{record.priceoftax,jdbcType=INTEGER},
+      BillStatus = #{record.billstatus,jdbcType=INTEGER},
+      OutAddress = #{record.outaddress,jdbcType=VARCHAR},
+      SalesName = #{record.salesname,jdbcType=VARCHAR},
+      DepartID = #{record.departid,jdbcType=INTEGER},
+      Maker = #{record.maker,jdbcType=VARCHAR},
+      Permitter = #{record.permitter,jdbcType=VARCHAR},
+      PojectName = #{record.pojectname,jdbcType=VARCHAR},
+      Audit = #{record.audit,jdbcType=INTEGER},
+      column1 = #{record.column1,jdbcType=VARCHAR},
+      Column2 = #{record.column2,jdbcType=VARCHAR},
+      Column3 = #{record.column3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Purchaseorder" >
+    update purchaseorder
+    <set >
+      <if test="billdate != null" >
+        BillDate = #{billdate,jdbcType=DATE},
+      </if>
+      <if test="currid != null" >
+        CurrID = #{currid,jdbcType=INTEGER},
+      </if>
+      <if test="exchrate != null" >
+        ExchRate = #{exchrate,jdbcType=DOUBLE},
+      </if>
+      <if test="customerid != null" >
+        CustomerID = #{customerid,jdbcType=VARCHAR},
+      </if>
+      <if test="addressid != null" >
+        AddressID = #{addressid,jdbcType=VARCHAR},
+      </if>
+      <if test="billstyleid != null" >
+        BillStyleID = #{billstyleid,jdbcType=INTEGER},
+      </if>
+      <if test="priceoftax != null" >
+        PriceOfTax = #{priceoftax,jdbcType=INTEGER},
+      </if>
+      <if test="billstatus != null" >
+        BillStatus = #{billstatus,jdbcType=INTEGER},
+      </if>
+      <if test="outaddress != null" >
+        OutAddress = #{outaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="salesname != null" >
+        SalesName = #{salesname,jdbcType=VARCHAR},
+      </if>
+      <if test="departid != null" >
+        DepartID = #{departid,jdbcType=INTEGER},
+      </if>
+      <if test="maker != null" >
+        Maker = #{maker,jdbcType=VARCHAR},
+      </if>
+      <if test="permitter != null" >
+        Permitter = #{permitter,jdbcType=VARCHAR},
+      </if>
+      <if test="pojectname != null" >
+        PojectName = #{pojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="audit != null" >
+        Audit = #{audit,jdbcType=INTEGER},
+      </if>
+      <if test="column1 != null" >
+        column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null" >
+        Column2 = #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null" >
+        Column3 = #{column3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Purchaseorder" >
+    update purchaseorder
+    set BillDate = #{billdate,jdbcType=DATE},
+      CurrID = #{currid,jdbcType=INTEGER},
+      ExchRate = #{exchrate,jdbcType=DOUBLE},
+      CustomerID = #{customerid,jdbcType=VARCHAR},
+      AddressID = #{addressid,jdbcType=VARCHAR},
+      BillStyleID = #{billstyleid,jdbcType=INTEGER},
+      PriceOfTax = #{priceoftax,jdbcType=INTEGER},
+      BillStatus = #{billstatus,jdbcType=INTEGER},
+      OutAddress = #{outaddress,jdbcType=VARCHAR},
+      SalesName = #{salesname,jdbcType=VARCHAR},
+      DepartID = #{departid,jdbcType=INTEGER},
+      Maker = #{maker,jdbcType=VARCHAR},
+      Permitter = #{permitter,jdbcType=VARCHAR},
+      PojectName = #{pojectname,jdbcType=VARCHAR},
+      Audit = #{audit,jdbcType=INTEGER},
+      column1 = #{column1,jdbcType=VARCHAR},
+      Column2 = #{column2,jdbcType=VARCHAR},
+      Column3 = #{column3,jdbcType=VARCHAR}
+    where BillNo = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>
