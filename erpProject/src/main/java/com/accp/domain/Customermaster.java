@@ -13,7 +13,7 @@ public class Customermaster {
 
     private String shortname;
 
-    private String area;
+    private String sarea;
 
     private String engfullname;
 
@@ -143,12 +143,12 @@ public class Customermaster {
         this.shortname = shortname;
     }
 
-    public String getArea() {
-        return area;
+    public String getSarea() {
+        return sarea;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setSarea(String sarea) {
+        this.sarea = sarea;
     }
 
     public String getEngfullname() {

@@ -472,73 +472,73 @@ public class CustomermasterExample {
             return (Criteria) this;
         }
 
-        public Criteria andAreaIsNull() {
-            addCriterion("Area is null");
+        public Criteria andSareaIsNull() {
+            addCriterion("Sarea is null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaIsNotNull() {
-            addCriterion("Area is not null");
+        public Criteria andSareaIsNotNull() {
+            addCriterion("Sarea is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAreaEqualTo(String value) {
-            addCriterion("Area =", value, "area");
+        public Criteria andSareaEqualTo(String value) {
+            addCriterion("Sarea =", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotEqualTo(String value) {
-            addCriterion("Area <>", value, "area");
+        public Criteria andSareaNotEqualTo(String value) {
+            addCriterion("Sarea <>", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaGreaterThan(String value) {
-            addCriterion("Area >", value, "area");
+        public Criteria andSareaGreaterThan(String value) {
+            addCriterion("Sarea >", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaGreaterThanOrEqualTo(String value) {
-            addCriterion("Area >=", value, "area");
+        public Criteria andSareaGreaterThanOrEqualTo(String value) {
+            addCriterion("Sarea >=", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLessThan(String value) {
-            addCriterion("Area <", value, "area");
+        public Criteria andSareaLessThan(String value) {
+            addCriterion("Sarea <", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLessThanOrEqualTo(String value) {
-            addCriterion("Area <=", value, "area");
+        public Criteria andSareaLessThanOrEqualTo(String value) {
+            addCriterion("Sarea <=", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaLike(String value) {
-            addCriterion("Area like", value, "area");
+        public Criteria andSareaLike(String value) {
+            addCriterion("Sarea like", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotLike(String value) {
-            addCriterion("Area not like", value, "area");
+        public Criteria andSareaNotLike(String value) {
+            addCriterion("Sarea not like", value, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaIn(List<String> values) {
-            addCriterion("Area in", values, "area");
+        public Criteria andSareaIn(List<String> values) {
+            addCriterion("Sarea in", values, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotIn(List<String> values) {
-            addCriterion("Area not in", values, "area");
+        public Criteria andSareaNotIn(List<String> values) {
+            addCriterion("Sarea not in", values, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaBetween(String value1, String value2) {
-            addCriterion("Area between", value1, value2, "area");
+        public Criteria andSareaBetween(String value1, String value2) {
+            addCriterion("Sarea between", value1, value2, "sarea");
             return (Criteria) this;
         }
 
-        public Criteria andAreaNotBetween(String value1, String value2) {
-            addCriterion("Area not between", value1, value2, "area");
+        public Criteria andSareaNotBetween(String value1, String value2) {
+            addCriterion("Sarea not between", value1, value2, "sarea");
             return (Criteria) this;
         }
 

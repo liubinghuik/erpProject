@@ -7,7 +7,7 @@
     <result column="FullName" property="fullname" jdbcType="VARCHAR" />
     <result column="ClassID" property="classid" jdbcType="VARCHAR" />
     <result column="ShortName" property="shortname" jdbcType="VARCHAR" />
-    <result column="Area" property="area" jdbcType="VARCHAR" />
+    <result column="Sarea" property="sarea" jdbcType="VARCHAR" />
     <result column="EngFullName" property="engfullname" jdbcType="VARCHAR" />
     <result column="EngShortName" property="engshortname" jdbcType="VARCHAR" />
     <result column="CurrencyID" property="currencyid" jdbcType="VARCHAR" />
@@ -112,7 +112,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Cmid, FundsAttribution, FullName, ClassID, ShortName, Area, EngFullName, EngShortName, 
+    Cmid, FundsAttribution, FullName, ClassID, ShortName, Sarea, EngFullName, EngShortName, 
     CurrencyID, ChiefName, LinkMan, PersonID, TaxNo, Capitalization, IndustrialClass, 
     Email, WebAddress, FaxNo, Telephone1, Telephone2, Telephone3, MobileTel, BankAccount, 
     BankID, EarliestTradeDate, FirstTradeDate, LatelyTradeturnDate, LatelyReturnDate, 
@@ -152,7 +152,7 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.Customermaster" >
     insert into customermaster (Cmid, FundsAttribution, FullName, 
-      ClassID, ShortName, Area, 
+      ClassID, ShortName, Sarea, 
       EngFullName, EngShortName, CurrencyID, 
       ChiefName, LinkMan, PersonID, 
       TaxNo, Capitalization, IndustrialClass, 
@@ -169,7 +169,7 @@
       YAdvRecv, Remark, Column1, 
       Column2, Column3)
     values (#{cmid,jdbcType=INTEGER}, #{fundsattribution,jdbcType=VARCHAR}, #{fullname,jdbcType=VARCHAR}, 
-      #{classid,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{classid,jdbcType=VARCHAR}, #{shortname,jdbcType=VARCHAR}, #{sarea,jdbcType=VARCHAR}, 
       #{engfullname,jdbcType=VARCHAR}, #{engshortname,jdbcType=VARCHAR}, #{currencyid,jdbcType=VARCHAR}, 
       #{chiefname,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{personid,jdbcType=VARCHAR}, 
       #{taxno,jdbcType=VARCHAR}, #{capitalization,jdbcType=DOUBLE}, #{industrialclass,jdbcType=VARCHAR}, 
@@ -204,8 +204,8 @@
       <if test="shortname != null" >
         ShortName,
       </if>
-      <if test="area != null" >
-        Area,
+      <if test="sarea != null" >
+        Sarea,
       </if>
       <if test="engfullname != null" >
         EngFullName,
@@ -356,8 +356,8 @@
       <if test="shortname != null" >
         #{shortname,jdbcType=VARCHAR},
       </if>
-      <if test="area != null" >
-        #{area,jdbcType=VARCHAR},
+      <if test="sarea != null" >
+        #{sarea,jdbcType=VARCHAR},
       </if>
       <if test="engfullname != null" >
         #{engfullname,jdbcType=VARCHAR},
@@ -517,8 +517,8 @@
       <if test="record.shortname != null" >
         ShortName = #{record.shortname,jdbcType=VARCHAR},
       </if>
-      <if test="record.area != null" >
-        Area = #{record.area,jdbcType=VARCHAR},
+      <if test="record.sarea != null" >
+        Sarea = #{record.sarea,jdbcType=VARCHAR},
       </if>
       <if test="record.engfullname != null" >
         EngFullName = #{record.engfullname,jdbcType=VARCHAR},
@@ -664,7 +664,7 @@
       FullName = #{record.fullname,jdbcType=VARCHAR},
       ClassID = #{record.classid,jdbcType=VARCHAR},
       ShortName = #{record.shortname,jdbcType=VARCHAR},
-      Area = #{record.area,jdbcType=VARCHAR},
+      Sarea = #{record.sarea,jdbcType=VARCHAR},
       EngFullName = #{record.engfullname,jdbcType=VARCHAR},
       EngShortName = #{record.engshortname,jdbcType=VARCHAR},
       CurrencyID = #{record.currencyid,jdbcType=VARCHAR},
@@ -728,8 +728,8 @@
       <if test="shortname != null" >
         ShortName = #{shortname,jdbcType=VARCHAR},
       </if>
-      <if test="area != null" >
-        Area = #{area,jdbcType=VARCHAR},
+      <if test="sarea != null" >
+        Sarea = #{sarea,jdbcType=VARCHAR},
       </if>
       <if test="engfullname != null" >
         EngFullName = #{engfullname,jdbcType=VARCHAR},
@@ -872,7 +872,7 @@
       FullName = #{fullname,jdbcType=VARCHAR},
       ClassID = #{classid,jdbcType=VARCHAR},
       ShortName = #{shortname,jdbcType=VARCHAR},
-      Area = #{area,jdbcType=VARCHAR},
+      Sarea = #{sarea,jdbcType=VARCHAR},
       EngFullName = #{engfullname,jdbcType=VARCHAR},
       EngShortName = #{engshortname,jdbcType=VARCHAR},
       CurrencyID = #{currencyid,jdbcType=VARCHAR},
